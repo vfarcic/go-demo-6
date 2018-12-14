@@ -6,7 +6,12 @@ pipeline {
     disableConcurrentBuilds()
   }
   agent {
-    label "go-demo-6"
+    kubernetes {
+      cloud "kubernetes"
+      label "go-demo-6"
+      serviceAccount "build"
+      yamlFile "KubernetesPod.yaml"
+    }      
   }
   environment {
     image = "vfarcic/go-demo-5"

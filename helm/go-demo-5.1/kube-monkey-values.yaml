@@ -1,0 +1,6 @@
+# refer to https://github.com/asobti/kube-monkey for details
+kubemonkey:
+  enabled: disabled # to disable set this to "disabled", to enable set it to "enabled" 
+  mtbf: 1
+  kill-mode: fixed
+  kill-value: 1

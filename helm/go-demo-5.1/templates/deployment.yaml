@@ -1,0 +1,90 @@
+{{- if eq .Values.kubemonkey.enabled "disabled" -}}
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "helm.fullname" . }}
+  labels:
+    app: {{ template "helm.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "helm.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "helm.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: api
+        image: "vfarcic/go-demo-5:{{ .Values.image.tag }}"
+        env:
+        - name: DB
+          value: {{ template "helm.fullname" . }}-db
+        readinessProbe:
+          httpGet:
+            path: /demo/hello?health=true
+            port: 8080
+          periodSeconds: 1
+        livenessProbe:
+          httpGet:
+            path: /demo/hello?health=true
+            port: 8080
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+
+{{- else if eq .Values.kubemonkey.enabled "enabled" -}}
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "helm.fullname" . }}
+  labels:
+    app: {{ template "helm.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    kube-monkey/enabled: "{{ .Values.kubemonkey.enabled }}"
+    kube-monkey/identifier: {{ template "helm.name" . }}
+    kube-monkey/mtbf: "{{ .Values.kubemonkey.mtbf }}"
+    kube-monkey/kill-mode: '{{ index .Values "kubemonkey" "kill-mode" }}' # index needs to used due to "-" in the values yaml
+    kube-monkey/kill-value: '{{ index .Values "kubemonkey" "kill-value" }}'
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "helm.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "helm.name" . }}
+        release: {{ .Release.Name }}
+        kube-monkey/enabled: "{{ .Values.kubemonkey.enabled }}"
+        kube-monkey/identifier: {{ template "helm.name" . }}
+        kube-monkey/mtbf: "{{ .Values.kubemonkey.mtbf }}"
+        kube-monkey/kill-mode: '{{ index .Values "kubemonkey" "kill-mode" }}'
+        kube-monkey/kill-value: '{{ index .Values "kubemonkey" "kill-value" }}'
+    spec:
+      containers:
+      - name: api
+        image: "vfarcic/go-demo-5:{{ .Values.image.tag }}"
+        env:
+        - name: DB
+          value: {{ template "helm.fullname" . }}-db
+        readinessProbe:
+          httpGet:
+            path: /demo/hello?health=true
+            port: 8080
+          periodSeconds: 1
+        livenessProbe:
+          httpGet:
+            path: /demo/hello?health=true
+            port: 8080
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+{{- end -}}

@@ -11,3 +11,7 @@ dependencies:
 - alias: preview
   name: go-demo-6
   repository: file://../go-demo-6
+- alias: db
+  name: db
+  repository: stable/mongodb
+  version: 4.10.1

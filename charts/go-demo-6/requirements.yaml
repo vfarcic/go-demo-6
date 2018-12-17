@@ -2,5 +2,5 @@
 dependencies:
 - alias: db
   name: mongodb
-  repository: stable
+  repository: https://kubernetes-charts.storage.googleapis.com
   version: 4.10.1

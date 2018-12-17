@@ -1,6 +1,6 @@
 
 dependencies:
 - alias: db
-  name: db
-  repository: stable/mongodb
+  name: mongodb
+  repository: stable
   version: 4.10.1

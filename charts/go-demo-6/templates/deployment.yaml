@@ -23,6 +23,7 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.service.internalPort }}
+        # New
         env:
         - name: DB
           value: {{ .Release.Name }}-db

@@ -23,6 +23,9 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.service.internalPort }}
+        env:
+        - name: DB
+          value: {{ .Release.Name }}-db
         livenessProbe:
           httpGet:
             path: {{ .Values.probePath }}

@@ -12,5 +12,5 @@ dependencies:
   name: go-demo-6
   repository: file://../go-demo-6
 - alias: db
-  name: mongodb
-  repository: https://kubernetes-charts.storage.googleapis.com
+  name: stable/mongodb
+  version: 4.10.1

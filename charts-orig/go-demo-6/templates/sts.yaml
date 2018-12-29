@@ -31,6 +31,13 @@ spec:
           - rs0
           - "--smallfiles"
           - "--noprealloc"
+        resources:
+          limits:
+            memory: 200Mi
+            cpu: 100m
+          requests:
+            memory: 100Mi
+            cpu: 10m
         ports:
           - containerPort: 27017
         volumeMounts:

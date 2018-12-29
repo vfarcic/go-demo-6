@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: {{ template "fullname" . }}-db
   labels:
-    app: {{ template "helm.name" . }}-db
+    app: {{ template "name" . }}-db
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -12,12 +12,12 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: {{ template "helm.name" . }}-db
+      app: {{ template "name" . }}-db
       release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ template "helm.name" . }}-db
+        app: {{ template "name" . }}-db
         release: {{ .Release.Name }}
     spec:
       {{- if .Values.rbac.enabled }}
@@ -49,7 +49,7 @@ spec:
         image: cvallance/mongo-k8s-sidecar
         env:
         - name: MONGO_SIDECAR_POD_LABELS
-          value: app={{ template "helm.name" . }}-db,release={{ .Release.Name }}
+          value: app={{ template "name" . }}-db,release={{ .Release.Name }}
         - name: KUBE_NAMESPACE
           value: {{ .Release.Namespace }}
         - name: KUBERNETES_MONGO_SERVICE_NAME
@@ -58,7 +58,7 @@ spec:
   - metadata:
       name: {{ template "fullname" . }}-db
       labels:
-        app: {{ template "helm.name" . }}-db
+        app: {{ template "name" . }}-db
         chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
         release: {{ .Release.Name }}
         heritage: {{ .Release.Service }}

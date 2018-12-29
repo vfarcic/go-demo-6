@@ -29,7 +29,7 @@ kind: Service
 metadata:
   name: {{ template "fullname" . }}-db
   labels:
-    app: {{ template "helm.name" . }}-db
+    app: {{ template "name" . }}-db
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -38,5 +38,5 @@ spec:
   - port: 27017
   clusterIP: None
   selector:
-    app: {{ template "helm.name" . }}-db
+    app: {{ template "name" . }}-db
     release: {{ .Release.Name }}

@@ -23,7 +23,7 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
         - name: DB
-          value: {{ template "helm.fullname" . }}-db
+          value: {{ template "fullname" . }}-db
         ports:
         - containerPort: {{ .Values.service.internalPort }}
         livenessProbe:

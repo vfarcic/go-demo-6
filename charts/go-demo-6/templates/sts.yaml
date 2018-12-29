@@ -1,14 +1,14 @@
 apiVersion: apps/v1beta2
 kind: StatefulSet
 metadata:
-  name: {{ template "helm.fullname" . }}-db
+  name: {{ template "fullname" . }}-db
   labels:
     app: {{ template "helm.name" . }}-db
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
-  serviceName: {{ template "helm.fullname" . }}-db
+  serviceName: {{ template "fullname" . }}-db
   replicas: 3
   selector:
     matchLabels:
@@ -21,7 +21,7 @@ spec:
         release: {{ .Release.Name }}
     spec:
       {{- if .Values.rbac.enabled }}
-      serviceAccountName: {{ template "helm.fullname" . }}-db
+      serviceAccountName: {{ template "fullname" . }}-db
       {{- end }}
       terminationGracePeriodSeconds: 10
       containers:
@@ -43,7 +43,7 @@ spec:
             memory: 100Mi
             cpu: 10m
         volumeMounts:
-        - name: {{ template "helm.fullname" . }}-db
+        - name: {{ template "fullname" . }}-db
           mountPath: /data/db
       - name: db-sidecar
         image: cvallance/mongo-k8s-sidecar
@@ -53,10 +53,10 @@ spec:
         - name: KUBE_NAMESPACE
           value: {{ .Release.Namespace }}
         - name: KUBERNETES_MONGO_SERVICE_NAME
-          value: {{ template "helm.fullname" . }}-db
+          value: {{ template "fullname" . }}-db
   volumeClaimTemplates:
   - metadata:
-      name: {{ template "helm.fullname" . }}-db
+      name: {{ template "fullname" . }}-db
       labels:
         app: {{ template "helm.name" . }}-db
         chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}

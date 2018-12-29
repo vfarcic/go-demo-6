@@ -21,3 +21,22 @@ spec:
     name: http
   selector:
     app: {{ template "fullname" . }}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "helm.fullname" . }}-db
+  labels:
+    app: {{ template "helm.name" . }}-db
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  ports:
+  - port: 27017
+  clusterIP: None
+  selector:
+    app: {{ template "helm.name" . }}-db
+    release: {{ .Release.Name }}

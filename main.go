@@ -41,6 +41,7 @@ var (
 )
 
 func main() {
+	logPrintf("Starting the application\n")
 	if len(os.Getenv("SERVICE_NAME")) > 0 {
 		serviceName = os.Getenv("SERVICE_NAME")
 	}
@@ -63,6 +64,7 @@ func setupDb() {
 	if len(db) == 0 {
 		db = "localhost"
 	}
+	logPrintf("Configuring DB %s\n", db)
 	session, err := mgo.Dial(db)
 	if err != nil {
 		panic(err)
@@ -71,6 +73,7 @@ func setupDb() {
 }
 
 func RunServer() {
+	logPrintf("Starting the server\n")
 	mux := http.NewServeMux()
 	mux.HandleFunc("/demo/hello", HelloServer)
 	mux.HandleFunc("/demo/person", PersonServer)

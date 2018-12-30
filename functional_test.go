@@ -36,6 +36,7 @@ func (s FunctionalTestSuite) Test_Hello_ReturnsStatus200() {
 	resp, err := http.Get(address)
 
 	s.NoError(err)
+	s.NotNil(resp)
 	s.Equal(200, resp.StatusCode, "ADDR: ", address)
 }
 

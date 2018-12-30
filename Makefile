@@ -24,9 +24,6 @@ test:
 unit-test: 
 	CGO_ENABLED=$(CGO_ENABLED) $(GO) test $(PACKAGE_DIRS) -test.v --run UnitTest --cover
 
-func-test: 
-	CGO_ENABLED=$(CGO_ENABLED) $(GO) test $(PACKAGE_DIRS) -test.v --run FunctionalTest --cover
-
 full: $(PKGS)
 
 install:
@@ -66,3 +63,5 @@ lint: vendor | $(PKGS) $(GOLINT) # ❷
 	    test -z "$$($(GOLINT) $$pkg | tee /dev/stderr)" || ret=1 ; \
 	done ; exit $$ret
 
+func-test: 
+	ADDRESS=go-demo-6 CGO_ENABLED=$(CGO_ENABLED) $(GO) test $(PACKAGE_DIRS) -test.v --run FunctionalTest --cover

@@ -30,6 +30,9 @@ pipeline {
             sh "make preview"
             sh "jx preview --app $APP_NAME --dir ../.."
           }
+          dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6') {
+            sh "make func-test"
+          }
         }
       }
     }

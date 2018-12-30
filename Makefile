@@ -64,4 +64,4 @@ lint: vendor | $(PKGS) $(GOLINT) # ❷
 	done ; exit $$ret
 
 func-test: 
-	ADDRESS=go-demo-6 CGO_ENABLED=$(CGO_ENABLED) $(GO) test $(PACKAGE_DIRS) -test.v --run FunctionalTest --cover
+	ADDRESS=go-demo-6:8080 CGO_ENABLED=$(CGO_ENABLED) $(GO) test $(PACKAGE_DIRS) -test.v --run FunctionalTest --cover

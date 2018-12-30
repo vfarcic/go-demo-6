@@ -1,0 +1,69 @@
+apiVersion: apps/v1beta2
+kind: StatefulSet
+metadata:
+  name: {{ template "fullname" . }}-db
+  labels:
+    app: {{ template "name" . }}-db
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  serviceName: {{ template "fullname" . }}-db
+  replicas: 3
+  selector:
+    matchLabels:
+      app: {{ template "name" . }}-db
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "name" . }}-db
+        release: {{ .Release.Name }}
+    spec:
+      serviceAccountName: {{ template "fullname" . }}-db
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: db
+        image: mongo:3.3
+        command:
+          - mongod
+          - "--replSet"
+          - rs0
+          - "--smallfiles"
+          - "--noprealloc"
+        resources:
+          limits:
+            memory: 200Mi
+            cpu: 100m
+          requests:
+            memory: 100Mi
+            cpu: 10m
+        ports:
+          - containerPort: 27017
+        volumeMounts:
+        - name: {{ template "fullname" . }}-db
+          mountPath: /data/db
+      - name: db-sidecar
+        image: cvallance/mongo-k8s-sidecar
+        env:
+        - name: MONGO_SIDECAR_POD_LABELS
+          value: app={{ template "name" . }}-db,release={{ .Release.Name }}
+        - name: KUBE_NAMESPACE
+          value: {{ .Release.Namespace }}
+        - name: KUBERNETES_MONGO_SERVICE_NAME
+          value: {{ template "fullname" . }}-db
+  volumeClaimTemplates:
+  - metadata:
+      name: {{ template "fullname" . }}-db
+      labels:
+        app: {{ template "name" . }}-db
+        chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+        release: {{ .Release.Name }}
+        heritage: {{ .Release.Service }}
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 2Gi
+      storageClassName: ""

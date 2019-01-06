@@ -62,3 +62,6 @@ lint: vendor | $(PKGS) $(GOLINT) # ❷
 
 unit-test: 
 	CGO_ENABLED=$(CGO_ENABLED) $(GO) test $(PACKAGE_DIRS) -test.v --run UnitTest --cover
+
+func-test: 
+	CGO_ENABLED=$(CGO_ENABLED) $(GO) test $(PACKAGE_DIRS) -test.v --run FunctionalTest --cover

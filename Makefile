@@ -65,3 +65,6 @@ unit-test:
 
 func-test: 
 	CGO_ENABLED=$(CGO_ENABLED) $(GO) test $(PACKAGE_DIRS) -test.v --run FunctionalTest --cover
+
+prod-test: 
+	DURATION=1 CGO_ENABLED=$(CGO_ENABLED) $(GO) test $(PACKAGE_DIRS) -test.v --run ProductionTest --cover

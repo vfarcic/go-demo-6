@@ -28,11 +28,11 @@ pipeline {
           dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6/charts/preview') {
             sh "make preview"
             sh "jx preview --app $APP_NAME --dir ../.."
-            sh "kubectl -n jx-$CHANGE_AUTHOR-$HELM_RELEASE get ing"
+          }
+          dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6') {
             script {
-              ADDRESS=sh(script: "kubectl -n jx-$CHANGE_AUTHOR-$HELM_RELEASE get ing $APP_NAME -o jsonpath='{.spec.rules[0].host}'", returnStdout: true).trim()
-              echo ADDRESS
-              sh "env"
+              addr=sh(script: "kubectl -n jx-$CHANGE_AUTHOR-$HELM_RELEASE get ing $APP_NAME -o jsonpath='{.spec.rules[0].host}'", returnStdout: true).trim()
+              sh "ADDRESS=$addr make func-test"
             }
           }
         }

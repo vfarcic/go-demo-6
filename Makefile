@@ -60,3 +60,6 @@ lint: vendor | $(PKGS) $(GOLINT) # ❷
 	    test -z "$$($(GOLINT) $$pkg | tee /dev/stderr)" || ret=1 ; \
 	done ; exit $$ret
 
+
+func-test: 
+	CGO_ENABLED=$(CGO_ENABLED) $(GO) test $(PACKAGE_DIRS) -test.v --run FunctionalTest --cover

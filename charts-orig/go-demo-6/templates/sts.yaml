@@ -4,9 +4,6 @@ metadata:
   name: {{ template "fullname" . }}-db
   labels:
     app: {{ template "name" . }}-db
-    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
 spec:
   serviceName: {{ template "fullname" . }}-db
   replicas: 3
@@ -18,7 +15,6 @@ spec:
     metadata:
       labels:
         app: {{ template "name" . }}-db
-        release: {{ .Release.Name }}
     spec:
       serviceAccountName: {{ template "fullname" . }}-db
       terminationGracePeriodSeconds: 10
@@ -57,9 +53,6 @@ spec:
       name: {{ template "fullname" . }}-db
       labels:
         app: {{ template "name" . }}-db
-        chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-        release: {{ .Release.Name }}
-        heritage: {{ .Release.Service }}
     spec:
       accessModes:
       - ReadWriteOnce

@@ -4,16 +4,12 @@ metadata:
   name: {{ template "fullname" . }}-db
   labels:
     app: {{ template "name" . }}-db
-    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
 spec:
   serviceName: {{ template "fullname" . }}-db
   replicas: 3
   selector:
     matchLabels:
       app: {{ template "name" . }}-db
-      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
@@ -57,9 +53,6 @@ spec:
       name: {{ template "fullname" . }}-db
       labels:
         app: {{ template "name" . }}-db
-        chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-        release: {{ .Release.Name }}
-        heritage: {{ .Release.Service }}
     spec:
       accessModes:
       - ReadWriteOnce

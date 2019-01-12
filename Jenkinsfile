@@ -24,6 +24,7 @@ pipeline {
             sh "make unit-test"
             sh "make linux"
             sh "export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml"
+            sh "env"
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
           }
           dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6/charts/preview') {

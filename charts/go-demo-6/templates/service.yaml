@@ -39,4 +39,3 @@ spec:
   clusterIP: None
   selector:
     app: {{ template "name" . }}-db
-    release: {{ .Release.Name }}

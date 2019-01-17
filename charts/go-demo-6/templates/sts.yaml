@@ -10,7 +10,6 @@ spec:
   selector:
     matchLabels:
       app: {{ template "name" . }}-db
-      release: {{ .Release.Name }}
   template:
     metadata:
       labels:

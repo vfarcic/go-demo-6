@@ -42,7 +42,7 @@ spec:
         image: cvallance/mongo-k8s-sidecar
         env:
         - name: MONGO_SIDECAR_POD_LABELS
-          value: app={{ template "name" . }}-db,release={{ .Release.Name }}
+          value: app={{ template "name" . }}-db
         - name: KUBE_NAMESPACE
           value: {{ .Release.Namespace }}
         - name: KUBERNETES_MONGO_SERVICE_NAME

@@ -21,6 +21,7 @@ pipeline {
         container('go') {
           dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6') {
             checkout scm
+            sh "make unit-test"
             sh "make linux"
             sh "export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml"
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
@@ -28,6 +29,13 @@ pipeline {
           dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6/charts/preview') {
             sh "make preview"
             sh "jx preview --app $APP_NAME --dir ../.."
+          }
+          dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6') {
+            script {
+              sleep 10
+              addr=sh(script: "kubectl -n jx-$CHANGE_AUTHOR-$HELM_RELEASE get ing $APP_NAME -o jsonpath='{.spec.rules[0].host}'", returnStdout: true).trim()
+              sh "ADDRESS=$addr make func-test"
+            }
           }
         }
       }
@@ -70,6 +78,13 @@ pipeline {
 
             // promote through all 'Auto' promotion Environments
             sh "jx promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION)"
+          }
+          dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6') {
+            script {
+              sleep 10
+              addr=sh(script: "kubectl -n jx-staging get ing $APP_NAME -o jsonpath='{.spec.rules[0].host}'", returnStdout: true).trim()
+              sh "ADDRESS=$addr make prod-test"
+            }
           }
         }
       }

@@ -44,4 +44,6 @@ profiles:
         chartPath: charts/go-demo-6
         setValueTemplates:
           image.repository: vfarcic/go-demo-6
-          image.tag: '{{.DIGEST_HEX}}'
+          image.tag: "{{.DIGEST_HEX}}"
+          service.type: NodePort
+          service.externalPort: 8080

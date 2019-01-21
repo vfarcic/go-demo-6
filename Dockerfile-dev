@@ -1,0 +1,11 @@
+FROM golang:1.10.7 AS build
+ADD . /go/src/app
+WORKDIR /go/src/app
+RUN go test -test.v --run UnitTest --cover
+RUN make linux
+
+FROM scratch
+EXPOSE 8080
+ENTRYPOINT ["/go-demo-6"]
+COPY --from=build /go/src/app/bin/go-demo-6 /go-demo-6
+

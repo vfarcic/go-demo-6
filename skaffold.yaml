@@ -28,3 +28,20 @@ profiles:
         setValueTemplates:
           image.repository: '{{.DOCKER_REGISTRY}}/vfarcic/go-demo-6'
           image.tag: '{{.DIGEST_HEX}}'
+- name: local
+  build:
+    artifacts:
+    - docker:
+        dockerfile: Dockerfile-dev
+    tagPolicy:
+      envTemplate:
+        template: "vfarcic/go-demo-6:{{.DIGEST_HEX}}"
+    local: {}
+  deploy:
+    helm:
+      releases:
+      - name: go-demo-6
+        chartPath: charts/go-demo-6
+        setValueTemplates:
+          image.repository: vfarcic/go-demo-6
+          image.tag: '{{.DIGEST_HEX}}'

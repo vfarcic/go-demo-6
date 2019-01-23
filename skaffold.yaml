@@ -28,6 +28,7 @@ profiles:
         setValueTemplates:
           image.repository: '{{.DOCKER_REGISTRY}}/vfarcic/go-demo-6'
           image.tag: '{{.DIGEST_HEX}}'
+
 - name: local
   build:
     artifacts:
@@ -35,7 +36,7 @@ profiles:
         dockerfile: Dockerfile-dev
     tagPolicy:
       envTemplate:
-        template: "vfarcic/go-demo-6:{{.DIGEST_HEX}}"
+        template: "go-demo-6:{{.DIGEST_HEX}}"
     local: {}
   deploy:
     helm:
@@ -43,7 +44,7 @@ profiles:
       - name: go-demo-6
         chartPath: charts/go-demo-6
         setValueTemplates:
-          image.repository: vfarcic/go-demo-6
+          image.repository: go-demo-6
           image.tag: "{{.DIGEST_HEX}}"
           service.type: NodePort
-          service.externalPort: 8080
+          service.externalPort: 8081

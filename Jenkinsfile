@@ -1,7 +1,5 @@
 pipeline {
-  agent {
-    label any
-  }
+  agent any
   environment {
     ORG = 'vfarcic'
     APP_NAME = 'go-demo-6'

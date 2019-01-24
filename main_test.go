@@ -2,199 +2,167 @@ package main
 
 import (
 	"fmt"
+	"io"
+	"log"
+	"math/rand"
 	"net/http"
-	"testing"
+	"os"
+	"strconv"
+	"strings"
 	"time"
 
-	"github.com/stretchr/testify/mock"
-	"github.com/stretchr/testify/suite"
+	"github.com/prometheus/client_golang/prometheus"
 	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
-// Suite
+var coll *mgo.Collection
+var sleep = time.Sleep
+var logFatal = log.Fatal
+var logPrintf = log.Printf
+var httpListenAndServe = http.ListenAndServe
+var serviceName = "go-demo"
 
-type MainTestSuite struct {
-	suite.Suite
+type Person struct {
+	Name string
 }
 
-// Suite
+var (
+	histogram = prometheus.NewHistogramVec(prometheus.HistogramOpts{
+		Subsystem: "http_server",
+		Name:      "resp_time",
+		Help:      "Request response time",
+	}, []string{
+		"service",
+		"code",
+		"method",
+		"path",
+	})
+)
 
-func TestMainUnitTestSuite(t *testing.T) {
-	logFatalOrig := logFatal
-	logPrintfOrig := logPrintf
-	httpListenAndServeOrig := httpListenAndServe
-	defer func() {
-		logFatal = logFatalOrig
-		logPrintf = logPrintfOrig
-		httpListenAndServe = httpListenAndServeOrig
-	}()
-	logFatal = func(v ...interface{}) {}
-	logPrintf = func(format string, v ...interface{}) {}
-	httpListenAndServe = func(addr string, handler http.Handler) error { return nil }
-	suite.Run(t, new(MainTestSuite))
-}
-
-func (s *MainTestSuite) SetupTest() {}
-
-// init
-
-func (s *MainTestSuite) Test_SetupMetrics_InitializesHistogram() {
-	s.NotNil(histogram)
-}
-
-// RunServer
-
-func (s *MainTestSuite) Test_RunServer_InvokesListenAndServe() {
-	actual := ""
-	httpListenAndServe = func(addr string, handler http.Handler) error {
-		actual = addr
-		return nil
+func main() {
+	logPrintf("Starting the application\n")
+	if len(os.Getenv("SERVICE_NAME")) > 0 {
+		serviceName = os.Getenv("SERVICE_NAME")
 	}
-
+	setupDb()
 	RunServer()
-
-	s.Equal(":8080", actual)
 }
 
-// RandomErrorServer
+func init() {
+	prometheus.MustRegister(histogram)
+}
 
-func (s *MainTestSuite) Test_HelloServer_WritesOk() {
-	req, _ := http.NewRequest("GET", "/demo/random-error", nil)
-	w := getResponseWriterMock()
+// TODO: Test
 
-	for i := 0; i <= 3; i++ {
-		RandomErrorServer(w, req)
+func setupDb() {
+	envVar := "DB"
+	if len(os.Getenv("DB_ENV")) > 0 {
+		envVar = os.Getenv("DB_ENV")
 	}
-
-	w.AssertCalled(s.T(), "Write", []byte("Everything is still OK\n"))
-}
-
-func (s *MainTestSuite) Test_HelloServer_WritesNokEventually() {
-	req, _ := http.NewRequest("GET", "/demo/random-error", nil)
-	w := getResponseWriterMock()
-
-	for i := 0; i <= 50; i++ {
-		RandomErrorServer(w, req)
+	db := os.Getenv(envVar)
+	if len(db) == 0 {
+		db = "localhost"
 	}
-
-	w.AssertCalled(s.T(), "Write", []byte("ERROR: Something, somewhere, went wrong!\n"))
-}
-
-// HelloServer
-
-func (s *MainTestSuite) Test_HelloServer_WritesHelloWorld() {
-	req, _ := http.NewRequest("GET", "/demo/hello", nil)
-	w := getResponseWriterMock()
-
-	HelloServer(w, req)
-
-	w.AssertCalled(s.T(), "Write", []byte("hello, world!\n"))
-}
-
-func (s *MainTestSuite) Test_HelloServer_Waits_WhenDelayIsPresent() {
-	sleepOrig := sleep
-	defer func() { sleep = sleepOrig }()
-	var actual time.Duration
-	sleep = func(d time.Duration) {
-		actual = d
+	logPrintf("Configuring DB %s\n", db)
+	session, err := mgo.Dial(db)
+	if err != nil {
+		panic(err)
 	}
-	req, _ := http.NewRequest("GET", "/demo/hello?delay=10", nil)
-	w := getResponseWriterMock()
-
-	HelloServer(w, req)
-
-	s.Equal(10*time.Millisecond, actual)
+	coll = session.DB("test").C("people")
 }
 
-// PersonServer
+func RunServer() {
+	logPrintf("Running the server\n")
+	mux := http.NewServeMux()
+	mux.HandleFunc("/demo/hello", HelloServer)
+	mux.HandleFunc("/demo/person", PersonServer)
+	mux.HandleFunc("/demo/random-error", RandomErrorServer)
+	mux.Handle("/metrics", prometheusHandler())
+	logFatal("ListenAndServe: ", httpListenAndServe(":8080", mux))
+}
 
-func (s *MainTestSuite) Test_PersonServer_InvokesUpsertId_WhenPutPerson() {
-	name := "Viktor"
-	upsertIdOrig := upsertId
-	defer func() { upsertId = upsertIdOrig }()
-	var actualId interface{}
-	var actualUpdate interface{}
-	upsertId = func(id interface{}, update interface{}) (info *mgo.ChangeInfo, err error) {
-		actualId = id
-		actualUpdate = update
-		return nil, nil
+func HelloServer(w http.ResponseWriter, req *http.Request) {
+	start := time.Now()
+	defer func() { recordMetrics(start, req, http.StatusOK) }()
+
+	logPrintf("%s request to %s\n", req.Method, req.RequestURI)
+	delay := req.URL.Query().Get("delay")
+	if len(delay) > 0 {
+		delayNum, _ := strconv.Atoi(delay)
+		sleep(time.Duration(delayNum) * time.Millisecond)
 	}
-	req, _ := http.NewRequest("PUT", fmt.Sprintf("/demo/person?name=%s", name), nil)
-	w := getResponseWriterMock()
-
-	PersonServer(w, req)
-
-	s.Equal(name, actualId)
-	s.Equal(&Person{Name: name}, actualUpdate)
+	io.WriteString(w, "hello, prow!\n")
 }
 
-func (s *MainTestSuite) Test_PersonServer_Panics_WhenUpsertIdReturnsError() {
-	upsertIdOrig := upsertId
-	defer func() { upsertId = upsertIdOrig }()
-	upsertId = func(id interface{}, update interface{}) (info *mgo.ChangeInfo, err error) {
-		return nil, fmt.Errorf("This is an error")
+func RandomErrorServer(w http.ResponseWriter, req *http.Request) {
+	code := http.StatusOK
+	start := time.Now()
+	defer func() { recordMetrics(start, req, code) }()
+
+	logPrintf("%s request to %s\n", req.Method, req.RequestURI)
+	rand.Seed(time.Now().UnixNano())
+	n := rand.Intn(10)
+	msg := "Everything is still OK\n"
+	if n == 0 {
+		code = http.StatusInternalServerError
+		msg = "ERROR: Something, somewhere, went wrong!\n"
+		logPrintf(msg)
 	}
-	req, _ := http.NewRequest("PUT", "/demo/person?name=Viktor", nil)
-	w := getResponseWriterMock()
-
-	PersonServer(w, req)
-
-	w.AssertCalled(s.T(), "Write", []byte("This is an error"))
+	w.WriteHeader(code)
+	io.WriteString(w, msg)
 }
 
-func (s *MainTestSuite) Test_PersonServer_WritesPeople() {
-	findPeopleOrig := findPeople
-	people := []Person{
-		{Name: "Viktor"},
-		{Name: "Sara"},
+func PersonServer(w http.ResponseWriter, req *http.Request) {
+	code := http.StatusOK
+	start := time.Now()
+	defer func() { recordMetrics(start, req, code) }()
+
+	logPrintf("%s request to %s\n", req.Method, req.RequestURI)
+	msg := "Everything is OK"
+	if req.Method == "PUT" {
+		name := req.URL.Query().Get("name")
+		if _, err := upsertId(name, &Person{
+			Name: name,
+		}); err != nil {
+			code = http.StatusInternalServerError
+			msg = err.Error()
+		}
+	} else {
+		var res []Person
+		if err := findPeople(&res); err != nil {
+			panic(err)
+		}
+		var names []string
+		for _, p := range res {
+			names = append(names, p.Name)
+		}
+		msg = strings.Join(names, "\n")
 	}
-	defer func() { findPeople = findPeopleOrig }()
-	findPeople = func(res *[]Person) error {
-		*res = people
-		return nil
-	}
-	req, _ := http.NewRequest("GET", "/demo/person", nil)
-	w := getResponseWriterMock()
-
-	PersonServer(w, req)
-
-	w.AssertCalled(s.T(), "Write", []byte("Viktor\nSara"))
+	w.WriteHeader(code)
+	io.WriteString(w, msg)
 }
 
-func (s *MainTestSuite) Test_PersonServer_Panics_WhenFindReturnsError() {
-	findPeopleOrig := findPeople
-	defer func() { findPeople = findPeopleOrig }()
-	findPeople = func(res *[]Person) error {
-		return fmt.Errorf("This is an error")
-	}
-	req, _ := http.NewRequest("GET", "/demo/person", nil)
-	w := getResponseWriterMock()
-
-	s.Panics(func() { PersonServer(w, req) })
+var prometheusHandler = func() http.Handler {
+	return prometheus.Handler()
 }
 
-type ResponseWriterMock struct {
-	mock.Mock
+var findPeople = func(res *[]Person) error {
+	return coll.Find(bson.M{}).All(res)
 }
 
-func (m *ResponseWriterMock) Header() http.Header {
-	m.Called()
-	return make(map[string][]string)
+var upsertId = func(id interface{}, update interface{}) (info *mgo.ChangeInfo, err error) {
+	return coll.UpsertId(id, update)
 }
 
-func (m *ResponseWriterMock) Write(data []byte) (int, error) {
-	params := m.Called(data)
-	return params.Int(0), params.Error(1)
-}
-
-func (m *ResponseWriterMock) WriteHeader(header int) {
-	m.Called(header)
-}
-
-func getResponseWriterMock() *ResponseWriterMock {
-	mockObj := new(ResponseWriterMock)
-	mockObj.On("Header").Return(nil)
-	mockObj.On("Write", mock.Anything).Return(0, nil)
-	mockObj.On("WriteHeader", mock.Anything)
-	return mockObj
+func recordMetrics(start time.Time, req *http.Request, code int) {
+	duration := time.Since(start)
+	histogram.With(
+		prometheus.Labels{
+			"service": serviceName,
+			"code":    fmt.Sprintf("%d", code),
+			"method":  req.Method,
+			"path":    req.URL.Path,
+		},
+	).Observe(duration.Seconds())
 }

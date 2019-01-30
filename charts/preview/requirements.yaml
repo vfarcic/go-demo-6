@@ -10,7 +10,7 @@ dependencies:
   version: 2.3.56
 
 - name: mongodb
-  alias: go-demo-6-db
+  alias: preview-db
   version: 5.3.0
   repository:  https://kubernetes-charts.storage.googleapis.com
 

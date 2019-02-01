@@ -19,3 +19,4 @@ dependencies:
 - alias: preview
   name: go-demo-6
   repository: file://../go-demo-6
+

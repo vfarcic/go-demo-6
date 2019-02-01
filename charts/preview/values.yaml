@@ -19,4 +19,5 @@ preview:
   image:
     repository:
     tag:
-    pullPolicy: IfNotPresent  probePath: /demo/hello?health=true
+    pullPolicy: IfNotPresent
+    probePath: /demo/hello?health=true

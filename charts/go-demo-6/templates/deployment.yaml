@@ -24,7 +24,7 @@ spec:
         env:
         - name: DB
           value: {{ template "fullname" . }}-db
-         ports:
+        ports:
         - containerPort: {{ .Values.service.internalPort }}
         livenessProbe:
           httpGet:

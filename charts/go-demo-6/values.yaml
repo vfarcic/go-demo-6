@@ -21,7 +21,7 @@ resources:
   requests:
     cpu: 80m
     memory: 128Mi
-probePath: /
+probePath: /demo/hello?health=true
 livenessProbe:
   initialDelaySeconds: 60
   periodSeconds: 10
@@ -35,4 +35,3 @@ terminationGracePeriodSeconds: 10
 go-demo-6-db:
   replicaSet:
     enabled: true
-

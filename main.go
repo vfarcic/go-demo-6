@@ -1,5 +1,6 @@
 package main
 
+
 import (
 	"fmt"
 	"io"
@@ -92,7 +93,7 @@ func HelloServer(w http.ResponseWriter, req *http.Request) {
 		delayNum, _ := strconv.Atoi(delay)
 		sleep(time.Duration(delayNum) * time.Millisecond)
 	}
-	io.WriteString(w, "hello, world!\n")
+	io.WriteString(w, "hello, devpod with tests!\n")
 }
 
 func RandomErrorServer(w http.ResponseWriter, req *http.Request) {

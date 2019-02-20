@@ -60,3 +60,9 @@ lint: vendor | $(PKGS) $(GOLINT) # ❷
 	    test -z "$$($(GOLINT) $$pkg | tee /dev/stderr)" || ret=1 ; \
 	done ; exit $$ret
 
+unittest: 
+	CGO_ENABLED=$(CGO_ENABLED) $(GO) test --run UnitTest -v
+
+unittest: 
+	CGO_ENABLED=$(CGO_ENABLED) $(GO) test --run UnitTest -v
+

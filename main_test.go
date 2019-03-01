@@ -11,7 +11,7 @@ import (
 	"gopkg.in/mgo.v2"
 )
 
-// Suite
+// Suite 
 
 type MainTestSuite struct {
 	suite.Suite

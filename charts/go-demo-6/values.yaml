@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: draft
-  tag: dev
+  repository: 10.31.242.182:5000/vfarcic/go-demo-6
+  tag: 0.0.157
   pullPolicy: IfNotPresent
 service:
   name: go-demo-6

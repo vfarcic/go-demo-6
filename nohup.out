@@ -1,0 +1,3478 @@
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO15VENDOREXPERIMENT=1 go build -ldflags '' -o bin/go-demo-6 main.go
+time="2019-03-01T01:06:19Z" level=warning msg="Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead."
+time="2019-03-01T01:06:19Z" level=warning msg="Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead."
+time="2019-03-01T01:06:19Z" level=warning msg="Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead."
+time="2019-03-01T01:06:19Z" level=warning msg="Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead."
+time="2019-03-01T01:06:19Z" level=warning msg="Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead."
+time="2019-03-01T01:06:19Z" level=warning msg="config version (skaffold/v1beta2) out of date: upgrading to latest (skaffold/v1beta3)"
+Starting build...
+Building []...
+Sending build context to Docker daemon  525.8kBSending build context to Docker daemon  11.25MB
+Step 1/4 : FROM scratch
+ ---> 
+Step 2/4 : EXPOSE 8080
+ ---> Using cache
+ ---> 25689f1f07ba
+Step 3/4 : ENTRYPOINT /go-demo-6
+ ---> Using cache
+ ---> d88e8e10e526
+Step 4/4 : COPY ./bin/ /
+ ---> 4a2e54da571e
+Successfully built 4a2e54da571e
+The push refers to a repository [10.31.246.91:5000/vfarcic/go-demo-6]
+1cae846db602: Preparing
+1cae846db602: Pushed
+4a2e54da571e8c19fce6113c398e56ee70a1c40b0e45b82e214a34f8b2ff1f40: digest: sha256:ba2961df329847617d8ea2b6cb5223c32965b94269c14363e380d85cbb923501 size: 528
+Build complete in 2.11668067s
+Starting test...
+Test complete in 7.446µs
+Starting deploy...
+REVISION: 6
+RELEASED: Fri Mar  1 00:55:16 2019
+CHART: go-demo-6-0.1.0-SNAPSHOT
+USER-SUPPLIED VALUES:
+image:
+  repository: 10.31.246.91:5000/vfarcic/go-demo-6
+  tag: 10b89758beb8e3f9817d59f9155456539bff7875a82a772e43873620b20103f7
+
+COMPUTED VALUES:
+go-demo-6-db:
+  affinity: {}
+  clusterDomain: cluster.local
+  global: {}
+  image:
+    debug: false
+    pullPolicy: Always
+    registry: docker.io
+    repository: bitnami/mongodb
+    tag: 4.0.3
+  livenessProbe:
+    enabled: true
+    failureThreshold: 6
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 5
+  metrics:
+    enabled: false
+    image:
+      pullPolicy: IfNotPresent
+      registry: docker.io
+      repository: forekshub/percona-mongodb-exporter
+      tag: latest
+    podAnnotations:
+      prometheus.io/port: "9216"
+      prometheus.io/scrape: "true"
+    serviceMonitor:
+      additionalLabels: {}
+      alerting:
+        additionalLabels: {}
+        rules: {}
+      enabled: false
+  mongodbDisableSystemLog: false
+  mongodbEnableIPv6: true
+  mongodbExtraFlags: []
+  mongodbSystemLogVerbosity: 0
+  nodeSelector: {}
+  persistence:
+    accessModes:
+    - ReadWriteOnce
+    annotations: {}
+    enabled: true
+    size: 8Gi
+  podAnnotations: {}
+  podLabels: {}
+  readinessProbe:
+    enabled: true
+    failureThreshold: 6
+    initialDelaySeconds: 5
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 5
+  replicaSet:
+    enabled: true
+    name: rs0
+    pdb:
+      minAvailable:
+        arbiter: 1
+        primary: 1
+        secondary: 1
+    replicas:
+      arbiter: 1
+      secondary: 1
+    useHostnames: true
+  resources: {}
+  securityContext:
+    enabled: true
+    fsGroup: 1001
+    runAsUser: 1001
+  service:
+    annotations: {}
+    port: 27017
+    type: ClusterIP
+  tolerations: []
+  usePassword: false
+image:
+  pullPolicy: IfNotPresent
+  repository: 10.31.246.91:5000/vfarcic/go-demo-6
+  tag: 10b89758beb8e3f9817d59f9155456539bff7875a82a772e43873620b20103f7
+livenessProbe:
+  initialDelaySeconds: 60
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+probePath: /demo/hello?health=true
+readinessProbe:
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+replicaCount: 1
+resources:
+  limits:
+    cpu: 100m
+    memory: 256Mi
+  requests:
+    cpu: 80m
+    memory: 128Mi
+service:
+  annotations:
+    fabric8.io/expose: "true"
+    fabric8.io/ingress.annotations: 'kubernetes.io/ingress.class: nginx'
+  externalPort: 80
+  internalPort: 8080
+  name: go-demo-6
+  type: ClusterIP
+terminationGracePeriodSeconds: 10
+
+HOOKS:
+MANIFEST:
+
+---
+# Source: go-demo-6/charts/go-demo-6-db/templates/poddisruptionbudget-arbiter-rs.yaml
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  labels:
+    app: go-demo-6-db
+    chart: go-demo-6-db-5.3.0
+    heritage: Tiller
+    release: go-demo-6
+  name: go-demo-6-go-demo-6-db-arbiter
+spec:
+  selector:
+    matchLabels:
+      app: go-demo-6-db
+      release: go-demo-6
+      component: arbiter
+  minAvailable: 1
+---
+# Source: go-demo-6/charts/go-demo-6-db/templates/poddisruptionbudget-primary-rs.yaml
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  labels:
+    app: go-demo-6-db
+    chart: go-demo-6-db-5.3.0
+    heritage: Tiller
+    release: go-demo-6
+  name: go-demo-6-go-demo-6-db-primary
+spec:
+  selector:
+    matchLabels:
+      app: go-demo-6-db
+      release: go-demo-6
+      component: primary
+  minAvailable: 1
+---
+# Source: go-demo-6/charts/go-demo-6-db/templates/poddisruptionbudget-secondary-rs.yaml
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  labels:
+    app: go-demo-6-db
+    chart: go-demo-6-db-5.3.0
+    heritage: Tiller
+    release: go-demo-6
+  name: go-demo-6-go-demo-6-db-secondary
+spec:
+  selector:
+    matchLabels:
+      app: go-demo-6-db
+      release: go-demo-6
+      component: secondary
+  minAvailable: 1
+---
+# Source: go-demo-6/charts/go-demo-6-db/templates/headless-svc-rs.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-demo-6-go-demo-6-db-headless
+  labels:
+    app: go-demo-6-db
+    chart: go-demo-6-db-5.3.0
+    release: "go-demo-6"
+    heritage: "Tiller"
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+  - name: mongodb
+    port: 27017
+  selector:
+    app: go-demo-6-db
+    release: go-demo-6
+---
+# Source: go-demo-6/charts/go-demo-6-db/templates/svc-primary-rs.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-demo-6-go-demo-6-db
+  labels:
+    app: go-demo-6-db
+    chart: go-demo-6-db-5.3.0
+    release: "go-demo-6"
+    heritage: "Tiller"
+spec:
+  type: ClusterIP
+  ports:
+  - name: mongodb
+    port: 27017
+    targetPort: mongodb
+  selector:
+    app: go-demo-6-db
+    release: "go-demo-6"
+    component: primary
+---
+# Source: go-demo-6/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-demo-6
+  labels:
+    chart: "go-demo-6-0.1.0-SNAPSHOT"
+  annotations:
+    fabric8.io/expose: "true"
+    fabric8.io/ingress.annotations: 'kubernetes.io/ingress.class: nginx'
+    
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: go-demo-6-go-demo-6
+---
+# Source: go-demo-6/templates/deployment.yaml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: go-demo-6-go-demo-6
+  labels:
+    draft: draft-app
+    chart: "go-demo-6-0.1.0-SNAPSHOT"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        draft: draft-app
+        app: go-demo-6-go-demo-6
+    spec:
+      containers:
+      - name: go-demo-6
+        image: "10.31.246.91:5000/vfarcic/go-demo-6:10b89758beb8e3f9817d59f9155456539bff7875a82a772e43873620b20103f7"
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: DB
+          value: go-demo-6-go-demo-6-db
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /demo/hello?health=true
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        readinessProbe:
+          httpGet:
+            path: /demo/hello?health=true
+            port: 8080
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+            limits:
+              cpu: 100m
+              memory: 256Mi
+            requests:
+              cpu: 80m
+              memory: 128Mi
+            
+      terminationGracePeriodSeconds: 10
+---
+# Source: go-demo-6/charts/go-demo-6-db/templates/statefulset-arbiter-rs.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: go-demo-6-db
+    chart: go-demo-6-db-5.3.0
+    heritage: Tiller
+    release: go-demo-6
+  name: go-demo-6-go-demo-6-db-arbiter
+spec:
+  selector:
+    matchLabels:
+      app: go-demo-6-db
+      release: go-demo-6
+      component: arbiter
+  serviceName: go-demo-6-go-demo-6-db-headless
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: go-demo-6-db
+        chart: go-demo-6-db-5.3.0
+        release: go-demo-6
+        component: arbiter
+    spec:
+      securityContext:
+        fsGroup: 1001
+        runAsUser: 1001
+      containers:
+        - name: go-demo-6-db-arbiter
+          image: docker.io/bitnami/mongodb:4.0.3
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 27017
+            name: mongodb
+          env:
+          - name: MONGODB_SYSTEM_LOG_VERBOSITY
+            value: "0"
+          - name: MONGODB_DISABLE_SYSTEM_LOG
+            value: "no"
+          - name: MONGODB_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MONGODB_REPLICA_SET_MODE
+            value: "arbiter"
+          - name: MONGODB_PRIMARY_HOST
+            value: go-demo-6-go-demo-6-db
+          - name: MONGODB_REPLICA_SET_NAME
+            value: "rs0"
+          - name: MONGODB_ADVERTISED_HOSTNAME
+            value: "$(MONGODB_POD_NAME).go-demo-6-go-demo-6-db-headless.jx-edit-vfarcic.svc.cluster.local"
+          - name: MONGODB_ENABLE_IPV6
+            value: "yes"
+          livenessProbe:
+            tcpSocket:
+              port: mongodb
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          readinessProbe:
+            tcpSocket:
+              port: mongodb
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          volumeMounts:
+          resources:
+            {}
+            
+      volumes:
+---
+# Source: go-demo-6/charts/go-demo-6-db/templates/statefulset-primary-rs.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: go-demo-6-db
+    chart: go-demo-6-db-5.3.0
+    heritage: Tiller
+    release: go-demo-6
+  name: go-demo-6-go-demo-6-db-primary
+spec:
+  serviceName: go-demo-6-go-demo-6-db-headless
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-demo-6-db
+      release: go-demo-6
+      component: primary
+  template:
+    metadata:
+      labels:
+        app: go-demo-6-db
+        chart: go-demo-6-db-5.3.0
+        release: go-demo-6
+        component: primary
+    spec:
+      securityContext:
+        fsGroup: 1001
+        runAsUser: 1001
+      containers:
+        - name: go-demo-6-db-primary
+          image: docker.io/bitnami/mongodb:4.0.3
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 27017
+            name: mongodb
+          env:
+          - name: MONGODB_SYSTEM_LOG_VERBOSITY
+            value: "0"
+          - name: MONGODB_DISABLE_SYSTEM_LOG
+            value: "no"
+          - name: MONGODB_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MONGODB_REPLICA_SET_MODE
+            value: "primary"
+          - name: MONGODB_REPLICA_SET_NAME
+            value: "rs0"
+          - name: MONGODB_ADVERTISED_HOSTNAME
+            value: "$(MONGODB_POD_NAME).go-demo-6-go-demo-6-db-headless.jx-edit-vfarcic.svc.cluster.local"
+          - name: MONGODB_ENABLE_IPV6
+            value: "yes"
+          livenessProbe:
+            exec:
+              command:
+                - mongo
+                - --eval
+                - "db.adminCommand('ping')"
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          readinessProbe:
+            exec:
+              command:
+                - mongo
+                - --eval
+                - "db.adminCommand('ping')"
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          volumeMounts:
+            - name: datadir
+              mountPath: /bitnami/mongodb
+          resources:
+            {}
+            
+      volumes:
+  volumeClaimTemplates:
+    - metadata:
+        name: datadir
+        annotations:
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: "8Gi"
+---
+# Source: go-demo-6/charts/go-demo-6-db/templates/statefulset-secondary-rs.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: go-demo-6-db
+    chart: go-demo-6-db-5.3.0
+    heritage: Tiller
+    release: go-demo-6
+  name: go-demo-6-go-demo-6-db-secondary
+spec:
+  selector:
+    matchLabels:
+      app: go-demo-6-db
+      release: go-demo-6
+      component: secondary
+  podManagementPolicy: "Parallel"
+  serviceName: go-demo-6-go-demo-6-db-headless
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: go-demo-6-db
+        chart: go-demo-6-db-5.3.0
+        release: go-demo-6
+        component: secondary
+    spec:
+      securityContext:
+        fsGroup: 1001
+        runAsUser: 1001
+      containers:
+        - name: go-demo-6-db-secondary
+          image: docker.io/bitnami/mongodb:4.0.3
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 27017
+            name: mongodb
+          env:
+          - name: MONGODB_SYSTEM_LOG_VERBOSITY
+            value: "0"
+          - name: MONGODB_DISABLE_SYSTEM_LOG
+            value: "no"
+          - name: MONGODB_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MONGODB_REPLICA_SET_MODE
+            value: "secondary"
+          - name: MONGODB_PRIMARY_HOST
+            value: go-demo-6-go-demo-6-db
+          - name: MONGODB_REPLICA_SET_NAME
+            value: "rs0"
+          - name: MONGODB_ADVERTISED_HOSTNAME
+            value: "$(MONGODB_POD_NAME).go-demo-6-go-demo-6-db-headless.jx-edit-vfarcic.svc.cluster.local"
+          - name: MONGODB_ENABLE_IPV6
+            value: "yes"
+          livenessProbe:
+            exec:
+              command:
+                - mongo
+                - --eval
+                - "db.adminCommand('ping')"
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          readinessProbe:
+            exec:
+              command:
+                - mongo
+                - --eval
+                - "db.adminCommand('ping')"
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          volumeMounts:
+            - name: datadir
+              mountPath: /bitnami/mongodb
+          resources:
+            {}
+            
+      volumes:
+  volumeClaimTemplates:
+    - metadata:
+        name: datadir
+        annotations:
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: "8Gi"
+Hang tight while we grab the latest from your chart repositories...
+...Unable to get an update from the "local" chart repository (http://127.0.0.1:8879/charts):
+	Get http://127.0.0.1:8879/charts/index.yaml: dial tcp 127.0.0.1:8879: connect: connection refused
+...Successfully got an update from the "stable" chart repository
+Update Complete. ⎈Happy Helming!⎈
+Saving 1 charts
+Downloading mongodb from repo https://kubernetes-charts.storage.googleapis.com
+Deleting outdated charts
+EnvVarMap: map[string]string{"DIGEST_HEX":"4a2e54da571e8c19fce6113c398e56ee70a1c40b0e45b82e214a34f8b2ff1f40", "IMAGE_NAME":"", "DIGEST":"4a2e54da571e8c19fce6113c398e56ee70a1c40b0e45b82e214a34f8b2ff1f40"}
+Release "go-demo-6" has been upgraded. Happy Helming!
+LAST DEPLOYED: Fri Mar  1 01:06:25 2019
+NAMESPACE: jx-edit-vfarcic
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1/Service
+NAME                             TYPE       CLUSTER-IP     EXTERNAL-IP  PORT(S)    AGE
+go-demo-6-go-demo-6-db-headless  ClusterIP  None           <none>       27017/TCP  47m
+go-demo-6-go-demo-6-db           ClusterIP  10.31.255.153  <none>       27017/TCP  47m
+go-demo-6                        ClusterIP  10.31.250.123  <none>       80/TCP     47m
+
+==> v1beta1/Deployment
+NAME                 DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
+go-demo-6-go-demo-6  1        1        1           0          47m
+
+==> v1/StatefulSet
+NAME                              DESIRED  CURRENT  AGE
+go-demo-6-go-demo-6-db-arbiter    1        1        47m
+go-demo-6-go-demo-6-db-primary    1        1        47m
+go-demo-6-go-demo-6-db-secondary  1        1        47m
+
+==> v1/Pod(related)
+NAME                                  READY  STATUS             RESTARTS  AGE
+go-demo-6-go-demo-6-6fd56f95c6-qpcnk  1/1    Terminating        0         11m
+go-demo-6-go-demo-6-cd84dcd94-gmfhv   0/1    ContainerCreating  0         1s
+go-demo-6-go-demo-6-db-arbiter-0      1/1    Terminating        0         47m
+go-demo-6-go-demo-6-db-primary-0      1/1    Terminating        0         47m
+go-demo-6-go-demo-6-db-secondary-0    1/1    Terminating        0         47m
+
+==> v1beta1/PodDisruptionBudget
+NAME                              MIN AVAILABLE  MAX UNAVAILABLE  ALLOWED DISRUPTIONS  AGE
+go-demo-6-go-demo-6-db-arbiter    1              N/A              0                    47m
+go-demo-6-go-demo-6-db-primary    1              N/A              0                    47m
+go-demo-6-go-demo-6-db-secondary  1              N/A              0                    47m
+
+==> v1/Secret
+NAME                    TYPE    DATA  AGE
+go-demo-6-go-demo-6-db  Opaque  2     1s
+
+
+NOTES:
+
+Get the application URL by running these commands:
+
+kubectl get ingress go-demo-6-go-demo-6
+
+Deploy complete in 5.097733278s
+You can also run [skaffold run --tail] to get the logs
+There is a new version (0.23.0) of skaffold available. Download it at https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
+
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO15VENDOREXPERIMENT=1 go build -ldflags '' -o bin/go-demo-6 main.go
+time="2019-03-01T02:13:36Z" level=warning msg="Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead."
+time="2019-03-01T02:13:36Z" level=warning msg="Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead."
+time="2019-03-01T02:13:36Z" level=warning msg="Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead."
+time="2019-03-01T02:13:36Z" level=warning msg="Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead."
+time="2019-03-01T02:13:36Z" level=warning msg="Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead."
+time="2019-03-01T02:13:36Z" level=warning msg="config version (skaffold/v1beta2) out of date: upgrading to latest (skaffold/v1beta3)"
+Starting build...
+Building []...
+Sending build context to Docker daemon  525.8kBSending build context to Docker daemon  11.25MB
+Step 1/4 : FROM scratch
+ ---> 
+Step 2/4 : EXPOSE 8080
+ ---> Running in a2c21daa5978
+ ---> 53a5b1e6b191
+Step 3/4 : ENTRYPOINT /go-demo-6
+ ---> Running in d417e74a62a6
+ ---> 483abc913518
+Step 4/4 : COPY ./bin/ /
+ ---> 2cc1f6d814c4
+Successfully built 2cc1f6d814c4
+The push refers to a repository [10.31.242.182:5000/vfarcic/go-demo-6]
+8082a97fdf07: Preparing
+8082a97fdf07: Pushed
+2cc1f6d814c4dee87c4a5ad746727091f20fab0769e3982aa8a9dc458bb5d95e: digest: sha256:d77e96e59bb7b7fbec454e4092249b7d19291e155faccd4f9364ae0fe85600e0 size: 528
+Build complete in 2.449699038s
+Starting test...
+Test complete in 6.472µs
+Starting deploy...
+Error: release: "go-demo-6" not found
+Helm release go-demo-6 not installed. Installing...
+Hang tight while we grab the latest from your chart repositories...
+...Unable to get an update from the "local" chart repository (http://127.0.0.1:8879/charts):
+	Get http://127.0.0.1:8879/charts/index.yaml: dial tcp 127.0.0.1:8879: connect: connection refused
+...Successfully got an update from the "stable" chart repository
+Update Complete. ⎈Happy Helming!⎈
+Saving 1 charts
+Downloading mongodb from repo https://kubernetes-charts.storage.googleapis.com
+Deleting outdated charts
+EnvVarMap: map[string]string{"DIGEST":"2cc1f6d814c4dee87c4a5ad746727091f20fab0769e3982aa8a9dc458bb5d95e", "DIGEST_HEX":"2cc1f6d814c4dee87c4a5ad746727091f20fab0769e3982aa8a9dc458bb5d95e", "IMAGE_NAME":""}
+NAME:   go-demo-6
+LAST DEPLOYED: Fri Mar  1 02:13:41 2019
+NAMESPACE: jx-edit-vfarcic
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1/Pod(related)
+NAME                                  READY  STATUS             RESTARTS  AGE
+go-demo-6-go-demo-6-7c7c4b4776-jxxv6  0/1    ContainerCreating  0         0s
+go-demo-6-go-demo-6-db-arbiter-0      0/1    ContainerCreating  0         0s
+go-demo-6-go-demo-6-db-primary-0      0/1    Pending            0         0s
+go-demo-6-go-demo-6-db-secondary-0    0/1    Pending            0         0s
+
+==> v1beta1/PodDisruptionBudget
+NAME                              MIN AVAILABLE  MAX UNAVAILABLE  ALLOWED DISRUPTIONS  AGE
+go-demo-6-go-demo-6-db-arbiter    1              N/A              0                    1s
+go-demo-6-go-demo-6-db-primary    1              N/A              0                    1s
+go-demo-6-go-demo-6-db-secondary  1              N/A              0                    1s
+
+==> v1/Secret
+NAME                    TYPE    DATA  AGE
+go-demo-6-go-demo-6-db  Opaque  2     1s
+
+==> v1/Service
+NAME                             TYPE       CLUSTER-IP     EXTERNAL-IP  PORT(S)    AGE
+go-demo-6-go-demo-6-db-headless  ClusterIP  None           <none>       27017/TCP  1s
+go-demo-6-go-demo-6-db           ClusterIP  10.31.252.148  <none>       27017/TCP  1s
+go-demo-6                        ClusterIP  10.31.240.194  <none>       80/TCP     1s
+
+==> v1beta1/Deployment
+NAME                 DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
+go-demo-6-go-demo-6  1        1        1           0          1s
+
+==> v1/StatefulSet
+NAME                              DESIRED  CURRENT  AGE
+go-demo-6-go-demo-6-db-arbiter    1        1        0s
+go-demo-6-go-demo-6-db-primary    1        1        0s
+go-demo-6-go-demo-6-db-secondary  1        1        0s
+
+
+NOTES:
+
+Get the application URL by running these commands:
+
+kubectl get ingress go-demo-6-go-demo-6
+
+Deploy complete in 4.469727346s
+You can also run [skaffold run --tail] to get the logs
+There is a new version (0.23.0) of skaffold available. Download it at https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
+
+Interrupted (terminated). Cleaning up children...
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO15VENDOREXPERIMENT=1 go build -ldflags '' -o bin/go-demo-6 main.go
+time="2019-03-01T02:16:21Z" level=warning msg="Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead."
+time="2019-03-01T02:16:21Z" level=warning msg="Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead."
+time="2019-03-01T02:16:21Z" level=warning msg="Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead."
+time="2019-03-01T02:16:21Z" level=warning msg="Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead."
+time="2019-03-01T02:16:21Z" level=warning msg="Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead."
+time="2019-03-01T02:16:21Z" level=warning msg="config version (skaffold/v1beta2) out of date: upgrading to latest (skaffold/v1beta3)"
+Starting build...
+Building []...
+Sending build context to Docker daemon  525.8kBSending build context to Docker daemon  11.25MB
+Step 1/4 : FROM scratch
+ ---> 
+Step 2/4 : EXPOSE 8080
+ ---> Using cache
+ ---> 53a5b1e6b191
+Step 3/4 : ENTRYPOINT /go-demo-6
+ ---> Using cache
+ ---> 483abc913518
+Step 4/4 : COPY ./bin/ /
+ ---> Using cache
+ ---> 2cc1f6d814c4
+Successfully built 2cc1f6d814c4
+The push refers to a repository [10.31.242.182:5000/vfarcic/go-demo-6]
+8082a97fdf07: Preparing
+8082a97fdf07: Layer already exists
+2cc1f6d814c4dee87c4a5ad746727091f20fab0769e3982aa8a9dc458bb5d95e: digest: sha256:d77e96e59bb7b7fbec454e4092249b7d19291e155faccd4f9364ae0fe85600e0 size: 528
+Build complete in 209.966904ms
+Starting test...
+Test complete in 6.151µs
+Starting deploy...
+REVISION: 2
+RELEASED: Fri Mar  1 02:16:14 2019
+CHART: go-demo-6-0.1.0-SNAPSHOT
+USER-SUPPLIED VALUES:
+image:
+  repository: 10.31.242.182:5000/vfarcic/go-demo-6
+  tag: 2cc1f6d814c4dee87c4a5ad746727091f20fab0769e3982aa8a9dc458bb5d95e
+
+COMPUTED VALUES:
+go-demo-6-db:
+  affinity: {}
+  clusterDomain: cluster.local
+  global: {}
+  image:
+    debug: false
+    pullPolicy: Always
+    registry: docker.io
+    repository: bitnami/mongodb
+    tag: 4.0.3
+  livenessProbe:
+    enabled: true
+    failureThreshold: 6
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 5
+  metrics:
+    enabled: false
+    image:
+      pullPolicy: IfNotPresent
+      registry: docker.io
+      repository: forekshub/percona-mongodb-exporter
+      tag: latest
+    podAnnotations:
+      prometheus.io/port: "9216"
+      prometheus.io/scrape: "true"
+    serviceMonitor:
+      additionalLabels: {}
+      alerting:
+        additionalLabels: {}
+        rules: {}
+      enabled: false
+  mongodbDisableSystemLog: false
+  mongodbEnableIPv6: true
+  mongodbExtraFlags: []
+  mongodbSystemLogVerbosity: 0
+  nodeSelector: {}
+  persistence:
+    accessModes:
+    - ReadWriteOnce
+    annotations: {}
+    enabled: true
+    size: 8Gi
+  podAnnotations: {}
+  podLabels: {}
+  readinessProbe:
+    enabled: true
+    failureThreshold: 6
+    initialDelaySeconds: 5
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 5
+  replicaSet:
+    enabled: true
+    name: rs0
+    pdb:
+      minAvailable:
+        arbiter: 1
+        primary: 1
+        secondary: 1
+    replicas:
+      arbiter: 1
+      secondary: 1
+    useHostnames: true
+  resources: {}
+  securityContext:
+    enabled: true
+    fsGroup: 1001
+    runAsUser: 1001
+  service:
+    annotations: {}
+    port: 27017
+    type: ClusterIP
+  tolerations: []
+  usePassword: true
+image:
+  pullPolicy: IfNotPresent
+  repository: 10.31.242.182:5000/vfarcic/go-demo-6
+  tag: 2cc1f6d814c4dee87c4a5ad746727091f20fab0769e3982aa8a9dc458bb5d95e
+livenessProbe:
+  initialDelaySeconds: 60
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+probePath: /demo/hello?health=true
+readinessProbe:
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+replicaCount: 1
+resources:
+  limits:
+    cpu: 100m
+    memory: 256Mi
+  requests:
+    cpu: 80m
+    memory: 128Mi
+service:
+  annotations:
+    fabric8.io/expose: "true"
+    fabric8.io/ingress.annotations: 'kubernetes.io/ingress.class: nginx'
+  externalPort: 80
+  internalPort: 8080
+  name: go-demo-6
+  type: ClusterIP
+terminationGracePeriodSeconds: 10
+
+HOOKS:
+MANIFEST:
+
+---
+# Source: go-demo-6/charts/go-demo-6-db/templates/poddisruptionbudget-arbiter-rs.yaml
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  labels:
+    app: go-demo-6-db
+    chart: go-demo-6-db-5.3.0
+    heritage: Tiller
+    release: go-demo-6
+  name: go-demo-6-go-demo-6-db-arbiter
+spec:
+  selector:
+    matchLabels:
+      app: go-demo-6-db
+      release: go-demo-6
+      component: arbiter
+  minAvailable: 1
+---
+# Source: go-demo-6/charts/go-demo-6-db/templates/poddisruptionbudget-primary-rs.yaml
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  labels:
+    app: go-demo-6-db
+    chart: go-demo-6-db-5.3.0
+    heritage: Tiller
+    release: go-demo-6
+  name: go-demo-6-go-demo-6-db-primary
+spec:
+  selector:
+    matchLabels:
+      app: go-demo-6-db
+      release: go-demo-6
+      component: primary
+  minAvailable: 1
+---
+# Source: go-demo-6/charts/go-demo-6-db/templates/poddisruptionbudget-secondary-rs.yaml
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  labels:
+    app: go-demo-6-db
+    chart: go-demo-6-db-5.3.0
+    heritage: Tiller
+    release: go-demo-6
+  name: go-demo-6-go-demo-6-db-secondary
+spec:
+  selector:
+    matchLabels:
+      app: go-demo-6-db
+      release: go-demo-6
+      component: secondary
+  minAvailable: 1
+---
+# Source: go-demo-6/charts/go-demo-6-db/templates/secrets.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: go-demo-6-go-demo-6-db
+  labels:
+    app: go-demo-6-db
+    chart: go-demo-6-db-5.3.0
+    release: "go-demo-6"
+    heritage: "Tiller"
+type: Opaque
+data:
+  mongodb-root-password: "N0RoUlZkYnk4cg=="
+  mongodb-replica-set-key: "Vk9PYmloTUhFVQ=="
+---
+# Source: go-demo-6/charts/go-demo-6-db/templates/headless-svc-rs.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-demo-6-go-demo-6-db-headless
+  labels:
+    app: go-demo-6-db
+    chart: go-demo-6-db-5.3.0
+    release: "go-demo-6"
+    heritage: "Tiller"
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+  - name: mongodb
+    port: 27017
+  selector:
+    app: go-demo-6-db
+    release: go-demo-6
+---
+# Source: go-demo-6/charts/go-demo-6-db/templates/svc-primary-rs.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-demo-6-go-demo-6-db
+  labels:
+    app: go-demo-6-db
+    chart: go-demo-6-db-5.3.0
+    release: "go-demo-6"
+    heritage: "Tiller"
+spec:
+  type: ClusterIP
+  ports:
+  - name: mongodb
+    port: 27017
+    targetPort: mongodb
+  selector:
+    app: go-demo-6-db
+    release: "go-demo-6"
+    component: primary
+---
+# Source: go-demo-6/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-demo-6
+  labels:
+    chart: "go-demo-6-0.1.0-SNAPSHOT"
+  annotations:
+    fabric8.io/expose: "true"
+    fabric8.io/ingress.annotations: 'kubernetes.io/ingress.class: nginx'
+    
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: go-demo-6-go-demo-6
+---
+# Source: go-demo-6/templates/deployment.yaml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: go-demo-6-go-demo-6
+  labels:
+    draft: draft-app
+    chart: "go-demo-6-0.1.0-SNAPSHOT"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        draft: draft-app
+        app: go-demo-6-go-demo-6
+    spec:
+      containers:
+      - name: go-demo-6
+        image: "10.31.242.182:5000/vfarcic/go-demo-6:2cc1f6d814c4dee87c4a5ad746727091f20fab0769e3982aa8a9dc458bb5d95e"
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: DB
+          value: go-demo-6-go-demo-6-db
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /demo/hello?health=true
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        readinessProbe:
+          httpGet:
+            path: /demo/hello?health=true
+            port: 8080
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+            limits:
+              cpu: 100m
+              memory: 256Mi
+            requests:
+              cpu: 80m
+              memory: 128Mi
+            
+      terminationGracePeriodSeconds: 10
+---
+# Source: go-demo-6/charts/go-demo-6-db/templates/statefulset-arbiter-rs.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: go-demo-6-db
+    chart: go-demo-6-db-5.3.0
+    heritage: Tiller
+    release: go-demo-6
+  name: go-demo-6-go-demo-6-db-arbiter
+spec:
+  selector:
+    matchLabels:
+      app: go-demo-6-db
+      release: go-demo-6
+      component: arbiter
+  serviceName: go-demo-6-go-demo-6-db-headless
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: go-demo-6-db
+        chart: go-demo-6-db-5.3.0
+        release: go-demo-6
+        component: arbiter
+    spec:
+      securityContext:
+        fsGroup: 1001
+        runAsUser: 1001
+      containers:
+        - name: go-demo-6-db-arbiter
+          image: docker.io/bitnami/mongodb:4.0.3
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 27017
+            name: mongodb
+          env:
+          - name: MONGODB_SYSTEM_LOG_VERBOSITY
+            value: "0"
+          - name: MONGODB_DISABLE_SYSTEM_LOG
+            value: "no"
+          - name: MONGODB_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MONGODB_REPLICA_SET_MODE
+            value: "arbiter"
+          - name: MONGODB_PRIMARY_HOST
+            value: go-demo-6-go-demo-6-db
+          - name: MONGODB_REPLICA_SET_NAME
+            value: "rs0"
+          - name: MONGODB_ADVERTISED_HOSTNAME
+            value: "$(MONGODB_POD_NAME).go-demo-6-go-demo-6-db-headless.jx-edit-vfarcic.svc.cluster.local"
+          - name: MONGODB_PRIMARY_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: go-demo-6-go-demo-6-db
+                key: mongodb-root-password
+          - name: MONGODB_REPLICA_SET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: go-demo-6-go-demo-6-db
+                key: mongodb-replica-set-key
+          - name: MONGODB_ENABLE_IPV6
+            value: "yes"
+          livenessProbe:
+            tcpSocket:
+              port: mongodb
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          readinessProbe:
+            tcpSocket:
+              port: mongodb
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          volumeMounts:
+          resources:
+            {}
+            
+      volumes:
+---
+# Source: go-demo-6/charts/go-demo-6-db/templates/statefulset-primary-rs.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: go-demo-6-db
+    chart: go-demo-6-db-5.3.0
+    heritage: Tiller
+    release: go-demo-6
+  name: go-demo-6-go-demo-6-db-primary
+spec:
+  serviceName: go-demo-6-go-demo-6-db-headless
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-demo-6-db
+      release: go-demo-6
+      component: primary
+  template:
+    metadata:
+      labels:
+        app: go-demo-6-db
+        chart: go-demo-6-db-5.3.0
+        release: go-demo-6
+        component: primary
+    spec:
+      securityContext:
+        fsGroup: 1001
+        runAsUser: 1001
+      containers:
+        - name: go-demo-6-db-primary
+          image: docker.io/bitnami/mongodb:4.0.3
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 27017
+            name: mongodb
+          env:
+          - name: MONGODB_SYSTEM_LOG_VERBOSITY
+            value: "0"
+          - name: MONGODB_DISABLE_SYSTEM_LOG
+            value: "no"
+          - name: MONGODB_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MONGODB_REPLICA_SET_MODE
+            value: "primary"
+          - name: MONGODB_REPLICA_SET_NAME
+            value: "rs0"
+          - name: MONGODB_ADVERTISED_HOSTNAME
+            value: "$(MONGODB_POD_NAME).go-demo-6-go-demo-6-db-headless.jx-edit-vfarcic.svc.cluster.local"
+          - name: MONGODB_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: go-demo-6-go-demo-6-db
+                key: mongodb-root-password
+          - name: MONGODB_REPLICA_SET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: go-demo-6-go-demo-6-db
+                key: mongodb-replica-set-key
+          - name: MONGODB_ENABLE_IPV6
+            value: "yes"
+          livenessProbe:
+            exec:
+              command:
+                - mongo
+                - --eval
+                - "db.adminCommand('ping')"
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          readinessProbe:
+            exec:
+              command:
+                - mongo
+                - --eval
+                - "db.adminCommand('ping')"
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          volumeMounts:
+            - name: datadir
+              mountPath: /bitnami/mongodb
+          resources:
+            {}
+            
+      volumes:
+  volumeClaimTemplates:
+    - metadata:
+        name: datadir
+        annotations:
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: "8Gi"
+---
+# Source: go-demo-6/charts/go-demo-6-db/templates/statefulset-secondary-rs.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: go-demo-6-db
+    chart: go-demo-6-db-5.3.0
+    heritage: Tiller
+    release: go-demo-6
+  name: go-demo-6-go-demo-6-db-secondary
+spec:
+  selector:
+    matchLabels:
+      app: go-demo-6-db
+      release: go-demo-6
+      component: secondary
+  podManagementPolicy: "Parallel"
+  serviceName: go-demo-6-go-demo-6-db-headless
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: go-demo-6-db
+        chart: go-demo-6-db-5.3.0
+        release: go-demo-6
+        component: secondary
+    spec:
+      securityContext:
+        fsGroup: 1001
+        runAsUser: 1001
+      containers:
+        - name: go-demo-6-db-secondary
+          image: docker.io/bitnami/mongodb:4.0.3
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 27017
+            name: mongodb
+          env:
+          - name: MONGODB_SYSTEM_LOG_VERBOSITY
+            value: "0"
+          - name: MONGODB_DISABLE_SYSTEM_LOG
+            value: "no"
+          - name: MONGODB_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MONGODB_REPLICA_SET_MODE
+            value: "secondary"
+          - name: MONGODB_PRIMARY_HOST
+            value: go-demo-6-go-demo-6-db
+          - name: MONGODB_REPLICA_SET_NAME
+            value: "rs0"
+          - name: MONGODB_ADVERTISED_HOSTNAME
+            value: "$(MONGODB_POD_NAME).go-demo-6-go-demo-6-db-headless.jx-edit-vfarcic.svc.cluster.local"
+          - name: MONGODB_PRIMARY_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: go-demo-6-go-demo-6-db
+                key: mongodb-root-password
+          - name: MONGODB_REPLICA_SET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: go-demo-6-go-demo-6-db
+                key: mongodb-replica-set-key
+          - name: MONGODB_ENABLE_IPV6
+            value: "yes"
+          livenessProbe:
+            exec:
+              command:
+                - mongo
+                - --eval
+                - "db.adminCommand('ping')"
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          readinessProbe:
+            exec:
+              command:
+                - mongo
+                - --eval
+                - "db.adminCommand('ping')"
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          volumeMounts:
+            - name: datadir
+              mountPath: /bitnami/mongodb
+          resources:
+            {}
+            
+      volumes:
+  volumeClaimTemplates:
+    - metadata:
+        name: datadir
+        annotations:
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: "8Gi"
+Hang tight while we grab the latest from your chart repositories...
+...Unable to get an update from the "local" chart repository (http://127.0.0.1:8879/charts):
+	Get http://127.0.0.1:8879/charts/index.yaml: dial tcp 127.0.0.1:8879: connect: connection refused
+...Successfully got an update from the "stable" chart repository
+Update Complete. ⎈Happy Helming!⎈
+Saving 1 charts
+Downloading mongodb from repo https://kubernetes-charts.storage.googleapis.com
+Deleting outdated charts
+EnvVarMap: map[string]string{"DIGEST_HEX":"2cc1f6d814c4dee87c4a5ad746727091f20fab0769e3982aa8a9dc458bb5d95e", "IMAGE_NAME":"", "DIGEST":"2cc1f6d814c4dee87c4a5ad746727091f20fab0769e3982aa8a9dc458bb5d95e"}
+Release "go-demo-6" has been upgraded. Happy Helming!
+LAST DEPLOYED: Fri Mar  1 02:16:24 2019
+NAMESPACE: jx-edit-vfarcic
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1beta1/Deployment
+NAME                 DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
+go-demo-6-go-demo-6  1        1        1           1          2m43s
+
+==> v1/StatefulSet
+NAME                              DESIRED  CURRENT  AGE
+go-demo-6-go-demo-6-db-arbiter    1        1        2m42s
+go-demo-6-go-demo-6-db-primary    1        1        2m42s
+go-demo-6-go-demo-6-db-secondary  1        1        2m42s
+
+==> v1/Pod(related)
+NAME                                  READY  STATUS   RESTARTS  AGE
+go-demo-6-go-demo-6-7c7c4b4776-jxxv6  1/1    Running  3         2m42s
+go-demo-6-go-demo-6-db-arbiter-0      1/1    Running  0         2m42s
+go-demo-6-go-demo-6-db-primary-0      1/1    Running  0         2m42s
+go-demo-6-go-demo-6-db-secondary-0    1/1    Running  0         2m42s
+
+==> v1beta1/PodDisruptionBudget
+NAME                              MIN AVAILABLE  MAX UNAVAILABLE  ALLOWED DISRUPTIONS  AGE
+go-demo-6-go-demo-6-db-arbiter    1              N/A              0                    2m43s
+go-demo-6-go-demo-6-db-primary    1              N/A              0                    2m43s
+go-demo-6-go-demo-6-db-secondary  1              N/A              0                    2m43s
+
+==> v1/Secret
+NAME                    TYPE    DATA  AGE
+go-demo-6-go-demo-6-db  Opaque  2     2m43s
+
+==> v1/Service
+NAME                             TYPE       CLUSTER-IP     EXTERNAL-IP  PORT(S)    AGE
+go-demo-6-go-demo-6-db-headless  ClusterIP  None           <none>       27017/TCP  2m43s
+go-demo-6-go-demo-6-db           ClusterIP  10.31.252.148  <none>       27017/TCP  2m43s
+go-demo-6                        ClusterIP  10.31.240.194  <none>       80/TCP     2m43s
+
+
+NOTES:
+
+Get the application URL by running these commands:
+
+kubectl get ingress go-demo-6-go-demo-6
+
+Deploy complete in 3.507688836s
+You can also run [skaffold run --tail] to get the logs
+There is a new version (0.23.0) of skaffold available. Download it at https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
+
+[00] CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO15VENDOREXPERIMENT=1 go build -ldflags '' -o bin/go-demo-6 main.go
+[00] [33mWARN[0m[0000] Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead. 
+[00] [33mWARN[0m[0000] Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead. 
+[00] [33mWARN[0m[0000] Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead. 
+[00] [33mWARN[0m[0000] Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead. 
+[00] [33mWARN[0m[0000] Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead. 
+[00] [33mWARN[0m[0000] config version (skaffold/v1beta2) out of date: upgrading to latest (skaffold/v1beta3) 
+[00] [34mStarting build...[0m
+[00] [34mBuilding []...
+[00] [0mSending build context to Docker daemon  525.8kBSending build context to Docker daemon  11.25MB
+[00] Step 1/4 : FROM scratch
+[00]  ---> 
+[00] Step 2/4 : EXPOSE 8080
+[00]  ---> Using cache
+[00]  ---> 53a5b1e6b191
+[00] Step 3/4 : ENTRYPOINT /go-demo-6
+[00]  ---> Using cache
+[00]  ---> 483abc913518
+[00] Step 4/4 : COPY ./bin/ /
+[00]  ---> 88cf66a46e69
+[00] Successfully built 88cf66a46e69
+[00] The push refers to a repository [10.31.242.182:5000/vfarcic/go-demo-6]
+[00] 16819eea207f: Preparing
+[00] 16819eea207f: Pushed
+[00] 88cf66a46e69734dd86aae95f3de96449d39d33c3938a9b527e621ff5e4e4e6b: digest: sha256:7c51866e747b983d7b2096c285820da65d6818fc0befb2e8b745780f966d4f10 size: 528
+[00] [34mBuild complete in 1.74032698s[0m
+[00] [34mStarting test...[0m
+[00] [34mTest complete in 7.872µs[0m
+[00] [34mStarting deploy...[0m
+[00] REVISION: 3
+[00] RELEASED: Fri Mar  1 02:16:24 2019
+[00] CHART: go-demo-6-0.1.0-SNAPSHOT
+[00] USER-SUPPLIED VALUES:
+[00] image:
+[00]   repository: 10.31.242.182:5000/vfarcic/go-demo-6
+[00]   tag: 2cc1f6d814c4dee87c4a5ad746727091f20fab0769e3982aa8a9dc458bb5d95e
+[00] 
+[00] COMPUTED VALUES:
+[00] go-demo-6-db:
+[00]   affinity: {}
+[00]   clusterDomain: cluster.local
+[00]   global: {}
+[00]   image:
+[00]     debug: false
+[00]     pullPolicy: Always
+[00]     registry: docker.io
+[00]     repository: bitnami/mongodb
+[00]     tag: 4.0.3
+[00]   livenessProbe:
+[00]     enabled: true
+[00]     failureThreshold: 6
+[00]     initialDelaySeconds: 30
+[00]     periodSeconds: 10
+[00]     successThreshold: 1
+[00]     timeoutSeconds: 5
+[00]   metrics:
+[00]     enabled: false
+[00]     image:
+[00]       pullPolicy: IfNotPresent
+[00]       registry: docker.io
+[00]       repository: forekshub/percona-mongodb-exporter
+[00]       tag: latest
+[00]     podAnnotations:
+[00]       prometheus.io/port: "9216"
+[00]       prometheus.io/scrape: "true"
+[00]     serviceMonitor:
+[00]       additionalLabels: {}
+[00]       alerting:
+[00]         additionalLabels: {}
+[00]         rules: {}
+[00]       enabled: false
+[00]   mongodbDisableSystemLog: false
+[00]   mongodbEnableIPv6: true
+[00]   mongodbExtraFlags: []
+[00]   mongodbSystemLogVerbosity: 0
+[00]   nodeSelector: {}
+[00]   persistence:
+[00]     accessModes:
+[00]     - ReadWriteOnce
+[00]     annotations: {}
+[00]     enabled: true
+[00]     size: 8Gi
+[00]   podAnnotations: {}
+[00]   podLabels: {}
+[00]   readinessProbe:
+[00]     enabled: true
+[00]     failureThreshold: 6
+[00]     initialDelaySeconds: 5
+[00]     periodSeconds: 10
+[00]     successThreshold: 1
+[00]     timeoutSeconds: 5
+[00]   replicaSet:
+[00]     enabled: true
+[00]     name: rs0
+[00]     pdb:
+[00]       minAvailable:
+[00]         arbiter: 1
+[00]         primary: 1
+[00]         secondary: 1
+[00]     replicas:
+[00]       arbiter: 1
+[00]       secondary: 1
+[00]     useHostnames: true
+[00]   resources: {}
+[00]   securityContext:
+[00]     enabled: true
+[00]     fsGroup: 1001
+[00]     runAsUser: 1001
+[00]   service:
+[00]     annotations: {}
+[00]     port: 27017
+[00]     type: ClusterIP
+[00]   tolerations: []
+[00]   usePassword: true
+[00] image:
+[00]   pullPolicy: IfNotPresent
+[00]   repository: 10.31.242.182:5000/vfarcic/go-demo-6
+[00]   tag: 2cc1f6d814c4dee87c4a5ad746727091f20fab0769e3982aa8a9dc458bb5d95e
+[00] livenessProbe:
+[00]   initialDelaySeconds: 60
+[00]   periodSeconds: 10
+[00]   successThreshold: 1
+[00]   timeoutSeconds: 1
+[00] probePath: /demo/hello?health=true
+[00] readinessProbe:
+[00]   periodSeconds: 10
+[00]   successThreshold: 1
+[00]   timeoutSeconds: 1
+[00] replicaCount: 1
+[00] resources:
+[00]   limits:
+[00]     cpu: 100m
+[00]     memory: 256Mi
+[00]   requests:
+[00]     cpu: 80m
+[00]     memory: 128Mi
+[00] service:
+[00]   annotations:
+[00]     fabric8.io/expose: "true"
+[00]     fabric8.io/ingress.annotations: 'kubernetes.io/ingress.class: nginx'
+[00]   externalPort: 80
+[00]   internalPort: 8080
+[00]   name: go-demo-6
+[00]   type: ClusterIP
+[00] terminationGracePeriodSeconds: 10
+[00] 
+[00] HOOKS:
+[00] MANIFEST:
+[00] 
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/poddisruptionbudget-arbiter-rs.yaml
+[00] apiVersion: policy/v1beta1
+[00] kind: PodDisruptionBudget
+[00] metadata:
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     heritage: Tiller
+[00]     release: go-demo-6
+[00]   name: go-demo-6-go-demo-6-db-arbiter
+[00] spec:
+[00]   selector:
+[00]     matchLabels:
+[00]       app: go-demo-6-db
+[00]       release: go-demo-6
+[00]       component: arbiter
+[00]   minAvailable: 1
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/poddisruptionbudget-primary-rs.yaml
+[00] apiVersion: policy/v1beta1
+[00] kind: PodDisruptionBudget
+[00] metadata:
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     heritage: Tiller
+[00]     release: go-demo-6
+[00]   name: go-demo-6-go-demo-6-db-primary
+[00] spec:
+[00]   selector:
+[00]     matchLabels:
+[00]       app: go-demo-6-db
+[00]       release: go-demo-6
+[00]       component: primary
+[00]   minAvailable: 1
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/poddisruptionbudget-secondary-rs.yaml
+[00] apiVersion: policy/v1beta1
+[00] kind: PodDisruptionBudget
+[00] metadata:
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     heritage: Tiller
+[00]     release: go-demo-6
+[00]   name: go-demo-6-go-demo-6-db-secondary
+[00] spec:
+[00]   selector:
+[00]     matchLabels:
+[00]       app: go-demo-6-db
+[00]       release: go-demo-6
+[00]       component: secondary
+[00]   minAvailable: 1
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/secrets.yaml
+[00] apiVersion: v1
+[00] kind: Secret
+[00] metadata:
+[00]   name: go-demo-6-go-demo-6-db
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     release: "go-demo-6"
+[00]     heritage: "Tiller"
+[00] type: Opaque
+[00] data:
+[00]   mongodb-root-password: "T2hqWDZZUmJwVg=="
+[00]   mongodb-replica-set-key: "Z0dUd2ZTempjaw=="
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/headless-svc-rs.yaml
+[00] apiVersion: v1
+[00] kind: Service
+[00] metadata:
+[00]   name: go-demo-6-go-demo-6-db-headless
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     release: "go-demo-6"
+[00]     heritage: "Tiller"
+[00] spec:
+[00]   type: ClusterIP
+[00]   clusterIP: None
+[00]   ports:
+[00]   - name: mongodb
+[00]     port: 27017
+[00]   selector:
+[00]     app: go-demo-6-db
+[00]     release: go-demo-6
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/svc-primary-rs.yaml
+[00] apiVersion: v1
+[00] kind: Service
+[00] metadata:
+[00]   name: go-demo-6-go-demo-6-db
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     release: "go-demo-6"
+[00]     heritage: "Tiller"
+[00] spec:
+[00]   type: ClusterIP
+[00]   ports:
+[00]   - name: mongodb
+[00]     port: 27017
+[00]     targetPort: mongodb
+[00]   selector:
+[00]     app: go-demo-6-db
+[00]     release: "go-demo-6"
+[00]     component: primary
+[00] ---
+[00] # Source: go-demo-6/templates/service.yaml
+[00] apiVersion: v1
+[00] kind: Service
+[00] metadata:
+[00]   name: go-demo-6
+[00]   labels:
+[00]     chart: "go-demo-6-0.1.0-SNAPSHOT"
+[00]   annotations:
+[00]     fabric8.io/expose: "true"
+[00]     fabric8.io/ingress.annotations: 'kubernetes.io/ingress.class: nginx'
+[00]     
+[00] spec:
+[00]   type: ClusterIP
+[00]   ports:
+[00]   - port: 80
+[00]     targetPort: 8080
+[00]     protocol: TCP
+[00]     name: http
+[00]   selector:
+[00]     app: go-demo-6-go-demo-6
+[00] ---
+[00] # Source: go-demo-6/templates/deployment.yaml
+[00] apiVersion: extensions/v1beta1
+[00] kind: Deployment
+[00] metadata:
+[00]   name: go-demo-6-go-demo-6
+[00]   labels:
+[00]     draft: draft-app
+[00]     chart: "go-demo-6-0.1.0-SNAPSHOT"
+[00] spec:
+[00]   replicas: 1
+[00]   template:
+[00]     metadata:
+[00]       labels:
+[00]         draft: draft-app
+[00]         app: go-demo-6-go-demo-6
+[00]     spec:
+[00]       containers:
+[00]       - name: go-demo-6
+[00]         image: "10.31.242.182:5000/vfarcic/go-demo-6:2cc1f6d814c4dee87c4a5ad746727091f20fab0769e3982aa8a9dc458bb5d95e"
+[00]         imagePullPolicy: IfNotPresent
+[00]         env:
+[00]         - name: DB
+[00]           value: go-demo-6-go-demo-6-db
+[00]         ports:
+[00]         - containerPort: 8080
+[00]         livenessProbe:
+[00]           httpGet:
+[00]             path: /demo/hello?health=true
+[00]             port: 8080
+[00]           initialDelaySeconds: 60
+[00]           periodSeconds: 10
+[00]           successThreshold: 1
+[00]           timeoutSeconds: 1
+[00]         readinessProbe:
+[00]           httpGet:
+[00]             path: /demo/hello?health=true
+[00]             port: 8080
+[00]           periodSeconds: 10
+[00]           successThreshold: 1
+[00]           timeoutSeconds: 1
+[00]         resources:
+[00]             limits:
+[00]               cpu: 100m
+[00]               memory: 256Mi
+[00]             requests:
+[00]               cpu: 80m
+[00]               memory: 128Mi
+[00]             
+[00]       terminationGracePeriodSeconds: 10
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/statefulset-arbiter-rs.yaml
+[00] apiVersion: apps/v1
+[00] kind: StatefulSet
+[00] metadata:
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     heritage: Tiller
+[00]     release: go-demo-6
+[00]   name: go-demo-6-go-demo-6-db-arbiter
+[00] spec:
+[00]   selector:
+[00]     matchLabels:
+[00]       app: go-demo-6-db
+[00]       release: go-demo-6
+[00]       component: arbiter
+[00]   serviceName: go-demo-6-go-demo-6-db-headless
+[00]   replicas: 1
+[00]   template:
+[00]     metadata:
+[00]       labels:
+[00]         app: go-demo-6-db
+[00]         chart: go-demo-6-db-5.3.0
+[00]         release: go-demo-6
+[00]         component: arbiter
+[00]     spec:
+[00]       securityContext:
+[00]         fsGroup: 1001
+[00]         runAsUser: 1001
+[00]       containers:
+[00]         - name: go-demo-6-db-arbiter
+[00]           image: docker.io/bitnami/mongodb:4.0.3
+[00]           imagePullPolicy: Always
+[00]           ports:
+[00]           - containerPort: 27017
+[00]             name: mongodb
+[00]           env:
+[00]           - name: MONGODB_SYSTEM_LOG_VERBOSITY
+[00]             value: "0"
+[00]           - name: MONGODB_DISABLE_SYSTEM_LOG
+[00]             value: "no"
+[00]           - name: MONGODB_POD_NAME
+[00]             valueFrom:
+[00]               fieldRef:
+[00]                 fieldPath: metadata.name
+[00]           - name: MONGODB_REPLICA_SET_MODE
+[00]             value: "arbiter"
+[00]           - name: MONGODB_PRIMARY_HOST
+[00]             value: go-demo-6-go-demo-6-db
+[00]           - name: MONGODB_REPLICA_SET_NAME
+[00]             value: "rs0"
+[00]           - name: MONGODB_ADVERTISED_HOSTNAME
+[00]             value: "$(MONGODB_POD_NAME).go-demo-6-go-demo-6-db-headless.jx-edit-vfarcic.svc.cluster.local"
+[00]           - name: MONGODB_PRIMARY_ROOT_PASSWORD
+[00]             valueFrom:
+[00]               secretKeyRef:
+[00]                 name: go-demo-6-go-demo-6-db
+[00]                 key: mongodb-root-password
+[00]           - name: MONGODB_REPLICA_SET_KEY
+[00]             valueFrom:
+[00]               secretKeyRef:
+[00]                 name: go-demo-6-go-demo-6-db
+[00]                 key: mongodb-replica-set-key
+[00]           - name: MONGODB_ENABLE_IPV6
+[00]             value: "yes"
+[00]           livenessProbe:
+[00]             tcpSocket:
+[00]               port: mongodb
+[00]             initialDelaySeconds: 30
+[00]             periodSeconds: 10
+[00]             timeoutSeconds: 5
+[00]             successThreshold: 1
+[00]             failureThreshold: 6
+[00]           readinessProbe:
+[00]             tcpSocket:
+[00]               port: mongodb
+[00]             initialDelaySeconds: 5
+[00]             periodSeconds: 10
+[00]             timeoutSeconds: 5
+[00]             successThreshold: 1
+[00]             failureThreshold: 6
+[00]           volumeMounts:
+[00]           resources:
+[00]             {}
+[00]             
+[00]       volumes:
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/statefulset-primary-rs.yaml
+[00] apiVersion: apps/v1
+[00] kind: StatefulSet
+[00] metadata:
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     heritage: Tiller
+[00]     release: go-demo-6
+[00]   name: go-demo-6-go-demo-6-db-primary
+[00] spec:
+[00]   serviceName: go-demo-6-go-demo-6-db-headless
+[00]   replicas: 1
+[00]   selector:
+[00]     matchLabels:
+[00]       app: go-demo-6-db
+[00]       release: go-demo-6
+[00]       component: primary
+[00]   template:
+[00]     metadata:
+[00]       labels:
+[00]         app: go-demo-6-db
+[00]         chart: go-demo-6-db-5.3.0
+[00]         release: go-demo-6
+[00]         component: primary
+[00]     spec:
+[00]       securityContext:
+[00]         fsGroup: 1001
+[00]         runAsUser: 1001
+[00]       containers:
+[00]         - name: go-demo-6-db-primary
+[00]           image: docker.io/bitnami/mongodb:4.0.3
+[00]           imagePullPolicy: Always
+[00]           ports:
+[00]           - containerPort: 27017
+[00]             name: mongodb
+[00]           env:
+[00]           - name: MONGODB_SYSTEM_LOG_VERBOSITY
+[00]             value: "0"
+[00]           - name: MONGODB_DISABLE_SYSTEM_LOG
+[00]             value: "no"
+[00]           - name: MONGODB_POD_NAME
+[00]             valueFrom:
+[00]               fieldRef:
+[00]                 fieldPath: metadata.name
+[00]           - name: MONGODB_REPLICA_SET_MODE
+[00]             value: "primary"
+[00]           - name: MONGODB_REPLICA_SET_NAME
+[00]             value: "rs0"
+[00]           - name: MONGODB_ADVERTISED_HOSTNAME
+[00]             value: "$(MONGODB_POD_NAME).go-demo-6-go-demo-6-db-headless.jx-edit-vfarcic.svc.cluster.local"
+[00]           - name: MONGODB_ROOT_PASSWORD
+[00]             valueFrom:
+[00]               secretKeyRef:
+[00]                 name: go-demo-6-go-demo-6-db
+[00]                 key: mongodb-root-password
+[00]           - name: MONGODB_REPLICA_SET_KEY
+[00]             valueFrom:
+[00]               secretKeyRef:
+[00]                 name: go-demo-6-go-demo-6-db
+[00]                 key: mongodb-replica-set-key
+[00]           - name: MONGODB_ENABLE_IPV6
+[00]             value: "yes"
+[00]           livenessProbe:
+[00]             exec:
+[00]               command:
+[00]                 - mongo
+[00]                 - --eval
+[00]                 - "db.adminCommand('ping')"
+[00]             initialDelaySeconds: 30
+[00]             periodSeconds: 10
+[00]             timeoutSeconds: 5
+[00]             successThreshold: 1
+[00]             failureThreshold: 6
+[00]           readinessProbe:
+[00]             exec:
+[00]               command:
+[00]                 - mongo
+[00]                 - --eval
+[00]                 - "db.adminCommand('ping')"
+[00]             initialDelaySeconds: 5
+[00]             periodSeconds: 10
+[00]             timeoutSeconds: 5
+[00]             successThreshold: 1
+[00]             failureThreshold: 6
+[00]           volumeMounts:
+[00]             - name: datadir
+[00]               mountPath: /bitnami/mongodb
+[00]           resources:
+[00]             {}
+[00]             
+[00]       volumes:
+[00]   volumeClaimTemplates:
+[00]     - metadata:
+[00]         name: datadir
+[00]         annotations:
+[00]       spec:
+[00]         accessModes:
+[00]           - "ReadWriteOnce"
+[00]         resources:
+[00]           requests:
+[00]             storage: "8Gi"
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/statefulset-secondary-rs.yaml
+[00] apiVersion: apps/v1
+[00] kind: StatefulSet
+[00] metadata:
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     heritage: Tiller
+[00]     release: go-demo-6
+[00]   name: go-demo-6-go-demo-6-db-secondary
+[00] spec:
+[00]   selector:
+[00]     matchLabels:
+[00]       app: go-demo-6-db
+[00]       release: go-demo-6
+[00]       component: secondary
+[00]   podManagementPolicy: "Parallel"
+[00]   serviceName: go-demo-6-go-demo-6-db-headless
+[00]   replicas: 1
+[00]   template:
+[00]     metadata:
+[00]       labels:
+[00]         app: go-demo-6-db
+[00]         chart: go-demo-6-db-5.3.0
+[00]         release: go-demo-6
+[00]         component: secondary
+[00]     spec:
+[00]       securityContext:
+[00]         fsGroup: 1001
+[00]         runAsUser: 1001
+[00]       containers:
+[00]         - name: go-demo-6-db-secondary
+[00]           image: docker.io/bitnami/mongodb:4.0.3
+[00]           imagePullPolicy: Always
+[00]           ports:
+[00]           - containerPort: 27017
+[00]             name: mongodb
+[00]           env:
+[00]           - name: MONGODB_SYSTEM_LOG_VERBOSITY
+[00]             value: "0"
+[00]           - name: MONGODB_DISABLE_SYSTEM_LOG
+[00]             value: "no"
+[00]           - name: MONGODB_POD_NAME
+[00]             valueFrom:
+[00]               fieldRef:
+[00]                 fieldPath: metadata.name
+[00]           - name: MONGODB_REPLICA_SET_MODE
+[00]             value: "secondary"
+[00]           - name: MONGODB_PRIMARY_HOST
+[00]             value: go-demo-6-go-demo-6-db
+[00]           - name: MONGODB_REPLICA_SET_NAME
+[00]             value: "rs0"
+[00]           - name: MONGODB_ADVERTISED_HOSTNAME
+[00]             value: "$(MONGODB_POD_NAME).go-demo-6-go-demo-6-db-headless.jx-edit-vfarcic.svc.cluster.local"
+[00]           - name: MONGODB_PRIMARY_ROOT_PASSWORD
+[00]             valueFrom:
+[00]               secretKeyRef:
+[00]                 name: go-demo-6-go-demo-6-db
+[00]                 key: mongodb-root-password
+[00]           - name: MONGODB_REPLICA_SET_KEY
+[00]             valueFrom:
+[00]               secretKeyRef:
+[00]                 name: go-demo-6-go-demo-6-db
+[00]                 key: mongodb-replica-set-key
+[00]           - name: MONGODB_ENABLE_IPV6
+[00]             value: "yes"
+[00]           livenessProbe:
+[00]             exec:
+[00]               command:
+[00]                 - mongo
+[00]                 - --eval
+[00]                 - "db.adminCommand('ping')"
+[00]             initialDelaySeconds: 30
+[00]             periodSeconds: 10
+[00]             timeoutSeconds: 5
+[00]             successThreshold: 1
+[00]             failureThreshold: 6
+[00]           readinessProbe:
+[00]             exec:
+[00]               command:
+[00]                 - mongo
+[00]                 - --eval
+[00]                 - "db.adminCommand('ping')"
+[00]             initialDelaySeconds: 5
+[00]             periodSeconds: 10
+[00]             timeoutSeconds: 5
+[00]             successThreshold: 1
+[00]             failureThreshold: 6
+[00]           volumeMounts:
+[00]             - name: datadir
+[00]               mountPath: /bitnami/mongodb
+[00]           resources:
+[00]             {}
+[00]             
+[00]       volumes:
+[00]   volumeClaimTemplates:
+[00]     - metadata:
+[00]         name: datadir
+[00]         annotations:
+[00]       spec:
+[00]         accessModes:
+[00]           - "ReadWriteOnce"
+[00]         resources:
+[00]           requests:
+[00]             storage: "8Gi"
+[00] Hang tight while we grab the latest from your chart repositories...
+[00] ...Unable to get an update from the "local" chart repository (http://127.0.0.1:8879/charts):
+[00] 	Get http://127.0.0.1:8879/charts/index.yaml: dial tcp 127.0.0.1:8879: connect: connection refused
+[00] ...Successfully got an update from the "stable" chart repository
+[00] Update Complete. ⎈Happy Helming!⎈
+[00] Saving 1 charts
+[00] Downloading mongodb from repo https://kubernetes-charts.storage.googleapis.com
+[00] Deleting outdated charts
+[00] [34mEnvVarMap: map[string]string{"DIGEST":"88cf66a46e69734dd86aae95f3de96449d39d33c3938a9b527e621ff5e4e4e6b", "DIGEST_HEX":"88cf66a46e69734dd86aae95f3de96449d39d33c3938a9b527e621ff5e4e4e6b", "IMAGE_NAME":""}
+[00] [0mRelease "go-demo-6" has been upgraded. Happy Helming!
+[00] LAST DEPLOYED: Fri Mar  1 02:18:48 2019
+[00] NAMESPACE: jx-edit-vfarcic
+[00] STATUS: DEPLOYED
+[00] 
+[00] RESOURCES:
+[00] ==> v1/Service
+[00] NAME                             TYPE       CLUSTER-IP     EXTERNAL-IP  PORT(S)    AGE
+[00] go-demo-6-go-demo-6-db-headless  ClusterIP  None           <none>       27017/TCP  5m7s
+[00] go-demo-6-go-demo-6-db           ClusterIP  10.31.252.148  <none>       27017/TCP  5m7s
+[00] go-demo-6                        ClusterIP  10.31.240.194  <none>       80/TCP     5m7s
+[00] 
+[00] ==> v1beta1/Deployment
+[00] NAME                 DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
+[00] go-demo-6-go-demo-6  1        1        1           0          5m7s
+[00] 
+[00] ==> v1/StatefulSet
+[00] NAME                              DESIRED  CURRENT  AGE
+[00] go-demo-6-go-demo-6-db-arbiter    1        1        5m6s
+[00] go-demo-6-go-demo-6-db-primary    1        1        5m6s
+[00] go-demo-6-go-demo-6-db-secondary  1        1        5m6s
+[00] 
+[00] ==> v1/Pod(related)
+[00] NAME                                  READY  STATUS             RESTARTS  AGE
+[00] go-demo-6-go-demo-6-569775dbf6-cgqf7  0/1    ContainerCreating  0         0s
+[00] go-demo-6-go-demo-6-7c7c4b4776-jxxv6  1/1    Terminating        3         5m6s
+[00] go-demo-6-go-demo-6-db-arbiter-0      1/1    Running            0         5m6s
+[00] go-demo-6-go-demo-6-db-primary-0      1/1    Running            0         5m6s
+[00] go-demo-6-go-demo-6-db-secondary-0    1/1    Running            0         5m6s
+[00] 
+[00] ==> v1beta1/PodDisruptionBudget
+[00] NAME                              MIN AVAILABLE  MAX UNAVAILABLE  ALLOWED DISRUPTIONS  AGE
+[00] go-demo-6-go-demo-6-db-arbiter    1              N/A              0                    5m7s
+[00] go-demo-6-go-demo-6-db-primary    1              N/A              0                    5m7s
+[00] go-demo-6-go-demo-6-db-secondary  1              N/A              0                    5m7s
+[00] 
+[00] ==> v1/Secret
+[00] NAME                    TYPE    DATA  AGE
+[00] go-demo-6-go-demo-6-db  Opaque  2     5m7s
+[00] 
+[00] 
+[00] NOTES:
+[00] 
+[00] Get the application URL by running these commands:
+[00] 
+[00] kubectl get ingress go-demo-6-go-demo-6
+[00] 
+[00] [34mDeploy complete in 3.992757503s[0m
+[00] [32mYou can also run [skaffold run --tail] to get the logs[0m
+[00] There is a new version (0.23.0) of skaffold available. Download it at https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
+[00] 
+[00] CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO15VENDOREXPERIMENT=1 go build -ldflags '' -o bin/go-demo-6 main.go
+[00] [33mWARN[0m[0000] Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead. 
+[00] [33mWARN[0m[0000] Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead. 
+[00] [33mWARN[0m[0000] Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead. 
+[00] [33mWARN[0m[0000] Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead. 
+[00] [33mWARN[0m[0000] Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead. 
+[00] [33mWARN[0m[0000] config version (skaffold/v1beta2) out of date: upgrading to latest (skaffold/v1beta3) 
+[00] [34mStarting build...[0m
+[00] [34mBuilding []...
+[00] [0mSending build context to Docker daemon  525.8kBSending build context to Docker daemon  11.25MB
+[00] Step 1/4 : FROM scratch
+[00]  ---> 
+[00] Step 2/4 : EXPOSE 8080
+[00]  ---> Using cache
+[00]  ---> 53a5b1e6b191
+[00] Step 3/4 : ENTRYPOINT /go-demo-6
+[00]  ---> Using cache
+[00]  ---> 483abc913518
+[00] Step 4/4 : COPY ./bin/ /
+[00]  ---> Using cache
+[00]  ---> 88cf66a46e69
+[00] Successfully built 88cf66a46e69
+[00] The push refers to a repository [10.31.242.182:5000/vfarcic/go-demo-6]
+[00] 16819eea207f: Preparing
+[00] 16819eea207f: Layer already exists
+[00] 88cf66a46e69734dd86aae95f3de96449d39d33c3938a9b527e621ff5e4e4e6b: digest: sha256:7c51866e747b983d7b2096c285820da65d6818fc0befb2e8b745780f966d4f10 size: 528
+[00] [34mBuild complete in 194.548771ms[0m
+[00] [34mStarting test...[0m
+[00] [34mTest complete in 7.005µs[0m
+[00] [34mStarting deploy...[0m
+[00] REVISION: 4
+[00] RELEASED: Fri Mar  1 02:18:48 2019
+[00] CHART: go-demo-6-0.1.0-SNAPSHOT
+[00] USER-SUPPLIED VALUES:
+[00] image:
+[00]   repository: 10.31.242.182:5000/vfarcic/go-demo-6
+[00]   tag: 88cf66a46e69734dd86aae95f3de96449d39d33c3938a9b527e621ff5e4e4e6b
+[00] 
+[00] COMPUTED VALUES:
+[00] go-demo-6-db:
+[00]   affinity: {}
+[00]   clusterDomain: cluster.local
+[00]   global: {}
+[00]   image:
+[00]     debug: false
+[00]     pullPolicy: Always
+[00]     registry: docker.io
+[00]     repository: bitnami/mongodb
+[00]     tag: 4.0.3
+[00]   livenessProbe:
+[00]     enabled: true
+[00]     failureThreshold: 6
+[00]     initialDelaySeconds: 30
+[00]     periodSeconds: 10
+[00]     successThreshold: 1
+[00]     timeoutSeconds: 5
+[00]   metrics:
+[00]     enabled: false
+[00]     image:
+[00]       pullPolicy: IfNotPresent
+[00]       registry: docker.io
+[00]       repository: forekshub/percona-mongodb-exporter
+[00]       tag: latest
+[00]     podAnnotations:
+[00]       prometheus.io/port: "9216"
+[00]       prometheus.io/scrape: "true"
+[00]     serviceMonitor:
+[00]       additionalLabels: {}
+[00]       alerting:
+[00]         additionalLabels: {}
+[00]         rules: {}
+[00]       enabled: false
+[00]   mongodbDisableSystemLog: false
+[00]   mongodbEnableIPv6: true
+[00]   mongodbExtraFlags: []
+[00]   mongodbSystemLogVerbosity: 0
+[00]   nodeSelector: {}
+[00]   persistence:
+[00]     accessModes:
+[00]     - ReadWriteOnce
+[00]     annotations: {}
+[00]     enabled: true
+[00]     size: 8Gi
+[00]   podAnnotations: {}
+[00]   podLabels: {}
+[00]   readinessProbe:
+[00]     enabled: true
+[00]     failureThreshold: 6
+[00]     initialDelaySeconds: 5
+[00]     periodSeconds: 10
+[00]     successThreshold: 1
+[00]     timeoutSeconds: 5
+[00]   replicaSet:
+[00]     enabled: true
+[00]     name: rs0
+[00]     pdb:
+[00]       minAvailable:
+[00]         arbiter: 1
+[00]         primary: 1
+[00]         secondary: 1
+[00]     replicas:
+[00]       arbiter: 1
+[00]       secondary: 1
+[00]     useHostnames: true
+[00]   resources: {}
+[00]   securityContext:
+[00]     enabled: true
+[00]     fsGroup: 1001
+[00]     runAsUser: 1001
+[00]   service:
+[00]     annotations: {}
+[00]     port: 27017
+[00]     type: ClusterIP
+[00]   tolerations: []
+[00]   usePassword: true
+[00] image:
+[00]   pullPolicy: IfNotPresent
+[00]   repository: 10.31.242.182:5000/vfarcic/go-demo-6
+[00]   tag: 88cf66a46e69734dd86aae95f3de96449d39d33c3938a9b527e621ff5e4e4e6b
+[00] livenessProbe:
+[00]   initialDelaySeconds: 60
+[00]   periodSeconds: 10
+[00]   successThreshold: 1
+[00]   timeoutSeconds: 1
+[00] probePath: /demo/hello?health=true
+[00] readinessProbe:
+[00]   periodSeconds: 10
+[00]   successThreshold: 1
+[00]   timeoutSeconds: 1
+[00] replicaCount: 1
+[00] resources:
+[00]   limits:
+[00]     cpu: 100m
+[00]     memory: 256Mi
+[00]   requests:
+[00]     cpu: 80m
+[00]     memory: 128Mi
+[00] service:
+[00]   annotations:
+[00]     fabric8.io/expose: "true"
+[00]     fabric8.io/ingress.annotations: 'kubernetes.io/ingress.class: nginx'
+[00]   externalPort: 80
+[00]   internalPort: 8080
+[00]   name: go-demo-6
+[00]   type: ClusterIP
+[00] terminationGracePeriodSeconds: 10
+[00] 
+[00] HOOKS:
+[00] MANIFEST:
+[00] 
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/poddisruptionbudget-arbiter-rs.yaml
+[00] apiVersion: policy/v1beta1
+[00] kind: PodDisruptionBudget
+[00] metadata:
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     heritage: Tiller
+[00]     release: go-demo-6
+[00]   name: go-demo-6-go-demo-6-db-arbiter
+[00] spec:
+[00]   selector:
+[00]     matchLabels:
+[00]       app: go-demo-6-db
+[00]       release: go-demo-6
+[00]       component: arbiter
+[00]   minAvailable: 1
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/poddisruptionbudget-primary-rs.yaml
+[00] apiVersion: policy/v1beta1
+[00] kind: PodDisruptionBudget
+[00] metadata:
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     heritage: Tiller
+[00]     release: go-demo-6
+[00]   name: go-demo-6-go-demo-6-db-primary
+[00] spec:
+[00]   selector:
+[00]     matchLabels:
+[00]       app: go-demo-6-db
+[00]       release: go-demo-6
+[00]       component: primary
+[00]   minAvailable: 1
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/poddisruptionbudget-secondary-rs.yaml
+[00] apiVersion: policy/v1beta1
+[00] kind: PodDisruptionBudget
+[00] metadata:
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     heritage: Tiller
+[00]     release: go-demo-6
+[00]   name: go-demo-6-go-demo-6-db-secondary
+[00] spec:
+[00]   selector:
+[00]     matchLabels:
+[00]       app: go-demo-6-db
+[00]       release: go-demo-6
+[00]       component: secondary
+[00]   minAvailable: 1
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/secrets.yaml
+[00] apiVersion: v1
+[00] kind: Secret
+[00] metadata:
+[00]   name: go-demo-6-go-demo-6-db
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     release: "go-demo-6"
+[00]     heritage: "Tiller"
+[00] type: Opaque
+[00] data:
+[00]   mongodb-root-password: "NFF0T3F1Q0tqUA=="
+[00]   mongodb-replica-set-key: "U1NzOWlEY3RQeQ=="
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/headless-svc-rs.yaml
+[00] apiVersion: v1
+[00] kind: Service
+[00] metadata:
+[00]   name: go-demo-6-go-demo-6-db-headless
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     release: "go-demo-6"
+[00]     heritage: "Tiller"
+[00] spec:
+[00]   type: ClusterIP
+[00]   clusterIP: None
+[00]   ports:
+[00]   - name: mongodb
+[00]     port: 27017
+[00]   selector:
+[00]     app: go-demo-6-db
+[00]     release: go-demo-6
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/svc-primary-rs.yaml
+[00] apiVersion: v1
+[00] kind: Service
+[00] metadata:
+[00]   name: go-demo-6-go-demo-6-db
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     release: "go-demo-6"
+[00]     heritage: "Tiller"
+[00] spec:
+[00]   type: ClusterIP
+[00]   ports:
+[00]   - name: mongodb
+[00]     port: 27017
+[00]     targetPort: mongodb
+[00]   selector:
+[00]     app: go-demo-6-db
+[00]     release: "go-demo-6"
+[00]     component: primary
+[00] ---
+[00] # Source: go-demo-6/templates/service.yaml
+[00] apiVersion: v1
+[00] kind: Service
+[00] metadata:
+[00]   name: go-demo-6
+[00]   labels:
+[00]     chart: "go-demo-6-0.1.0-SNAPSHOT"
+[00]   annotations:
+[00]     fabric8.io/expose: "true"
+[00]     fabric8.io/ingress.annotations: 'kubernetes.io/ingress.class: nginx'
+[00]     
+[00] spec:
+[00]   type: ClusterIP
+[00]   ports:
+[00]   - port: 80
+[00]     targetPort: 8080
+[00]     protocol: TCP
+[00]     name: http
+[00]   selector:
+[00]     app: go-demo-6-go-demo-6
+[00] ---
+[00] # Source: go-demo-6/templates/deployment.yaml
+[00] apiVersion: extensions/v1beta1
+[00] kind: Deployment
+[00] metadata:
+[00]   name: go-demo-6-go-demo-6
+[00]   labels:
+[00]     draft: draft-app
+[00]     chart: "go-demo-6-0.1.0-SNAPSHOT"
+[00] spec:
+[00]   replicas: 1
+[00]   template:
+[00]     metadata:
+[00]       labels:
+[00]         draft: draft-app
+[00]         app: go-demo-6-go-demo-6
+[00]     spec:
+[00]       containers:
+[00]       - name: go-demo-6
+[00]         image: "10.31.242.182:5000/vfarcic/go-demo-6:88cf66a46e69734dd86aae95f3de96449d39d33c3938a9b527e621ff5e4e4e6b"
+[00]         imagePullPolicy: IfNotPresent
+[00]         env:
+[00]         - name: DB
+[00]           value: go-demo-6-go-demo-6-db
+[00]         ports:
+[00]         - containerPort: 8080
+[00]         livenessProbe:
+[00]           httpGet:
+[00]             path: /demo/hello?health=true
+[00]             port: 8080
+[00]           initialDelaySeconds: 60
+[00]           periodSeconds: 10
+[00]           successThreshold: 1
+[00]           timeoutSeconds: 1
+[00]         readinessProbe:
+[00]           httpGet:
+[00]             path: /demo/hello?health=true
+[00]             port: 8080
+[00]           periodSeconds: 10
+[00]           successThreshold: 1
+[00]           timeoutSeconds: 1
+[00]         resources:
+[00]             limits:
+[00]               cpu: 100m
+[00]               memory: 256Mi
+[00]             requests:
+[00]               cpu: 80m
+[00]               memory: 128Mi
+[00]             
+[00]       terminationGracePeriodSeconds: 10
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/statefulset-arbiter-rs.yaml
+[00] apiVersion: apps/v1
+[00] kind: StatefulSet
+[00] metadata:
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     heritage: Tiller
+[00]     release: go-demo-6
+[00]   name: go-demo-6-go-demo-6-db-arbiter
+[00] spec:
+[00]   selector:
+[00]     matchLabels:
+[00]       app: go-demo-6-db
+[00]       release: go-demo-6
+[00]       component: arbiter
+[00]   serviceName: go-demo-6-go-demo-6-db-headless
+[00]   replicas: 1
+[00]   template:
+[00]     metadata:
+[00]       labels:
+[00]         app: go-demo-6-db
+[00]         chart: go-demo-6-db-5.3.0
+[00]         release: go-demo-6
+[00]         component: arbiter
+[00]     spec:
+[00]       securityContext:
+[00]         fsGroup: 1001
+[00]         runAsUser: 1001
+[00]       containers:
+[00]         - name: go-demo-6-db-arbiter
+[00]           image: docker.io/bitnami/mongodb:4.0.3
+[00]           imagePullPolicy: Always
+[00]           ports:
+[00]           - containerPort: 27017
+[00]             name: mongodb
+[00]           env:
+[00]           - name: MONGODB_SYSTEM_LOG_VERBOSITY
+[00]             value: "0"
+[00]           - name: MONGODB_DISABLE_SYSTEM_LOG
+[00]             value: "no"
+[00]           - name: MONGODB_POD_NAME
+[00]             valueFrom:
+[00]               fieldRef:
+[00]                 fieldPath: metadata.name
+[00]           - name: MONGODB_REPLICA_SET_MODE
+[00]             value: "arbiter"
+[00]           - name: MONGODB_PRIMARY_HOST
+[00]             value: go-demo-6-go-demo-6-db
+[00]           - name: MONGODB_REPLICA_SET_NAME
+[00]             value: "rs0"
+[00]           - name: MONGODB_ADVERTISED_HOSTNAME
+[00]             value: "$(MONGODB_POD_NAME).go-demo-6-go-demo-6-db-headless.jx-edit-vfarcic.svc.cluster.local"
+[00]           - name: MONGODB_PRIMARY_ROOT_PASSWORD
+[00]             valueFrom:
+[00]               secretKeyRef:
+[00]                 name: go-demo-6-go-demo-6-db
+[00]                 key: mongodb-root-password
+[00]           - name: MONGODB_REPLICA_SET_KEY
+[00]             valueFrom:
+[00]               secretKeyRef:
+[00]                 name: go-demo-6-go-demo-6-db
+[00]                 key: mongodb-replica-set-key
+[00]           - name: MONGODB_ENABLE_IPV6
+[00]             value: "yes"
+[00]           livenessProbe:
+[00]             tcpSocket:
+[00]               port: mongodb
+[00]             initialDelaySeconds: 30
+[00]             periodSeconds: 10
+[00]             timeoutSeconds: 5
+[00]             successThreshold: 1
+[00]             failureThreshold: 6
+[00]           readinessProbe:
+[00]             tcpSocket:
+[00]               port: mongodb
+[00]             initialDelaySeconds: 5
+[00]             periodSeconds: 10
+[00]             timeoutSeconds: 5
+[00]             successThreshold: 1
+[00]             failureThreshold: 6
+[00]           volumeMounts:
+[00]           resources:
+[00]             {}
+[00]             
+[00]       volumes:
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/statefulset-primary-rs.yaml
+[00] apiVersion: apps/v1
+[00] kind: StatefulSet
+[00] metadata:
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     heritage: Tiller
+[00]     release: go-demo-6
+[00]   name: go-demo-6-go-demo-6-db-primary
+[00] spec:
+[00]   serviceName: go-demo-6-go-demo-6-db-headless
+[00]   replicas: 1
+[00]   selector:
+[00]     matchLabels:
+[00]       app: go-demo-6-db
+[00]       release: go-demo-6
+[00]       component: primary
+[00]   template:
+[00]     metadata:
+[00]       labels:
+[00]         app: go-demo-6-db
+[00]         chart: go-demo-6-db-5.3.0
+[00]         release: go-demo-6
+[00]         component: primary
+[00]     spec:
+[00]       securityContext:
+[00]         fsGroup: 1001
+[00]         runAsUser: 1001
+[00]       containers:
+[00]         - name: go-demo-6-db-primary
+[00]           image: docker.io/bitnami/mongodb:4.0.3
+[00]           imagePullPolicy: Always
+[00]           ports:
+[00]           - containerPort: 27017
+[00]             name: mongodb
+[00]           env:
+[00]           - name: MONGODB_SYSTEM_LOG_VERBOSITY
+[00]             value: "0"
+[00]           - name: MONGODB_DISABLE_SYSTEM_LOG
+[00]             value: "no"
+[00]           - name: MONGODB_POD_NAME
+[00]             valueFrom:
+[00]               fieldRef:
+[00]                 fieldPath: metadata.name
+[00]           - name: MONGODB_REPLICA_SET_MODE
+[00]             value: "primary"
+[00]           - name: MONGODB_REPLICA_SET_NAME
+[00]             value: "rs0"
+[00]           - name: MONGODB_ADVERTISED_HOSTNAME
+[00]             value: "$(MONGODB_POD_NAME).go-demo-6-go-demo-6-db-headless.jx-edit-vfarcic.svc.cluster.local"
+[00]           - name: MONGODB_ROOT_PASSWORD
+[00]             valueFrom:
+[00]               secretKeyRef:
+[00]                 name: go-demo-6-go-demo-6-db
+[00]                 key: mongodb-root-password
+[00]           - name: MONGODB_REPLICA_SET_KEY
+[00]             valueFrom:
+[00]               secretKeyRef:
+[00]                 name: go-demo-6-go-demo-6-db
+[00]                 key: mongodb-replica-set-key
+[00]           - name: MONGODB_ENABLE_IPV6
+[00]             value: "yes"
+[00]           livenessProbe:
+[00]             exec:
+[00]               command:
+[00]                 - mongo
+[00]                 - --eval
+[00]                 - "db.adminCommand('ping')"
+[00]             initialDelaySeconds: 30
+[00]             periodSeconds: 10
+[00]             timeoutSeconds: 5
+[00]             successThreshold: 1
+[00]             failureThreshold: 6
+[00]           readinessProbe:
+[00]             exec:
+[00]               command:
+[00]                 - mongo
+[00]                 - --eval
+[00]                 - "db.adminCommand('ping')"
+[00]             initialDelaySeconds: 5
+[00]             periodSeconds: 10
+[00]             timeoutSeconds: 5
+[00]             successThreshold: 1
+[00]             failureThreshold: 6
+[00]           volumeMounts:
+[00]             - name: datadir
+[00]               mountPath: /bitnami/mongodb
+[00]           resources:
+[00]             {}
+[00]             
+[00]       volumes:
+[00]   volumeClaimTemplates:
+[00]     - metadata:
+[00]         name: datadir
+[00]         annotations:
+[00]       spec:
+[00]         accessModes:
+[00]           - "ReadWriteOnce"
+[00]         resources:
+[00]           requests:
+[00]             storage: "8Gi"
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/statefulset-secondary-rs.yaml
+[00] apiVersion: apps/v1
+[00] kind: StatefulSet
+[00] metadata:
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     heritage: Tiller
+[00]     release: go-demo-6
+[00]   name: go-demo-6-go-demo-6-db-secondary
+[00] spec:
+[00]   selector:
+[00]     matchLabels:
+[00]       app: go-demo-6-db
+[00]       release: go-demo-6
+[00]       component: secondary
+[00]   podManagementPolicy: "Parallel"
+[00]   serviceName: go-demo-6-go-demo-6-db-headless
+[00]   replicas: 1
+[00]   template:
+[00]     metadata:
+[00]       labels:
+[00]         app: go-demo-6-db
+[00]         chart: go-demo-6-db-5.3.0
+[00]         release: go-demo-6
+[00]         component: secondary
+[00]     spec:
+[00]       securityContext:
+[00]         fsGroup: 1001
+[00]         runAsUser: 1001
+[00]       containers:
+[00]         - name: go-demo-6-db-secondary
+[00]           image: docker.io/bitnami/mongodb:4.0.3
+[00]           imagePullPolicy: Always
+[00]           ports:
+[00]           - containerPort: 27017
+[00]             name: mongodb
+[00]           env:
+[00]           - name: MONGODB_SYSTEM_LOG_VERBOSITY
+[00]             value: "0"
+[00]           - name: MONGODB_DISABLE_SYSTEM_LOG
+[00]             value: "no"
+[00]           - name: MONGODB_POD_NAME
+[00]             valueFrom:
+[00]               fieldRef:
+[00]                 fieldPath: metadata.name
+[00]           - name: MONGODB_REPLICA_SET_MODE
+[00]             value: "secondary"
+[00]           - name: MONGODB_PRIMARY_HOST
+[00]             value: go-demo-6-go-demo-6-db
+[00]           - name: MONGODB_REPLICA_SET_NAME
+[00]             value: "rs0"
+[00]           - name: MONGODB_ADVERTISED_HOSTNAME
+[00]             value: "$(MONGODB_POD_NAME).go-demo-6-go-demo-6-db-headless.jx-edit-vfarcic.svc.cluster.local"
+[00]           - name: MONGODB_PRIMARY_ROOT_PASSWORD
+[00]             valueFrom:
+[00]               secretKeyRef:
+[00]                 name: go-demo-6-go-demo-6-db
+[00]                 key: mongodb-root-password
+[00]           - name: MONGODB_REPLICA_SET_KEY
+[00]             valueFrom:
+[00]               secretKeyRef:
+[00]                 name: go-demo-6-go-demo-6-db
+[00]                 key: mongodb-replica-set-key
+[00]           - name: MONGODB_ENABLE_IPV6
+[00]             value: "yes"
+[00]           livenessProbe:
+[00]             exec:
+[00]               command:
+[00]                 - mongo
+[00]                 - --eval
+[00]                 - "db.adminCommand('ping')"
+[00]             initialDelaySeconds: 30
+[00]             periodSeconds: 10
+[00]             timeoutSeconds: 5
+[00]             successThreshold: 1
+[00]             failureThreshold: 6
+[00]           readinessProbe:
+[00]             exec:
+[00]               command:
+[00]                 - mongo
+[00]                 - --eval
+[00]                 - "db.adminCommand('ping')"
+[00]             initialDelaySeconds: 5
+[00]             periodSeconds: 10
+[00]             timeoutSeconds: 5
+[00]             successThreshold: 1
+[00]             failureThreshold: 6
+[00]           volumeMounts:
+[00]             - name: datadir
+[00]               mountPath: /bitnami/mongodb
+[00]           resources:
+[00]             {}
+[00]             
+[00]       volumes:
+[00]   volumeClaimTemplates:
+[00]     - metadata:
+[00]         name: datadir
+[00]         annotations:
+[00]       spec:
+[00]         accessModes:
+[00]           - "ReadWriteOnce"
+[00]         resources:
+[00]           requests:
+[00]             storage: "8Gi"
+[00] Hang tight while we grab the latest from your chart repositories...
+[00] ...Unable to get an update from the "local" chart repository (http://127.0.0.1:8879/charts):
+[00] 	Get http://127.0.0.1:8879/charts/index.yaml: dial tcp 127.0.0.1:8879: connect: connection refused
+[00] ...Successfully got an update from the "stable" chart repository
+[00] Update Complete. ⎈Happy Helming!⎈
+[00] Saving 1 charts
+[00] Downloading mongodb from repo https://kubernetes-charts.storage.googleapis.com
+[00] Deleting outdated charts
+[00] [34mEnvVarMap: map[string]string{"DIGEST":"88cf66a46e69734dd86aae95f3de96449d39d33c3938a9b527e621ff5e4e4e6b", "DIGEST_HEX":"88cf66a46e69734dd86aae95f3de96449d39d33c3938a9b527e621ff5e4e4e6b", "IMAGE_NAME":""}
+[00] [0mRelease "go-demo-6" has been upgraded. Happy Helming!
+[00] LAST DEPLOYED: Fri Mar  1 02:18:52 2019
+[00] NAMESPACE: jx-edit-vfarcic
+[00] STATUS: DEPLOYED
+[00] 
+[00] RESOURCES:
+[00] ==> v1/Service
+[00] NAME                             TYPE       CLUSTER-IP     EXTERNAL-IP  PORT(S)    AGE
+[00] go-demo-6-go-demo-6-db-headless  ClusterIP  None           <none>       27017/TCP  5m12s
+[00] go-demo-6-go-demo-6-db           ClusterIP  10.31.252.148  <none>       27017/TCP  5m12s
+[00] go-demo-6                        ClusterIP  10.31.240.194  <none>       80/TCP     5m12s
+[00] 
+[00] ==> v1beta1/Deployment
+[00] NAME                 DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
+[00] go-demo-6-go-demo-6  1        1        1           0          5m12s
+[00] 
+[00] ==> v1/StatefulSet
+[00] NAME                              DESIRED  CURRENT  AGE
+[00] go-demo-6-go-demo-6-db-arbiter    1        1        5m11s
+[00] go-demo-6-go-demo-6-db-primary    1        1        5m11s
+[00] go-demo-6-go-demo-6-db-secondary  1        1        5m11s
+[00] 
+[00] ==> v1/Pod(related)
+[00] NAME                                  READY  STATUS       RESTARTS  AGE
+[00] go-demo-6-go-demo-6-569775dbf6-cgqf7  0/1    Running      0         5s
+[00] go-demo-6-go-demo-6-7c7c4b4776-jxxv6  0/1    Terminating  3         5m11s
+[00] go-demo-6-go-demo-6-db-arbiter-0      1/1    Running      0         5m11s
+[00] go-demo-6-go-demo-6-db-primary-0      1/1    Running      0         5m11s
+[00] go-demo-6-go-demo-6-db-secondary-0    1/1    Running      0         5m11s
+[00] 
+[00] ==> v1beta1/PodDisruptionBudget
+[00] NAME                              MIN AVAILABLE  MAX UNAVAILABLE  ALLOWED DISRUPTIONS  AGE
+[00] go-demo-6-go-demo-6-db-arbiter    1              N/A              0                    5m12s
+[00] go-demo-6-go-demo-6-db-primary    1              N/A              0                    5m12s
+[00] go-demo-6-go-demo-6-db-secondary  1              N/A              0                    5m12s
+[00] 
+[00] ==> v1/Secret
+[00] NAME                    TYPE    DATA  AGE
+[00] go-demo-6-go-demo-6-db  Opaque  2     5m12s
+[00] 
+[00] 
+[00] NOTES:
+[00] 
+[00] Get the application URL by running these commands:
+[00] 
+[00] kubectl get ingress go-demo-6-go-demo-6
+[00] 
+[00] [34mDeploy complete in 3.464232932s[0m
+[00] [32mYou can also run [skaffold run --tail] to get the logs[0m
+[00] There is a new version (0.23.0) of skaffold available. Download it at https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
+[00] 
+[00] CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO15VENDOREXPERIMENT=1 go build -ldflags '' -o bin/go-demo-6 main.go
+[00] [33mWARN[0m[0000] Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead. 
+[00] [33mWARN[0m[0000] Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead. 
+[00] [33mWARN[0m[0000] Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead. 
+[00] [33mWARN[0m[0000] Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead. 
+[00] [33mWARN[0m[0000] Using SKAFFOLD_DEPLOY_NAMESPACE env variable is deprecated. Please use SKAFFOLD_NAMESPACE instead. 
+[00] [33mWARN[0m[0000] config version (skaffold/v1beta2) out of date: upgrading to latest (skaffold/v1beta3) 
+[00] [34mStarting build...[0m
+[00] [34mBuilding []...
+[00] [0mSending build context to Docker daemon  525.8kBSending build context to Docker daemon  11.25MB
+[00] Step 1/4 : FROM scratch
+[00]  ---> 
+[00] Step 2/4 : EXPOSE 8080
+[00]  ---> Using cache
+[00]  ---> 53a5b1e6b191
+[00] Step 3/4 : ENTRYPOINT /go-demo-6
+[00]  ---> Using cache
+[00]  ---> 483abc913518
+[00] Step 4/4 : COPY ./bin/ /
+[00]  ---> 3dde0e0cdd49
+[00] Successfully built 3dde0e0cdd49
+[00] The push refers to a repository [10.31.242.182:5000/vfarcic/go-demo-6]
+[00] 8a88728e3cdb: Preparing
+[00] 8a88728e3cdb: Pushed
+[00] 3dde0e0cdd49dd5df3547afeebc8c9df82c08038d1a5e53475ab0c2295fd71d6: digest: sha256:446285f9f4089e266859cb80a0a28742249790dd32c9879d15c049e1275d5393 size: 528
+[00] [34mBuild complete in 1.832432786s[0m
+[00] [34mStarting test...[0m
+[00] [34mTest complete in 12.365µs[0m
+[00] [34mStarting deploy...[0m
+[00] REVISION: 5
+[00] RELEASED: Fri Mar  1 02:18:52 2019
+[00] CHART: go-demo-6-0.1.0-SNAPSHOT
+[00] USER-SUPPLIED VALUES:
+[00] image:
+[00]   repository: 10.31.242.182:5000/vfarcic/go-demo-6
+[00]   tag: 88cf66a46e69734dd86aae95f3de96449d39d33c3938a9b527e621ff5e4e4e6b
+[00] 
+[00] COMPUTED VALUES:
+[00] go-demo-6-db:
+[00]   affinity: {}
+[00]   clusterDomain: cluster.local
+[00]   global: {}
+[00]   image:
+[00]     debug: false
+[00]     pullPolicy: Always
+[00]     registry: docker.io
+[00]     repository: bitnami/mongodb
+[00]     tag: 4.0.3
+[00]   livenessProbe:
+[00]     enabled: true
+[00]     failureThreshold: 6
+[00]     initialDelaySeconds: 30
+[00]     periodSeconds: 10
+[00]     successThreshold: 1
+[00]     timeoutSeconds: 5
+[00]   metrics:
+[00]     enabled: false
+[00]     image:
+[00]       pullPolicy: IfNotPresent
+[00]       registry: docker.io
+[00]       repository: forekshub/percona-mongodb-exporter
+[00]       tag: latest
+[00]     podAnnotations:
+[00]       prometheus.io/port: "9216"
+[00]       prometheus.io/scrape: "true"
+[00]     serviceMonitor:
+[00]       additionalLabels: {}
+[00]       alerting:
+[00]         additionalLabels: {}
+[00]         rules: {}
+[00]       enabled: false
+[00]   mongodbDisableSystemLog: false
+[00]   mongodbEnableIPv6: true
+[00]   mongodbExtraFlags: []
+[00]   mongodbSystemLogVerbosity: 0
+[00]   nodeSelector: {}
+[00]   persistence:
+[00]     accessModes:
+[00]     - ReadWriteOnce
+[00]     annotations: {}
+[00]     enabled: true
+[00]     size: 8Gi
+[00]   podAnnotations: {}
+[00]   podLabels: {}
+[00]   readinessProbe:
+[00]     enabled: true
+[00]     failureThreshold: 6
+[00]     initialDelaySeconds: 5
+[00]     periodSeconds: 10
+[00]     successThreshold: 1
+[00]     timeoutSeconds: 5
+[00]   replicaSet:
+[00]     enabled: true
+[00]     name: rs0
+[00]     pdb:
+[00]       minAvailable:
+[00]         arbiter: 1
+[00]         primary: 1
+[00]         secondary: 1
+[00]     replicas:
+[00]       arbiter: 1
+[00]       secondary: 1
+[00]     useHostnames: true
+[00]   resources: {}
+[00]   securityContext:
+[00]     enabled: true
+[00]     fsGroup: 1001
+[00]     runAsUser: 1001
+[00]   service:
+[00]     annotations: {}
+[00]     port: 27017
+[00]     type: ClusterIP
+[00]   tolerations: []
+[00]   usePassword: true
+[00] image:
+[00]   pullPolicy: IfNotPresent
+[00]   repository: 10.31.242.182:5000/vfarcic/go-demo-6
+[00]   tag: 88cf66a46e69734dd86aae95f3de96449d39d33c3938a9b527e621ff5e4e4e6b
+[00] livenessProbe:
+[00]   initialDelaySeconds: 60
+[00]   periodSeconds: 10
+[00]   successThreshold: 1
+[00]   timeoutSeconds: 1
+[00] probePath: /demo/hello?health=true
+[00] readinessProbe:
+[00]   periodSeconds: 10
+[00]   successThreshold: 1
+[00]   timeoutSeconds: 1
+[00] replicaCount: 1
+[00] resources:
+[00]   limits:
+[00]     cpu: 100m
+[00]     memory: 256Mi
+[00]   requests:
+[00]     cpu: 80m
+[00]     memory: 128Mi
+[00] service:
+[00]   annotations:
+[00]     fabric8.io/expose: "true"
+[00]     fabric8.io/ingress.annotations: 'kubernetes.io/ingress.class: nginx'
+[00]   externalPort: 80
+[00]   internalPort: 8080
+[00]   name: go-demo-6
+[00]   type: ClusterIP
+[00] terminationGracePeriodSeconds: 10
+[00] 
+[00] HOOKS:
+[00] MANIFEST:
+[00] 
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/poddisruptionbudget-arbiter-rs.yaml
+[00] apiVersion: policy/v1beta1
+[00] kind: PodDisruptionBudget
+[00] metadata:
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     heritage: Tiller
+[00]     release: go-demo-6
+[00]   name: go-demo-6-go-demo-6-db-arbiter
+[00] spec:
+[00]   selector:
+[00]     matchLabels:
+[00]       app: go-demo-6-db
+[00]       release: go-demo-6
+[00]       component: arbiter
+[00]   minAvailable: 1
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/poddisruptionbudget-primary-rs.yaml
+[00] apiVersion: policy/v1beta1
+[00] kind: PodDisruptionBudget
+[00] metadata:
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     heritage: Tiller
+[00]     release: go-demo-6
+[00]   name: go-demo-6-go-demo-6-db-primary
+[00] spec:
+[00]   selector:
+[00]     matchLabels:
+[00]       app: go-demo-6-db
+[00]       release: go-demo-6
+[00]       component: primary
+[00]   minAvailable: 1
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/poddisruptionbudget-secondary-rs.yaml
+[00] apiVersion: policy/v1beta1
+[00] kind: PodDisruptionBudget
+[00] metadata:
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     heritage: Tiller
+[00]     release: go-demo-6
+[00]   name: go-demo-6-go-demo-6-db-secondary
+[00] spec:
+[00]   selector:
+[00]     matchLabels:
+[00]       app: go-demo-6-db
+[00]       release: go-demo-6
+[00]       component: secondary
+[00]   minAvailable: 1
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/secrets.yaml
+[00] apiVersion: v1
+[00] kind: Secret
+[00] metadata:
+[00]   name: go-demo-6-go-demo-6-db
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     release: "go-demo-6"
+[00]     heritage: "Tiller"
+[00] type: Opaque
+[00] data:
+[00]   mongodb-root-password: "N2VRTE95TzJCNQ=="
+[00]   mongodb-replica-set-key: "Y0hBRmhqUHY0RA=="
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/headless-svc-rs.yaml
+[00] apiVersion: v1
+[00] kind: Service
+[00] metadata:
+[00]   name: go-demo-6-go-demo-6-db-headless
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     release: "go-demo-6"
+[00]     heritage: "Tiller"
+[00] spec:
+[00]   type: ClusterIP
+[00]   clusterIP: None
+[00]   ports:
+[00]   - name: mongodb
+[00]     port: 27017
+[00]   selector:
+[00]     app: go-demo-6-db
+[00]     release: go-demo-6
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/svc-primary-rs.yaml
+[00] apiVersion: v1
+[00] kind: Service
+[00] metadata:
+[00]   name: go-demo-6-go-demo-6-db
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     release: "go-demo-6"
+[00]     heritage: "Tiller"
+[00] spec:
+[00]   type: ClusterIP
+[00]   ports:
+[00]   - name: mongodb
+[00]     port: 27017
+[00]     targetPort: mongodb
+[00]   selector:
+[00]     app: go-demo-6-db
+[00]     release: "go-demo-6"
+[00]     component: primary
+[00] ---
+[00] # Source: go-demo-6/templates/service.yaml
+[00] apiVersion: v1
+[00] kind: Service
+[00] metadata:
+[00]   name: go-demo-6
+[00]   labels:
+[00]     chart: "go-demo-6-0.1.0-SNAPSHOT"
+[00]   annotations:
+[00]     fabric8.io/expose: "true"
+[00]     fabric8.io/ingress.annotations: 'kubernetes.io/ingress.class: nginx'
+[00]     
+[00] spec:
+[00]   type: ClusterIP
+[00]   ports:
+[00]   - port: 80
+[00]     targetPort: 8080
+[00]     protocol: TCP
+[00]     name: http
+[00]   selector:
+[00]     app: go-demo-6-go-demo-6
+[00] ---
+[00] # Source: go-demo-6/templates/deployment.yaml
+[00] apiVersion: extensions/v1beta1
+[00] kind: Deployment
+[00] metadata:
+[00]   name: go-demo-6-go-demo-6
+[00]   labels:
+[00]     draft: draft-app
+[00]     chart: "go-demo-6-0.1.0-SNAPSHOT"
+[00] spec:
+[00]   replicas: 1
+[00]   template:
+[00]     metadata:
+[00]       labels:
+[00]         draft: draft-app
+[00]         app: go-demo-6-go-demo-6
+[00]     spec:
+[00]       containers:
+[00]       - name: go-demo-6
+[00]         image: "10.31.242.182:5000/vfarcic/go-demo-6:88cf66a46e69734dd86aae95f3de96449d39d33c3938a9b527e621ff5e4e4e6b"
+[00]         imagePullPolicy: IfNotPresent
+[00]         env:
+[00]         - name: DB
+[00]           value: go-demo-6-go-demo-6-db
+[00]         ports:
+[00]         - containerPort: 8080
+[00]         livenessProbe:
+[00]           httpGet:
+[00]             path: /demo/hello?health=true
+[00]             port: 8080
+[00]           initialDelaySeconds: 60
+[00]           periodSeconds: 10
+[00]           successThreshold: 1
+[00]           timeoutSeconds: 1
+[00]         readinessProbe:
+[00]           httpGet:
+[00]             path: /demo/hello?health=true
+[00]             port: 8080
+[00]           periodSeconds: 10
+[00]           successThreshold: 1
+[00]           timeoutSeconds: 1
+[00]         resources:
+[00]             limits:
+[00]               cpu: 100m
+[00]               memory: 256Mi
+[00]             requests:
+[00]               cpu: 80m
+[00]               memory: 128Mi
+[00]             
+[00]       terminationGracePeriodSeconds: 10
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/statefulset-arbiter-rs.yaml
+[00] apiVersion: apps/v1
+[00] kind: StatefulSet
+[00] metadata:
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     heritage: Tiller
+[00]     release: go-demo-6
+[00]   name: go-demo-6-go-demo-6-db-arbiter
+[00] spec:
+[00]   selector:
+[00]     matchLabels:
+[00]       app: go-demo-6-db
+[00]       release: go-demo-6
+[00]       component: arbiter
+[00]   serviceName: go-demo-6-go-demo-6-db-headless
+[00]   replicas: 1
+[00]   template:
+[00]     metadata:
+[00]       labels:
+[00]         app: go-demo-6-db
+[00]         chart: go-demo-6-db-5.3.0
+[00]         release: go-demo-6
+[00]         component: arbiter
+[00]     spec:
+[00]       securityContext:
+[00]         fsGroup: 1001
+[00]         runAsUser: 1001
+[00]       containers:
+[00]         - name: go-demo-6-db-arbiter
+[00]           image: docker.io/bitnami/mongodb:4.0.3
+[00]           imagePullPolicy: Always
+[00]           ports:
+[00]           - containerPort: 27017
+[00]             name: mongodb
+[00]           env:
+[00]           - name: MONGODB_SYSTEM_LOG_VERBOSITY
+[00]             value: "0"
+[00]           - name: MONGODB_DISABLE_SYSTEM_LOG
+[00]             value: "no"
+[00]           - name: MONGODB_POD_NAME
+[00]             valueFrom:
+[00]               fieldRef:
+[00]                 fieldPath: metadata.name
+[00]           - name: MONGODB_REPLICA_SET_MODE
+[00]             value: "arbiter"
+[00]           - name: MONGODB_PRIMARY_HOST
+[00]             value: go-demo-6-go-demo-6-db
+[00]           - name: MONGODB_REPLICA_SET_NAME
+[00]             value: "rs0"
+[00]           - name: MONGODB_ADVERTISED_HOSTNAME
+[00]             value: "$(MONGODB_POD_NAME).go-demo-6-go-demo-6-db-headless.jx-edit-vfarcic.svc.cluster.local"
+[00]           - name: MONGODB_PRIMARY_ROOT_PASSWORD
+[00]             valueFrom:
+[00]               secretKeyRef:
+[00]                 name: go-demo-6-go-demo-6-db
+[00]                 key: mongodb-root-password
+[00]           - name: MONGODB_REPLICA_SET_KEY
+[00]             valueFrom:
+[00]               secretKeyRef:
+[00]                 name: go-demo-6-go-demo-6-db
+[00]                 key: mongodb-replica-set-key
+[00]           - name: MONGODB_ENABLE_IPV6
+[00]             value: "yes"
+[00]           livenessProbe:
+[00]             tcpSocket:
+[00]               port: mongodb
+[00]             initialDelaySeconds: 30
+[00]             periodSeconds: 10
+[00]             timeoutSeconds: 5
+[00]             successThreshold: 1
+[00]             failureThreshold: 6
+[00]           readinessProbe:
+[00]             tcpSocket:
+[00]               port: mongodb
+[00]             initialDelaySeconds: 5
+[00]             periodSeconds: 10
+[00]             timeoutSeconds: 5
+[00]             successThreshold: 1
+[00]             failureThreshold: 6
+[00]           volumeMounts:
+[00]           resources:
+[00]             {}
+[00]             
+[00]       volumes:
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/statefulset-primary-rs.yaml
+[00] apiVersion: apps/v1
+[00] kind: StatefulSet
+[00] metadata:
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     heritage: Tiller
+[00]     release: go-demo-6
+[00]   name: go-demo-6-go-demo-6-db-primary
+[00] spec:
+[00]   serviceName: go-demo-6-go-demo-6-db-headless
+[00]   replicas: 1
+[00]   selector:
+[00]     matchLabels:
+[00]       app: go-demo-6-db
+[00]       release: go-demo-6
+[00]       component: primary
+[00]   template:
+[00]     metadata:
+[00]       labels:
+[00]         app: go-demo-6-db
+[00]         chart: go-demo-6-db-5.3.0
+[00]         release: go-demo-6
+[00]         component: primary
+[00]     spec:
+[00]       securityContext:
+[00]         fsGroup: 1001
+[00]         runAsUser: 1001
+[00]       containers:
+[00]         - name: go-demo-6-db-primary
+[00]           image: docker.io/bitnami/mongodb:4.0.3
+[00]           imagePullPolicy: Always
+[00]           ports:
+[00]           - containerPort: 27017
+[00]             name: mongodb
+[00]           env:
+[00]           - name: MONGODB_SYSTEM_LOG_VERBOSITY
+[00]             value: "0"
+[00]           - name: MONGODB_DISABLE_SYSTEM_LOG
+[00]             value: "no"
+[00]           - name: MONGODB_POD_NAME
+[00]             valueFrom:
+[00]               fieldRef:
+[00]                 fieldPath: metadata.name
+[00]           - name: MONGODB_REPLICA_SET_MODE
+[00]             value: "primary"
+[00]           - name: MONGODB_REPLICA_SET_NAME
+[00]             value: "rs0"
+[00]           - name: MONGODB_ADVERTISED_HOSTNAME
+[00]             value: "$(MONGODB_POD_NAME).go-demo-6-go-demo-6-db-headless.jx-edit-vfarcic.svc.cluster.local"
+[00]           - name: MONGODB_ROOT_PASSWORD
+[00]             valueFrom:
+[00]               secretKeyRef:
+[00]                 name: go-demo-6-go-demo-6-db
+[00]                 key: mongodb-root-password
+[00]           - name: MONGODB_REPLICA_SET_KEY
+[00]             valueFrom:
+[00]               secretKeyRef:
+[00]                 name: go-demo-6-go-demo-6-db
+[00]                 key: mongodb-replica-set-key
+[00]           - name: MONGODB_ENABLE_IPV6
+[00]             value: "yes"
+[00]           livenessProbe:
+[00]             exec:
+[00]               command:
+[00]                 - mongo
+[00]                 - --eval
+[00]                 - "db.adminCommand('ping')"
+[00]             initialDelaySeconds: 30
+[00]             periodSeconds: 10
+[00]             timeoutSeconds: 5
+[00]             successThreshold: 1
+[00]             failureThreshold: 6
+[00]           readinessProbe:
+[00]             exec:
+[00]               command:
+[00]                 - mongo
+[00]                 - --eval
+[00]                 - "db.adminCommand('ping')"
+[00]             initialDelaySeconds: 5
+[00]             periodSeconds: 10
+[00]             timeoutSeconds: 5
+[00]             successThreshold: 1
+[00]             failureThreshold: 6
+[00]           volumeMounts:
+[00]             - name: datadir
+[00]               mountPath: /bitnami/mongodb
+[00]           resources:
+[00]             {}
+[00]             
+[00]       volumes:
+[00]   volumeClaimTemplates:
+[00]     - metadata:
+[00]         name: datadir
+[00]         annotations:
+[00]       spec:
+[00]         accessModes:
+[00]           - "ReadWriteOnce"
+[00]         resources:
+[00]           requests:
+[00]             storage: "8Gi"
+[00] ---
+[00] # Source: go-demo-6/charts/go-demo-6-db/templates/statefulset-secondary-rs.yaml
+[00] apiVersion: apps/v1
+[00] kind: StatefulSet
+[00] metadata:
+[00]   labels:
+[00]     app: go-demo-6-db
+[00]     chart: go-demo-6-db-5.3.0
+[00]     heritage: Tiller
+[00]     release: go-demo-6
+[00]   name: go-demo-6-go-demo-6-db-secondary
+[00] spec:
+[00]   selector:
+[00]     matchLabels:
+[00]       app: go-demo-6-db
+[00]       release: go-demo-6
+[00]       component: secondary
+[00]   podManagementPolicy: "Parallel"
+[00]   serviceName: go-demo-6-go-demo-6-db-headless
+[00]   replicas: 1
+[00]   template:
+[00]     metadata:
+[00]       labels:
+[00]         app: go-demo-6-db
+[00]         chart: go-demo-6-db-5.3.0
+[00]         release: go-demo-6
+[00]         component: secondary
+[00]     spec:
+[00]       securityContext:
+[00]         fsGroup: 1001
+[00]         runAsUser: 1001
+[00]       containers:
+[00]         - name: go-demo-6-db-secondary
+[00]           image: docker.io/bitnami/mongodb:4.0.3
+[00]           imagePullPolicy: Always
+[00]           ports:
+[00]           - containerPort: 27017
+[00]             name: mongodb
+[00]           env:
+[00]           - name: MONGODB_SYSTEM_LOG_VERBOSITY
+[00]             value: "0"
+[00]           - name: MONGODB_DISABLE_SYSTEM_LOG
+[00]             value: "no"
+[00]           - name: MONGODB_POD_NAME
+[00]             valueFrom:
+[00]               fieldRef:
+[00]                 fieldPath: metadata.name
+[00]           - name: MONGODB_REPLICA_SET_MODE
+[00]             value: "secondary"
+[00]           - name: MONGODB_PRIMARY_HOST
+[00]             value: go-demo-6-go-demo-6-db
+[00]           - name: MONGODB_REPLICA_SET_NAME
+[00]             value: "rs0"
+[00]           - name: MONGODB_ADVERTISED_HOSTNAME
+[00]             value: "$(MONGODB_POD_NAME).go-demo-6-go-demo-6-db-headless.jx-edit-vfarcic.svc.cluster.local"
+[00]           - name: MONGODB_PRIMARY_ROOT_PASSWORD
+[00]             valueFrom:
+[00]               secretKeyRef:
+[00]                 name: go-demo-6-go-demo-6-db
+[00]                 key: mongodb-root-password
+[00]           - name: MONGODB_REPLICA_SET_KEY
+[00]             valueFrom:
+[00]               secretKeyRef:
+[00]                 name: go-demo-6-go-demo-6-db
+[00]                 key: mongodb-replica-set-key
+[00]           - name: MONGODB_ENABLE_IPV6
+[00]             value: "yes"
+[00]           livenessProbe:
+[00]             exec:
+[00]               command:
+[00]                 - mongo
+[00]                 - --eval
+[00]                 - "db.adminCommand('ping')"
+[00]             initialDelaySeconds: 30
+[00]             periodSeconds: 10
+[00]             timeoutSeconds: 5
+[00]             successThreshold: 1
+[00]             failureThreshold: 6
+[00]           readinessProbe:
+[00]             exec:
+[00]               command:
+[00]                 - mongo
+[00]                 - --eval
+[00]                 - "db.adminCommand('ping')"
+[00]             initialDelaySeconds: 5
+[00]             periodSeconds: 10
+[00]             timeoutSeconds: 5
+[00]             successThreshold: 1
+[00]             failureThreshold: 6
+[00]           volumeMounts:
+[00]             - name: datadir
+[00]               mountPath: /bitnami/mongodb
+[00]           resources:
+[00]             {}
+[00]             
+[00]       volumes:
+[00]   volumeClaimTemplates:
+[00]     - metadata:
+[00]         name: datadir
+[00]         annotations:
+[00]       spec:
+[00]         accessModes:
+[00]           - "ReadWriteOnce"
+[00]         resources:
+[00]           requests:
+[00]             storage: "8Gi"
+[00] Hang tight while we grab the latest from your chart repositories...
+[00] ...Unable to get an update from the "local" chart repository (http://127.0.0.1:8879/charts):
+[00] 	Get http://127.0.0.1:8879/charts/index.yaml: dial tcp 127.0.0.1:8879: connect: connection refused
+[00] ...Successfully got an update from the "stable" chart repository
+[00] Update Complete. ⎈Happy Helming!⎈
+[00] Saving 1 charts
+[00] Downloading mongodb from repo https://kubernetes-charts.storage.googleapis.com
+[00] Deleting outdated charts
+[00] [34mEnvVarMap: map[string]string{"IMAGE_NAME":"", "DIGEST":"3dde0e0cdd49dd5df3547afeebc8c9df82c08038d1a5e53475ab0c2295fd71d6", "DIGEST_HEX":"3dde0e0cdd49dd5df3547afeebc8c9df82c08038d1a5e53475ab0c2295fd71d6"}
+[00] [0mRelease "go-demo-6" has been upgraded. Happy Helming!
+[00] LAST DEPLOYED: Fri Mar  1 02:21:10 2019
+[00] NAMESPACE: jx-edit-vfarcic
+[00] STATUS: DEPLOYED
+[00] 
+[00] RESOURCES:
+[00] ==> v1beta1/PodDisruptionBudget
+[00] NAME                              MIN AVAILABLE  MAX UNAVAILABLE  ALLOWED DISRUPTIONS  AGE
+[00] go-demo-6-go-demo-6-db-arbiter    1              N/A              0                    7m30s
+[00] go-demo-6-go-demo-6-db-primary    1              N/A              0                    7m30s
+[00] go-demo-6-go-demo-6-db-secondary  1              N/A              0                    7m30s
+[00] 
+[00] ==> v1/Secret
+[00] NAME                    TYPE    DATA  AGE
+[00] go-demo-6-go-demo-6-db  Opaque  2     7m30s
+[00] 
+[00] ==> v1/Service
+[00] NAME                             TYPE       CLUSTER-IP     EXTERNAL-IP  PORT(S)    AGE
+[00] go-demo-6-go-demo-6-db-headless  ClusterIP  None           <none>       27017/TCP  7m30s
+[00] go-demo-6-go-demo-6-db           ClusterIP  10.31.252.148  <none>       27017/TCP  7m30s
+[00] go-demo-6                        ClusterIP  10.31.240.194  <none>       80/TCP     7m30s
+[00] 
+[00] ==> v1beta1/Deployment
+[00] NAME                 DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
+[00] go-demo-6-go-demo-6  1        1        1           0          7m30s
+[00] 
+[00] ==> v1/StatefulSet
+[00] NAME                              DESIRED  CURRENT  AGE
+[00] go-demo-6-go-demo-6-db-arbiter    1        1        7m29s
+[00] go-demo-6-go-demo-6-db-primary    1        1        7m29s
+[00] go-demo-6-go-demo-6-db-secondary  1        1        7m29s
+[00] 
+[00] ==> v1/Pod(related)
+[00] NAME                                  READY  STATUS             RESTARTS  AGE
+[00] go-demo-6-go-demo-6-569775dbf6-cgqf7  1/1    Terminating        0         2m23s
+[00] go-demo-6-go-demo-6-79697c9cc4-m7zmt  0/1    ContainerCreating  0         1s
+[00] go-demo-6-go-demo-6-db-arbiter-0      1/1    Running            0         7m29s
+[00] go-demo-6-go-demo-6-db-primary-0      1/1    Running            0         7m29s
+[00] go-demo-6-go-demo-6-db-secondary-0    1/1    Running            0         7m29s
+[00] 
+[00] 
+[00] NOTES:
+[00] 
+[00] Get the application URL by running these commands:
+[00] 
+[00] kubectl get ingress go-demo-6-go-demo-6
+[00] 
+[00] [34mDeploy complete in 3.675542671s[0m
+[00] [32mYou can also run [skaffold run --tail] to get the logs[0m
+[00] There is a new version (0.23.0) of skaffold available. Download it at https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
+[00] 
+Interrupted (terminated). Cleaning up children...

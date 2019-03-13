@@ -20,3 +20,6 @@ preview:
     repository:
     tag:
     pullPolicy: IfNotPresent
+
+preview-db:
+  usePassword: false

@@ -66,3 +66,6 @@ unittest:
 
 functest: 
 	CGO_ENABLED=$(CGO_ENABLED) $(GO) test -test.v --run FunctionalTest --cover
+
+prodtest: 
+	DURATION=1 CGO_ENABLED=$(CGO_ENABLED) $(GO) test -test.v --run ProductionTest --cover

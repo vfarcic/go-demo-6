@@ -35,4 +35,6 @@ terminationGracePeriodSeconds: 10
 go-demo-6-db:
   replicaSet:
     enabled: true
+
+
   usePassword: false

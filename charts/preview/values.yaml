@@ -29,3 +29,7 @@ db:
 preview-db:
   persistence:
     enabled: false
+
+  
+preview-db:
+  usePassword: false

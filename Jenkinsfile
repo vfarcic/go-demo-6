@@ -32,7 +32,7 @@ pipeline {
           }
           dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6') {
             script {
-              sleep 5
+              sleep 10
               addr=sh(script: "kubectl -n jx-$ORG-$HELM_RELEASE get ing $APP_NAME -o jsonpath='{.spec.rules[0].host}'", returnStdout: true).trim()
               sh "ADDRESS=$addr make functest"
             }

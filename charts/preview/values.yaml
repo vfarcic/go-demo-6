@@ -23,5 +23,8 @@ preview:
   db:
     enabled: false
 
+db:
+  enabled: false
+
 preview-db:
   usePassword: false

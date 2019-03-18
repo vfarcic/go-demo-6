@@ -33,7 +33,6 @@ readinessProbe:
   timeoutSeconds: 1
 terminationGracePeriodSeconds: 10
 go-demo-6-db:
-  enabled: false
   replicaSet:
     enabled: true
 

@@ -20,8 +20,6 @@ preview:
     repository:
     tag:
     pullPolicy: IfNotPresent
-  db:
-    enabled: false
 
 db:
   enabled: false

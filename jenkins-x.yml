@@ -1,8 +1,1 @@
-#buildPack: go
-pipelineConfig:
-  pipelines:
-    release:
-      build:
-        replace: true
-        steps:
-        - sh: echo TOTALLY AWESOME
+buildPack: go

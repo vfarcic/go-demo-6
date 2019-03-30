@@ -27,6 +27,7 @@ pipeline {
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
             sh "jx step post build --image docker.io/bitnami/mongodb:4.0.3"
             sh "jx step post build --image docker.io/library/debian:7"
+            sh "jx step post build --image docker.io/library/debian:8"
           }
           dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6/charts/preview') {
             sh "make preview"

@@ -25,6 +25,8 @@ pipeline {
             sh "make linux"
             sh "export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml"
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
+            sh "jx step post build --image docker.io/bitnami/mongodb:4.0.3"
+            sh "jx step post build --image docker.io/library/debian:7"
           }
           dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6/charts/preview') {
             sh "make preview"
@@ -59,7 +61,6 @@ pipeline {
             sh "jx step tag --version \$(cat VERSION)"
             sh "make build"
             sh "export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml"
-            sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
           }
         }
       }
@@ -78,6 +79,7 @@ pipeline {
 
             // promote through all 'Auto' promotion Environments
             sh "jx promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION)"
+            sh "jx step post build --image docker.io/bitnami/mongodb:4.0.3"
           }
           dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6') {
             script {

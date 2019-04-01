@@ -1,3 +1,4 @@
+{{- if eq .Release.Namespace "jx-production" }}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -12,4 +13,5 @@ spec:
       - backend:
           serviceName: go-demo-6
           servicePort: 80
+{{- end }}
 

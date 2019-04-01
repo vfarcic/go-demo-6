@@ -8,9 +8,11 @@ metadata:
 {{- end }}
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+{{- if ne .Release.Namespace "jx-production" }}
 {{- if .Values.service.annotations }}
   annotations:
 {{ toYaml .Values.service.annotations | indent 4 }}
+{{- end }}
 {{- end }}
 spec:
   type: {{ .Values.service.type }}

@@ -1,3 +1,4 @@
+VERSION=1.0.0
 SHELL := /bin/bash
 GO := GO15VENDOREXPERIMENT=1 go
 NAME := go-demo-6
@@ -28,7 +29,8 @@ install:
 
 fmt:
 	@FORMATTED=`$(GO) fmt $(PACKAGE_DIRS)`
-	@([[ ! -z "$(FORMATTED)" ]] && printf "Fixed unformatted files:\n$(FORMATTED)") || true
+	@([[ ! -z "$(FORMATTED)" ]] && printf "Fixed unformatted files:
+$(FORMATTED)") || true
 
 clean:
 	rm -rf build release
@@ -75,4 +77,3 @@ integtest:
 	CGO_ENABLED=$(CGO_ENABLED) $(GO) \
 	test -test.v --run ProductionTest \
 	--cover
-

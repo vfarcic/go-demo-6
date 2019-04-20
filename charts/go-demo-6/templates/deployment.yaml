@@ -28,6 +28,8 @@ spec:
         - name: {{ $pkey }}
           value: {{ $pval }}
 {{- end }}
+        - name: DB
+          value: {{ template "fullname" . }}-db
         ports:
         - containerPort: {{ .Values.service.internalPort }}
         livenessProbe:

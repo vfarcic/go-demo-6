@@ -5,5 +5,5 @@ pipelineConfig:
   pipelines:
     pullRequest:
       build:
-        preSteps:
+        postSteps:
         - sh: make unittest

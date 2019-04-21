@@ -3,6 +3,6 @@ pipelineConfig:
   agent: {}
   pipelines:
     pullRequest:
-      setup:
+      build:
         preSteps:
         - sh: make unittest

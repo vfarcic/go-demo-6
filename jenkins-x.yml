@@ -1,9 +1,10 @@
 buildPack: go
 pipelineConfig:
-  agent:
-    image: gcr.io/jenkinsxio/builder-go:0.1.416
+  agent: {}
   pipelines:
     pullRequest:
       build:
+        agent:
+          image: gcr.io/jenkinsxio/builder-go:0.1.416
         steps:
         - sh: make unittest

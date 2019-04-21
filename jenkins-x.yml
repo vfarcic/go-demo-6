@@ -1,6 +1,7 @@
 buildPack: go
 pipelineConfig:
-  agent: {}
+  agent:
+    image: gcr.io/jenkinsxio/builder-go:0.1.416
   pipelines:
     pullRequest:
       build:

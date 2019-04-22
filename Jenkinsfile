@@ -41,6 +41,7 @@ pipeline {
       steps {
         container('go') {
           dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6') {
+            sh "env"
             checkout scm
 
             // ensure we're not on a detached head

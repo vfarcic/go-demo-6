@@ -20,6 +20,7 @@ pipeline {
       steps {
         container('go') {
           dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6') {
+            sh "env"
             checkout scm
             sh "make linux"
             sh "make unittest"

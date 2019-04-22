@@ -20,8 +20,10 @@ pipeline {
       steps {
         container('go') {
           dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6') {
+            sh "env"
             checkout scm
             sh "make linux"
+            sh "make unittest"
             sh "export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml"
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
           }
@@ -76,3 +78,5 @@ pipeline {
     }
   }
 }
+
+

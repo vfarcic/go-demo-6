@@ -29,7 +29,8 @@ pipeline {
           }
           dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6/charts/preview') {
             sh "make preview"
-            sh "jx preview --app $APP_NAME --dir ../.. && env"
+            sh "jx preview --app $APP_NAME --dir ../.."
+            sh "jx get preview --current"
           }
         }
       }

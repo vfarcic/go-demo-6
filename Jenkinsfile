@@ -6,6 +6,7 @@ pipeline {
     ORG = 'vfarcic'
     APP_NAME = 'go-demo-6'
     CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
+    JX_LOG_FORMAT = "text"
   }
   stages {
     stage('CI Build and push snapshot') {

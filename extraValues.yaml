@@ -1,0 +1,12 @@
+expose:
+  Annotations:
+    helm.sh/hook: post-install,post-upgrade
+    helm.sh/hook-delete-policy: hook-succeeded
+  config:
+    domain: 35.237.122.1.nip.io
+    exposer: Ingress
+    http: "true"
+preview:
+  image:
+    repository: docker-registry.jx.35.237.122.1.nip.io:80/vfarcic/go-demo-6
+    tag: 0.0.0-SNAPSHOT-PR-51-10

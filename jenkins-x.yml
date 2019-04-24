@@ -13,6 +13,6 @@ pipelineConfig:
         - sh: echo 111
         - sh: echo `cat ADDRESS`
         - sh: echo 222
-        - sh: echo ADDRESS=`cat ADDRESS` make functest
+        - sh: echo ADDRESS=`jx get preview --current 2>&1` make functest
         - sh: echo 333
-        - sh: ADDRESS=\$(jx get preview --current) make functest
+        - sh: ADDRESS=`jx get preview --current 2>&1` make functest

@@ -8,6 +8,8 @@ pipelineConfig:
         - sh: make unittest
       promote:
         steps:
+        - sh: echo 000
+        - sh: echo ADDRESS=`echo 123` make functest
         - sh: echo 111
         - sh: echo ADDRESS=`jx get preview --current` make functest
         - sh: echo 222

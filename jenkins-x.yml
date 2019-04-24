@@ -6,3 +6,6 @@ pipelineConfig:
       build:
         preSteps:
         - sh: make unittest
+      promote:
+        steps:
+        - sh: jx get preview --current

@@ -8,4 +8,4 @@ pipelineConfig:
         - sh: make unittest
       promote:
         steps:
-        - sh: jx get preview --current
+        - sh: ADDRESS=$(jx get preview --current) make functest

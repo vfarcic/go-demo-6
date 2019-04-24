@@ -9,7 +9,7 @@ pipelineConfig:
       promote:
         steps:
         - sh: echo 111
-        - sh: echo ADDRESS=$(jx get preview --current) make functest
+        - sh: echo ADDRESS=`jx get preview --current` make functest
         - sh: echo 222
         - sh: echo ADDRESS=\$(jx get preview --current) make functest
         - sh: echo 333

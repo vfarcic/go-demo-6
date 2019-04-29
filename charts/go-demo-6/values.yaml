@@ -33,8 +33,39 @@ readinessProbe:
   timeoutSeconds: 1
 terminationGracePeriodSeconds: 10
 go-demo-6-db:
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
   replicaSet:
     enabled: true
 
 
   usePassword: false
+
+canary:
+  enable: true
+  service:
+    hosts:
+    - go-demo-6.104.196.0.121.nip.io
+    gateways:
+    - jx-gateway.istio-system.svc.cluster.local
+  canaryAnalysis:
+    interval: 60s
+    # number of times a metric must fail before aborting the rollout
+    threshold: 5
+    # max percentage sent to the canary deployment, after it go to 100%
+    maxWeight: 50
+    # increase the percentage this much in each interval
+    stepWeight: 10
+    # metrics from Prometheus, automatically populated by Istio
+    metrics:
+    - name: istio_requests_total
+      # minimum request success rate (non 5xx responses)
+      # percentage (0-100)
+      threshold: 99
+      interval: 60s
+    - name: istio_request_duration_seconds_bucket
+      # maximum req duration P99
+      # milliseconds
+      threshold: 500
+      interval: 60s
+

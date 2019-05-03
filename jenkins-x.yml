@@ -1,1 +1,11 @@
 buildPack: go
+pipelineConfig:
+  agent: {}
+  pipelines:
+    pullRequest:
+      build:
+        preSteps:
+        - sh: make unittest
+      promote:
+        steps:
+        - sh: ADDRESS=`jx get preview --current 2>&1` make functest

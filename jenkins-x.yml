@@ -9,3 +9,4 @@ pipelineConfig:
       promote:
         steps:
         - sh: ADDRESS=`jx get preview --current 2>&1` make functest
+        - sh: ADDRESS=http://this-domain-does-not-exist.com make functest

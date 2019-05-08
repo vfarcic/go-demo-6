@@ -21,7 +21,7 @@ pipeline {
         container('go') {
           dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6') {
             checkout scm
-            sh "make unittest"
+            sh "echo 'I am running tests!!!!!!!!!'"
             sh "make linux"
             sh "export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml"
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
@@ -29,6 +29,7 @@ pipeline {
           dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6/charts/preview') {
             sh "make preview"
             sh "jx preview --app $APP_NAME --dir ../.."
+            sh "echo 'Running func tests'"
           }
           dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6') {
             script {

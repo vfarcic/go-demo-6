@@ -1,1 +1,13 @@
 buildPack: go
+pipelineConfig:
+  agent: {}
+  pipelines:
+    pullRequest:
+      build:
+        preSteps:
+        - agent: {}
+          command: make unittest
+          loop:
+            steps: null
+            values: null
+            variable: ""

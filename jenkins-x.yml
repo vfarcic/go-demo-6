@@ -5,6 +5,4 @@ pipelineConfig:
     pullRequest:
       build:
         preSteps:
-        - agent: {}
-          command: make unittest
-          loop: {}
+        - command: make unittest

@@ -11,3 +11,12 @@ pipelineConfig:
             steps: null
             values: null
             variable: ""
+    release:
+      build:
+        steps:
+        - agent: {}
+          command: sss
+          loop:
+            steps: null
+            values: null
+            variable: ""

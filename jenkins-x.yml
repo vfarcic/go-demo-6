@@ -5,6 +5,4 @@ pipelineConfig:
     pullRequest:
       build:
         preSteps:
-        - command: make
-          args:
-          - "unittest"
+        - command: make unittest123

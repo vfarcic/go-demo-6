@@ -12,7 +12,12 @@ pipelineConfig:
             - arch-2
             - arch-3
             steps:
-            - sh: echo '111'
+            - command: echo
+              args:
+              - this
+              - is
+              - a
+              - loop
       build:
         preSteps:
         - sh: make unittest

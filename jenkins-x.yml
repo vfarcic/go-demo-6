@@ -5,7 +5,7 @@ pipelineConfig:
     pullRequest:
       env:
       - name: NAMESPACE
-        value: cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME
+        value: xyz
       build:
         preSteps:
         - sh: make unittest

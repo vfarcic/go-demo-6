@@ -6,21 +6,7 @@ pipelineConfig:
       build:
         preSteps:
         - sh: make unittest
-        - loop:
-            variable: ARCH
-            values:
-            - arch-1
-            - arch-2
-            - arch-3
-            steps:
-            - command: echo
-              args:
-              - this
-              - is
-              - a
-              - loop
-              - with
-              - ${ARCH}
       promote:
         steps:
+        - sh: env
         - sh: ADDRESS=`jx get preview --current 2>&1` make functest

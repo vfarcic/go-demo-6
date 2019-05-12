@@ -9,4 +9,5 @@ pipelineConfig:
       promote:
         steps:
         - sh: env
+        - sh: kubectl get pods
         - sh: ADDRESS=`jx get preview --current 2>&1` make functest

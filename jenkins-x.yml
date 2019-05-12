@@ -2,6 +2,9 @@ buildPack: go
 pipelineConfig:
   agent: {}
   pipelines:
+    env:
+    - name: NAMESPACE
+      value: 12345
     pullRequest:
       build:
         preSteps:

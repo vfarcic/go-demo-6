@@ -5,7 +5,9 @@ pipelineConfig:
     pullRequest:
       setup:
         preSteps:
-        - sh: echo '!!!!!!!!!!!!'
+          stages:
+          - name: 111
+            steps: echo '!!!!!!!!!!!!'
       build:
         preSteps:
         - sh: make unittest

@@ -5,12 +5,12 @@ pipelineConfig:
     pullRequest:
       env:
       - name: NAMESPACE
-        value: 12345
+        value: cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME
       build:
         preSteps:
         - sh: make unittest
       promote:
         steps:
         - sh: env
-        - sh: kubectl -n cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME rollout status deployment preview-preview
+        - sh: kubectl -n $NAMESPACE rollout status deployment preview-preview
         - sh: ADDRESS=`jx get preview --current 2>&1` make functest

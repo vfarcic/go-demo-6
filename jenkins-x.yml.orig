@@ -5,14 +5,10 @@ pipelineConfig:
     pullRequest:
       setup:
         preSteps:
-        - loop:
-            variable: ARCH
-            values:
-            - arch-1
-            - arch-2
-            - arch-3
-            steps:
-            - sh: echo '111'
+          - name: some-name
+            parallel:
+            - name: parallel-1
+              sh: echo '!!!!!'
       build:
         preSteps:
         - sh: make unittest

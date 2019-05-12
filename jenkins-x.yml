@@ -5,7 +5,8 @@ pipelineConfig:
     pullRequest:
       setup:
         preSteps:
-        - loop:
+        - command: echo
+          loop:
             variable: ARCH
             values:
             - arch-1

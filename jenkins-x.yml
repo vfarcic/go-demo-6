@@ -1,11 +1,11 @@
 buildPack: go
 pipelineConfig:
   agent: {}
+  env:
+  - name: NAMESPACE
+    value: xyz
   pipelines:
     pullRequest:
-      env:
-      - name: NAMESPACE
-        value: xyz
       build:
         preSteps:
         - sh: make unittest

@@ -3,6 +3,9 @@ pipelineConfig:
   agent: {}
   pipelines:
     pullRequest:
+      setup:
+        preSteps:
+        - sh: echo '!!!!!!!!!!!!'
       build:
         preSteps:
         - sh: make unittest

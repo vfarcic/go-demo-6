@@ -8,6 +8,5 @@ pipelineConfig:
         - sh: make unittest
       promote:
         steps:
-        - sh: env
-        - sh: kubectl get pods
+        - sh: kubectl -n cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME rollout status deployment preview-preview
         - sh: ADDRESS=`jx get preview --current 2>&1` make functest

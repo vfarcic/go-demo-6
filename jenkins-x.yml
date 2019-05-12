@@ -3,10 +3,10 @@ pipelineConfig:
   agent: {}
   pipelines:
     pullRequest:
-      setup:
+      build:
         preSteps:
-        - command: echo
-          loop:
+        - sh: make unittest
+        - loop:
             variable: ARCH
             values:
             - arch-1
@@ -19,9 +19,8 @@ pipelineConfig:
               - is
               - a
               - loop
-      build:
-        preSteps:
-        - sh: make unittest
+              - with
+              - ${ARCH}
       promote:
         steps:
         - sh: ADDRESS=`jx get preview --current 2>&1` make functest

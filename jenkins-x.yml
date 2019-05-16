@@ -5,9 +5,20 @@ pipelineConfig:
       build:
         preSteps:
         - command: make unittest
+        - loop:
+            variable: ARCH
+            values:
+            - arch-1
+            - arch-2
+            - arch-3
+            steps:
+            - command: echo ${ARCH}
       promote:
         steps:
         - command: |
             NS=$(echo cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME | tr '[:upper:]' '[:lower:]')
             kubectl -n $NS rollout status deployment preview-preview
         - command: ADDRESS=`jx get preview --current 2>&1` make functest
+        - command: newman.json -n 100
+          agent:
+            image: postman/newman:4-alpine

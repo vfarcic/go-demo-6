@@ -1,0 +1,41 @@
+
+{
+    "id":"fb242fdd-2d6f-4781-a636-1d704cb2dc75",
+    "name":"go-demo-6",
+    "description":"",
+    "auth":null,
+    "events":null,
+    "variables":[],
+    "order":["87d72937-1690-4fc3-a57b-572c83f92bd0"],
+    "folders_order":[],
+    "folders":[],
+    "requests":[{
+        "id":"87d72937-1690-4fc3-a57b-572c83f92bd0",
+        "name":"demo",
+        "url":"http:\/\/localhost:8080\/demo\/hello",
+        "description":"",
+        "data":null,
+        "dataMode":null,
+        "headerData":[],
+        "method":"GET",
+        "pathVariableData":[],
+        "queryParams":[{"key":"domain","value":"xxx","description":"","enabled":false}],
+        "auth":null,
+        "events":[{
+            "listen":"test",
+            "script":{
+                "id":"20388acd-bf7a-4cc2-867d-58da825654ce",
+                "exec":["pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });","pm.test(\"\", function() { pm.response.to.have.body(\"hello, PR!\\n\"); });"],
+                "type":"text\/javascript"
+            }
+        }],
+        "folder":null,
+        "preRequestScript":null,
+        "tests":"pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });\npm.test(\"\", function() { pm.response.to.have.body(\"hello, PR!\\n\"); });",
+        "currentHelper":null,
+        "helperAttributes":null,
+        "collectionId":"fb242fdd-2d6f-4781-a636-1d704cb2dc75",
+        "headers":"",
+        "pathVariables":[]
+    }]
+}

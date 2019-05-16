@@ -1,9 +1,14 @@
 buildPack: go
 pipelineConfig:
+  env:
+  - name: NAMESPACE
+    value: "123123123"
   pipelines:
     pullRequest:
       build:
         preSteps:
+        - command: echo 11111111
+        - command: echo $NAMESPACE
         - command: make unittest
       promote:
         steps:

@@ -9,8 +9,5 @@ pipelineConfig:
         steps:
         - command: |
             NS=cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME | tr '[:upper:]' '[:lower:]'
-            echo "111"
-            echo "kubectl -n $NAMESPACE rollout status deployment preview-preview"
-            kubectl -n $NAMESPACE rollout status deployment preview-preview
-            echo "222"
+            kubectl -n $NS rollout status deployment preview-preview
         - command: ADDRESS=`jx get preview --current 2>&1` make functest

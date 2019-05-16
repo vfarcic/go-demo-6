@@ -8,7 +8,7 @@ pipelineConfig:
       promote:
         steps:
         - command: |
-            NS=cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME | tr '[:upper:]' '[:lower:]'
+            NS=$(cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME | tr '[:upper:]' '[:lower:]')
             echo "111"
             echo "kubectl -n $NS rollout status deployment preview-preview"
             kubectl -n $NS rollout status deployment preview-preview

@@ -8,7 +8,6 @@ pipelineConfig:
       promote:
         steps:
         - command: |
-            NS=cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME
-            env
-            kubectl -n $NS rollout status deployment preview-preview
+            NS=cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME | tr '[:upper:]' '[:lower:]'
+            kubectl -n $NAMESPACE rollout status deployment preview-preview
         - command: ADDRESS=`jx get preview --current 2>&1` make functest

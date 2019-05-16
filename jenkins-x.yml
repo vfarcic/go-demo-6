@@ -1,8 +1,5 @@
 buildPack: go
 pipelineConfig:
-  env:
-  - name: NAMESPACE
-    value: cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME
   pipelines:
     pullRequest:
       build:
@@ -10,6 +7,7 @@ pipelineConfig:
         - command: make unittest
       promote:
         steps:
-        - command: env
-        - command: kubectl -n $NAMESPACE rollout status deployment preview-preview
+        - command: |
+            NS=cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME
+            kubectl -n $NAMESPACE rollout status deployment preview-preview
         - command: ADDRESS=`jx get preview --current 2>&1` make functest

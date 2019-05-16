@@ -4,7 +4,7 @@ pipelineConfig:
     pullRequest:
       build:
         preSteps:
-        - command: make unittest
+        - command: echo "START"
         - loop:
             variable: ARCH
             values:
@@ -13,9 +13,4 @@ pipelineConfig:
             - arch-3
             steps:
             - command: echo ${ARCH}
-      promote:
-        steps:
-        - command: |
-            NS=$(echo cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME | tr '[:upper:]' '[:lower:]')
-            kubectl -n $NS rollout status deployment preview-preview
-        - command: ADDRESS=`jx get preview --current 2>&1` make functest
+        - command: echo "END"

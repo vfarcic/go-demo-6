@@ -198,3 +198,4 @@ func getResponseWriterMock() *ResponseWriterMock {
 	mockObj.On("WriteHeader", mock.Anything)
 	return mockObj
 }
+

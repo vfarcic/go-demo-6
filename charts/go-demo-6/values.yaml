@@ -1,7 +1,7 @@
 # Default values for Go projects.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-replicaCount: 3
+replicaCount: 10
 image:
   repository: draft
   tag: dev
@@ -33,8 +33,31 @@ readinessProbe:
   timeoutSeconds: 1
 terminationGracePeriodSeconds: 10
 go-demo-6-db:
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
   replicaSet:
     enabled: true
 
 
   usePassword: false
+
+canary:
+  enable: true
+  service:
+    hosts:
+    - go-demo-6.35.227.29.244.nip.io
+    gateways:
+    - jx-gateway.istio-system.svc.cluster.local
+  canaryAnalysis:
+    interval: 10s
+    threshold: 5
+    maxWeight: 50
+    stepWeight: 10
+    metrics:
+    - name: istio_requests_total
+      threshold: 99
+      interval: 60s
+    - name: istio_request_duration_seconds_bucket
+      threshold: 500
+      interval: 60s
+

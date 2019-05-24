@@ -1,1 +1,1 @@
-xxxI am too lazy to write a README
+I am too lazy to write a README

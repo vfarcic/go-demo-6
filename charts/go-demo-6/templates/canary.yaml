@@ -1,4 +1,4 @@
-{{- if eq .Release.Namespace "jx-production" }}
+{{- if eq .Release.Namespace "cd-production" }}
 {{- if .Values.canary.enable }}
 apiVersion: flagger.app/v1alpha2
 kind: Canary

@@ -1,1 +1,7 @@
 buildPack: go
+pipelineConfig:
+  pipelines:
+    pullRequest:
+      build:
+        preSteps:
+        - command: make unittest

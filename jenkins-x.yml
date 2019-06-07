@@ -12,5 +12,9 @@ pipelineConfig:
           command: |
             NS=$(echo cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME | tr '[:upper:]' '[:lower:]')
             kubectl -n $NS rollout status deployment preview-preview
+        - name: api-tests
+          command: newman run test-data/postman.json -n 100
+          agent:
+            image: postman/newman:4-alpine
         - name: functional-tests
           command: ADDRESS=`jx get preview --current 2>&1` make functest

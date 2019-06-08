@@ -1,10 +1,21 @@
 buildPack: go
 pipelineConfig:
   pipelines:
-    overrides:
-    - pipeline: pullRequest
-      stage: build
-      name: unit-tests
-      step:
-        command: make unittest
-      type: before
+    pullRequest:
+      build:
+        preSteps:
+        - name: unit-tests
+          command: make unittest
+      promote:
+        steps:
+        - name: rollout
+          command: |
+            NS=$(echo cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME | tr '[:upper:]' '[:lower:]')
+            kubectl -n $NS rollout status deployment preview-preview
+        - name: code-coverage
+          env:
+          - name: CODECOV_TOKEN
+            value: xyz # Replace with the token
+          command: echo $CODECOV_TOKEN
+        - name: functional-tests
+          command: ADDRESS=`jx get preview --current 2>&1` make functest

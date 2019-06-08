@@ -2,7 +2,7 @@ buildPack: go
 pipelineConfig:
   env:
   - name: XXX
-    value: 1111111
+    value: xxxxxxxxx
   pipelines:
     pullRequest:
       build:

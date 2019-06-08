@@ -1,8 +1,8 @@
 buildPack: go
 pipelineConfig:
   env:
-  - name: XXX
-    value: xxxxxxxxx
+  - name: CODECOV_TOKEN
+    value: dasdsadasdasdasdasdasdasdas
   pipelines:
     pullRequest:
       build:
@@ -18,7 +18,4 @@ pipelineConfig:
         - name: functional-tests
           command: ADDRESS=`jx get preview --current 2>&1` make functest
         - name: code-coverage
-          env:
-          - name: CODECOV_TOKEN
-            value: dasdasdasdas
-          command: echo "123 $CODECOV_TOKEN $XXX 321"
+          command: echo "$CODECOV_TOKEN"

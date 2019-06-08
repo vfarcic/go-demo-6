@@ -1,5 +1,8 @@
 buildPack: go
 pipelineConfig:
+  env:
+  - name: XXX
+    value: 1111111
   pipelines:
     pullRequest:
       build:
@@ -18,4 +21,4 @@ pipelineConfig:
           env:
           - name: CODECOV_TOKEN
             value: dasdasdasdas
-          command: echo "123 $CODECOV_TOKEN 321"
+          command: echo "123 $CODECOV_TOKEN $XXX 321"

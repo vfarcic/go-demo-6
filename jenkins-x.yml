@@ -18,4 +18,4 @@ pipelineConfig:
           env:
           - name: CODECOV_TOKEN
             value: dasdasdasdas
-          command: echo xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx
+          command: echo \$CODECOV_TOKEN

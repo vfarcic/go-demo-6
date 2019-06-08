@@ -12,10 +12,10 @@ pipelineConfig:
           command: |
             NS=$(echo cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME | tr '[:upper:]' '[:lower:]')
             kubectl -n $NS rollout status deployment preview-preview
+        - name: functional-tests
+          command: ADDRESS=`jx get preview --current 2>&1` make functest
         - name: code-coverage
           env:
           - name: CODECOV_TOKEN
-            value: xyz # Replace with the token
+            value: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # TODO: Replace with the token
           command: echo $CODECOV_TOKEN
-        - name: functional-tests
-          command: ADDRESS=`jx get preview --current 2>&1` make functest

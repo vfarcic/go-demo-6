@@ -15,7 +15,4 @@ pipelineConfig:
         - name: functional-tests
           command: ADDRESS=`jx get preview --current 2>&1` make functest
         - name: code-coverage
-          env:
-          - name: CODECOV_TOKEN
-            value: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # TODO: Replace with the token
-          command: echo $CODECOV_TOKEN
+          command: echo xxxxxxxx xxxxxxxx xxxxxxxx xxxxxxxx

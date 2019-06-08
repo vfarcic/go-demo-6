@@ -1,20 +1,10 @@
 buildPack: go
 pipelineConfig:
   pipelines:
-    pullRequest:
-      build:
-        preSteps:
-        - name: unit-tests
-          command: make unittest
-      promote:
-        steps:
-        - name: rollout
-          command: |
-            NS=$(echo cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME | tr '[:upper:]' '[:lower:]')
-            kubectl -n $NS rollout status deployment preview-preview
-        - name: api-tests
-          command: newman run https://www.getpostman.com/collections/e656336de2c166c1b009 -n 100
-          agent:
-            image: postman/newman:4-alpine
-        - name: functional-tests
-          command: ADDRESS=`jx get preview --current 2>&1` make functest
+    overrides:
+    - pipeline: pullRequest
+      stage: build
+      name: unit-tests
+      step:
+        command: make unittest
+      type: before

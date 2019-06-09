@@ -9,6 +9,8 @@ pipelineConfig:
         preSteps:
         - name: unit-tests
           command: make unittest
+        - name: code-coverage
+          command: `bash <(curl -s https://codecov.io/bash)`
       promote:
         steps:
         - name: rollout
@@ -17,5 +19,3 @@ pipelineConfig:
             kubectl -n $NS rollout status deployment preview-preview
         - name: functional-tests
           command: ADDRESS=`jx get preview --current 2>&1` make functest
-        - name: code-coverage
-          command: bash <(curl -s https://codecov.io/bash)

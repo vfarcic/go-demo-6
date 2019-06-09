@@ -10,7 +10,7 @@ pipelineConfig:
         - name: unit-tests
           command: make unittest
         - name: code-coverage
-          command: 'bash <(curl -s https://codecov.io/bash)'
+          command: bash \<(curl -s https://codecov.io/bash)
       promote:
         steps:
         - name: rollout

@@ -33,3 +33,4 @@ pipelineConfig:
             kubectl -n $NS rollout status deployment preview-preview
         - name: functional-tests
           command: ADDRESS=`jx get preview --current 2>&1` make functest
+

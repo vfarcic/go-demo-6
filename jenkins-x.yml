@@ -2,7 +2,10 @@ buildPack: go
 pipelineConfig:
   env:
   - name: CODECOV_TOKEN
-    value: "4384f439-9da1-4be3-af60-ee80aed67bc8"
+    valueFrom:
+      secretKeyRef:
+        key: token
+        name: codecov
   pipelines:
     pullRequest:
       build:
@@ -10,7 +13,7 @@ pipelineConfig:
         - name: unit-tests
           command: make unittest
         - name: code-coverage
-          command: ping codecov.io -c 1 && ls -l && codecov.sh
+          command: codecov.sh
           agent:
             image: vfarcic/codecov
       promote:

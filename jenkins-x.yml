@@ -10,7 +10,7 @@ pipelineConfig:
         - name: unit-tests
           command: make unittest
         - name: code-coverage
-          command: codecov.sh
+          command: codeconv.sh
           agent:
             image: vfarcic/codeconv
       promote:

@@ -1,27 +1,16 @@
 buildPack: go
 pipelineConfig:
-  env:
-  - name: CODECOV_TOKEN
-    valueFrom:
-      secretKeyRef:
-        key: token
-        name: codecov
   pipelines:
     pullRequest:
       build:
         preSteps:
-        - name: unit-tests
-          command: make unittest
-        - name: code-coverage
-          command: codecov.sh
-          agent:
-            image: vfarcic/codecov
-      promote:
-        steps:
-        - name: rollout
-          command: |
-            NS=$(echo cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME | tr '[:upper:]' '[:lower:]')
-            kubectl -n $NS rollout status deployment preview-preview
-        - name: functional-tests
-          command: ADDRESS=`jx get preview --current 2>&1` make functest
+        - loop:
+            variable: ARCH
+            values:
+            - arch-1
+            - arch-2
+            - arch-3
+            steps:
+            - name: something
+              command: echo ${ARCH}
 

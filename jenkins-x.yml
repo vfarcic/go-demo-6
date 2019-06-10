@@ -11,6 +11,5 @@ pipelineConfig:
             - arch-2
             - arch-3
             steps:
-            - name: something
-              command: echo ${ARCH}
+            - command: echo ${ARCH}
 

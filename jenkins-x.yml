@@ -10,7 +10,7 @@ pipelineConfig:
         steps:
         - name: rollout
           command: |
-            NS=cd-$repo_owner-go-demo-6-$branch_name
+            NS=`echo cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME | tr '[:upper:]' '[:lower:]'`
             kubectl -n $NS rollout status deployment preview-preview
         - name: functional-tests
           command: ADDRESS=`jx get preview --current 2>&1` make functest

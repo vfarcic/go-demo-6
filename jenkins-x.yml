@@ -33,7 +33,5 @@ pipelineConfig:
       promote:
         steps:
         - name: rollout
-          command: |
-            echo $ENV
-            kubectl -n cd-staging rollout status deployment preview-preview
+          command: kubectl -n cd-staging rollout status deployment jx-go-demo-6
 

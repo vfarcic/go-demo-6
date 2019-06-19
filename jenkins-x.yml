@@ -12,13 +12,17 @@ pipelineConfig:
         preSteps:
         # This is new
         - loop:
-            variable: ARCH
+            variable: GOOS
             values:
-            - arch-1
-            - arch-2
-            - arch-3
+            - darwin
+            - linux
+            - windows
             steps:
-            - command: echo ${ARCH}
+            - name: build
+              command: GOOS=${GOOS} GOARCH=amd64 go build -o bin/go-demo-6_${GOOS} main.go
+        # TODO: Remove
+        - name: something
+          command: ls -l bin
         - name: unit-tests
           command: make unittest
         - name: code-coverage

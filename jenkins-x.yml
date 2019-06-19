@@ -10,6 +10,15 @@ pipelineConfig:
     pullRequest:
       build:
         preSteps:
+        # This is new
+        - loop:
+            variable: ARCH
+            values:
+            - arch-1
+            - arch-2
+            - arch-3
+            steps:
+            - command: echo ${ARCH}
         - name: unit-tests
           command: make unittest
         - name: code-coverage

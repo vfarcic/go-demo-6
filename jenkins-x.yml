@@ -27,4 +27,5 @@ pipelineConfig:
     # This is new
     overrides:
     - pipeline: release
+      stage: build
 

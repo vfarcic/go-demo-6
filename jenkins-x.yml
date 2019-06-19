@@ -10,19 +10,6 @@ pipelineConfig:
     pullRequest:
       build:
         preSteps:
-        # This is new
-        - loop:
-            variable: GOOS
-            values:
-            - darwin
-            - linux
-            - windows
-            steps:
-            - name: build
-              command: GOOS=${GOOS} GOARCH=amd64 go build -o bin/go-demo-6_${GOOS} main.go
-        # TODO: Remove
-        - name: something
-          command: ls -l bin
         - name: unit-tests
           command: make unittest
         - name: code-coverage
@@ -37,4 +24,7 @@ pipelineConfig:
             kubectl -n $NS rollout status deployment preview-preview
         - name: functional-tests
           command: ADDRESS=`jx get preview --current 2>&1` make functest
+    # This is new
+    overrides:
+    - pipeline: release
 

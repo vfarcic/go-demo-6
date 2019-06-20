@@ -21,6 +21,7 @@ pipelineConfig:
         - name: rollout
           command: |
             NS=`echo cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME | tr '[:upper:]' '[:lower:]'`
+            sleep 10
             kubectl -n $NS rollout status deployment preview-preview
         - name: functional-tests
           command: ADDRESS=`jx get preview --current 2>&1` make functest
@@ -38,11 +39,15 @@ pipelineConfig:
           - windows
           steps:
           - name: build
-            command: GOOS=${GOOS} GOARCH=amd64 go build -o bin/go-demo-6_${GOOS} main.go
+            command: CGO_ENABLED=0 GOOS=${GOOS} GOARCH=amd64 go build -o bin/go-demo-6_${GOOS} main.go
+          - name: something
+            command: ls -l bin/
     # This is new
     release:
       promote:
         steps:
         - name: rollout
-          command: kubectl -n cd-staging rollout status deployment jx-go-demo-6
+          command: |
+            sleep 10
+            kubectl -n cd-staging rollout status deployment jx-go-demo-6
 

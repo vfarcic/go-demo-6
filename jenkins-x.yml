@@ -19,3 +19,4 @@ pipelineConfig:
         - name: functional-tests
           command: ADDRESS=`jx get preview --current 2>&1` make functest
 
+

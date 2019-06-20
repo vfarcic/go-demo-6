@@ -4,7 +4,18 @@ pipelineConfig:
     pullRequest:
       build:
         preSteps:
-        - command: make unittest
+        # This was modified
+        - name: unit-tests
+          command: make unittest
       promote:
         steps:
-        - command: ADDRESS=`jx get preview --current 2>&1` make functest
+        # This is new
+        - name: rollout
+          command: |
+            NS=`echo cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME | tr '[:upper:]' '[:lower:]'`
+            sleep 15
+            kubectl -n $NS rollout status deployment preview-preview --timeout 3m
+        # This was modified
+        - name: functional-tests
+          command: ADDRESS=`jx get preview --current 2>&1` make functest
+

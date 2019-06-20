@@ -22,7 +22,7 @@ pipelineConfig:
           command: |
             NS=`echo cd-$REPO_OWNER-go-demo-6-$BRANCH_NAME | tr '[:upper:]' '[:lower:]'`
             sleep 15
-            kubectl -n $NS rollout status deployment preview-preview
+            kubectl -n $NS rollout status deployment preview-preview --timeout 3m
         - name: functional-tests
           command: ADDRESS=`jx get preview --current 2>&1` make functest
     overrides:
@@ -36,5 +36,5 @@ pipelineConfig:
         - name: rollout
           command: |
             sleep 15
-            kubectl -n cd-staging rollout status deployment jx-go-demo-6
+            kubectl -n cd-staging rollout status deployment jx-go-demo-6 --timeout 3m
 

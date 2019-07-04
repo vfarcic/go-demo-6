@@ -77,3 +77,4 @@ integtest:
 	--cover
 
 VERSION := 9.0.0
+VERSION := 2.1.0

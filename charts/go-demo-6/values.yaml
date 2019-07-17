@@ -40,7 +40,7 @@ go-demo-6-db:
 
 
   usePassword: false
-knativeDeploy: true
+knativeDeploy: false
 
 
 canary:
@@ -62,4 +62,5 @@ canary:
     - name: istio_request_duration_seconds_bucket
       threshold: 500
       interval: 120s
+
 

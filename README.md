@@ -1,1 +1,1 @@
-go-demo-6 rocks
+Using recreate strategy

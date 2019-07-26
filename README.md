@@ -1,1 +1,1 @@
-Using recreate strategy
+Using recreate xxx strategy

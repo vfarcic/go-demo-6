@@ -10,11 +10,6 @@ pipelineConfig:
         preSteps:
         - name: unit-tests
           command: make unittest
-        # This is new
-        - name: code-coverage
-          command: codecov.sh
-          agent:
-            image: vfarcic/codecov
       promote:
         steps:
         - name: rollout

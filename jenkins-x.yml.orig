@@ -1,12 +1,20 @@
 buildPack: go
 pipelineConfig:
   # This is new
+  env:
+  - name: CODECOV_TOKEN
+    value: "4384f439-9da1-4be3-af60-ee80aed67bc8"
   pipelines:
     pullRequest:
       build:
         preSteps:
         - name: unit-tests
           command: make unittest
+        # This is new
+        - name: code-coverage
+          command: codecov.sh
+          agent:
+            image: vfarcic/codecov
       promote:
         steps:
         - name: rollout

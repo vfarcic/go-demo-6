@@ -76,3 +76,4 @@ integtest:
 	test -test.v --run ProductionTest \
 	--cover
 
+VERSION := 3.0.0

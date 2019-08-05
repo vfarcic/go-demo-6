@@ -25,7 +25,16 @@ pipelineConfig:
             kubectl -n $NS rollout status deployment preview-preview --timeout 3m
         - name: functional-tests
           command: ADDRESS=`jx get preview --current 2>&1` make functest
-    # This is new
     overrides:
     - pipeline: release
+      # This is new
+      stage: build
+    # This is new
+    release:
+      promote:
+        steps:
+        - name: rollout
+          command: |
+            sleep 15
+            kubectl -n cd-staging rollout status deployment jx-go-demo-6 --timeout 3m
 

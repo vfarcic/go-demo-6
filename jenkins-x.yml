@@ -5,5 +5,3 @@ pipelineConfig:
       build:
         preSteps:
         - command: make unittest
-      promote:
-        steps:

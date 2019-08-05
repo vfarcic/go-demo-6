@@ -3,7 +3,7 @@ pipelineConfig:
   # This is new
   env:
   - name: CODECOV_TOKEN
-    value: "4384f439-9da1-4be3-af60-ee80aed67bc8"
+    value: "b8a05a4e86644d688ef70dd15a44933a"
   pipelines:
     pullRequest:
       build:

@@ -18,7 +18,7 @@ spec:
 {{- end }}
     spec:
       strategy:
-        type: Recreatexxx
+        type: Recreate
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

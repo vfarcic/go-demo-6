@@ -1,0 +1,240 @@
+Step: step-credential-initializer-sdktx:
+
+{"level":"warn","ts":1565731631.4300046,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1565731631.430628,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Step: step-working-dir-initializer-z2hsr:
+
+{"level":"warn","ts":1565731632.0297663,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1565731632.038761,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source /workspace/source/charts/preview\""}
+Step: step-place-tools:
+
+Step: step-git-source-*******-go-demo-6-pr-131-server-j6kf9:
+
+{"level":"warn","ts":1565731642.257986,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1565731642.78759,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ master in path /workspace/source"}
+Step: step-git-merge:
+
+WARNING: no SHAs to merge, falling back to initial cloned commit
+Step: step-build-unit-tests:
+
+go: finding github.com/stretchr/objx v0.1.1
+go: finding github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: finding github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: finding github.com/stretchr/testify v1.2.2
+go: finding github.com/pmezard/go-difflib v1.0.0
+go: finding github.com/davecgh/go-spew v1.1.1
+go: finding github.com/prometheus/client_golang v0.9.2
+go: finding github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+go: finding github.com/golang/protobuf v1.2.0
+go: finding gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
+go: finding github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
+go: finding github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
+go: finding golang.org/x/sync v0.0.0-20181108010431-42b317875d0f
+go: finding golang.org/x/net v0.0.0-20181201002055-351d144fa1fc
+go: downloading github.com/prometheus/client_golang v0.9.2
+go: downloading gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
+go: extracting github.com/prometheus/client_golang v0.9.2
+go: downloading github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
+go: downloading github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
+go: downloading github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+go: downloading github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: downloading github.com/golang/protobuf v1.2.0
+go: extracting github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+go: extracting gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
+go: extracting github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
+go: extracting github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
+go: extracting github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: downloading github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: extracting github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: extracting github.com/golang/protobuf v1.2.0
+CGO_ENABLED=0 GO15VENDOREXPERIMENT=1 go test --run UnitTest -v
+go: downloading github.com/stretchr/testify v1.2.2
+go: extracting github.com/stretchr/testify v1.2.2
+go: downloading github.com/pmezard/go-difflib v1.0.0
+go: downloading github.com/stretchr/objx v0.1.1
+go: downloading github.com/davecgh/go-spew v1.1.1
+go: extracting github.com/pmezard/go-difflib v1.0.0
+go: extracting github.com/davecgh/go-spew v1.1.1
+go: extracting github.com/stretchr/objx v0.1.1
+=== RUN   TestMainUnitTestSuite
+=== RUN   TestMainUnitTestSuite/Test_HelloServer_Waits_WhenDelayIsPresent
+=== RUN   TestMainUnitTestSuite/Test_HelloServer_WritesHelloWorld
+=== RUN   TestMainUnitTestSuite/Test_HelloServer_WritesNokEventually
+=== RUN   TestMainUnitTestSuite/Test_HelloServer_WritesOk
+=== RUN   TestMainUnitTestSuite/Test_PersonServer_InvokesUpsertId_WhenPutPerson
+=== RUN   TestMainUnitTestSuite/Test_PersonServer_Panics_WhenFindReturnsError
+=== RUN   TestMainUnitTestSuite/Test_PersonServer_Panics_WhenUpsertIdReturnsError
+=== RUN   TestMainUnitTestSuite/Test_PersonServer_WritesPeople
+=== RUN   TestMainUnitTestSuite/Test_RunServer_InvokesListenAndServe
+=== RUN   TestMainUnitTestSuite/Test_SetupMetrics_InitializesHistogram
+--- PASS: TestMainUnitTestSuite (0.01s)
+    --- PASS: TestMainUnitTestSuite/Test_HelloServer_Waits_WhenDelayIsPresent (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_HelloServer_WritesHelloWorld (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_HelloServer_WritesNokEventually (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_HelloServer_WritesOk (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_PersonServer_InvokesUpsertId_WhenPutPerson (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_PersonServer_Panics_WhenFindReturnsError (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_PersonServer_Panics_WhenUpsertIdReturnsError (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_PersonServer_WritesPeople (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_RunServer_InvokesListenAndServe (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_SetupMetrics_InitializesHistogram (0.00s)
+PASS
+ok  	go-demo-6	0.013s
+Step: step-build-code-coverage:
+
+
+  _____          _
+ / ____|        | |
+| |     ___   __| | ___  ___ _____   __
+| |    / _ \ / _` |/ _ \/ __/ _ \ \ / /
+| |___| (_) | (_| |  __/ (_| (_) \ V /
+ \_____\___/ \__,_|\___|\___\___/ \_/
+                              Bash-8a28df4
+
+
+[0;31mx>[0m No CI provider detected.
+    Testing inside Docker? [0;36mhttp://docs.codecov.io/docs/testing-with-docker[0m
+    Testing with Tox? [0;36mhttps://docs.codecov.io/docs/python#section-testing-with-tox[0m
+    [0;90mproject root:[0m .
+[0;90m-->[0m token set from env
+    [0;32mYaml not found, that's ok! Learn more at[0m [0;36mhttp://docs.codecov.io/docs/codecov-yaml[0m
+[0;90m==>[0m Running gcov in . [0;90m(disable via -X gcov)[0m
+find: unrecognized: -exe**ir
+BusyBox v1.29.3 (2019-01-24 07:45:07 UTC) multi-call binary.
+
+Usage: find [-HL] [PATH]... [OPTIONS] [ACTIONS]
+
+Search for files and perform actions on them.
+First failed action stops processing of current file.
+Defaults: PATH is current directory, action is '-print'
+
+	-L,-follow	Follow symlinks
+	-H		...on command line only
+	-xdev		Don't descend directories on other filesystems
+	-maxdepth N	Descend at most N levels. -maxdepth 0 applies
+			actions to command line arguments only
+	-mindepth N	Don't act on first N levels
+	-depth		Act on directory *after* traversing it
+
+Actions:
+	( ACTIONS )	Group actions for -o / -a
+	! ACT		Invert ACT's success/failure
+	ACT1 [-a] ACT2	If ACT1 fails, stop, else do ACT2
+	ACT1 -o ACT2	If ACT1 succeeds, stop, else do ACT2
+			Note: -a has higher priority than -o
+	-name PATTERN	Match file name (w/o directory name) to PATTERN
+	-iname PATTERN	Case insensitive -name
+	-path PATTERN	Match path to PATTERN
+	-ipath PATTERN	Case insensitive -path
+	-regex PATTERN	Match path to regex PATTERN
+	-type X		File type is X (one of: f,d,l,b,c,s,p)
+	-perm MASK	At least one mask bit (+MASK), all bits (-MASK),
+			or exactly MASK bits are set in file's mode
+	-mtime DAYS	mtime is greater than (+N), less than (-N),
+			or exactly N days in the past
+	-mmin MINS	mtime is greater than (+N), less than (-N),
+			or exactly N minutes in the past
+	-newer FILE	mtime is more recent than FILE's
+	-inum N		File has inode number N
+	-user NAME/ID	File is owned by given user
+	-group NAME/ID	File is owned by given group
+	-size N[bck]	File size is N (c:bytes,k:kbytes,b:512 bytes(def.))
+			+/-N: file size is bigger/smaller than N
+	-links N	Number of links is greater than (+N), less than (-N),
+			or exactly N
+	-prune		If current file is directory, don't descend into it
+If none of the following actions is specified, -print is assumed
+	-print		Print file name
+	-print0		Print file name, NUL terminated
+	-exec CMD ARG ;	Run CMD with all instances of {} replaced by
+			file name. Fails if CMD exits with nonzero
+	-exec CMD ARG + Run CMD with {} replaced by list of file names
+	-delete		Delete current file/directory. Turns on -depth option
+[0;90m==>[0m Python coveragepy not found
+[0;90m==>[0m Searching for coverage reports in:
+    [0;32m+[0m .
+[0;31m-->[0m No coverage report found.
+    Please visit [0;36mhttp://docs.codecov.io/docs/supported-languages[0m
+Step: step-build-make-linux:
+
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO15VENDOREXPERIMENT=1 go build -ldflags '' -o bin/go-demo-6 main.go
+Step: step-build-container-build:
+
+[36mINFO[0m[0000] No base image, nothing to extract            
+[36mINFO[0m[0000] cmd: EXPOSE                                  
+[36mINFO[0m[0000] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0000] Using files from context: [/workspace/source/bin] 
+[36mINFO[0m[0000] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0000] Taking snapshot of full filesystem...        
+[36mINFO[0m[0000] EXPOSE 8080                                  
+[36mINFO[0m[0000] cmd: EXPOSE                                  
+[36mINFO[0m[0000] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0000] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0000] ENTRYPOINT ["/go-demo-6"]                    
+[36mINFO[0m[0000] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0000] Using files from context: [/workspace/source/bin] 
+[36mINFO[0m[0000] COPY ./bin/ /                                
+[36mINFO[0m[0000] Taking snapshot of files...                  
+2019/08/13 21:27:57 pushed blob: sha256:165d0ee630e288c5fdffa78bbb89b7afb0c42b416fecb1d0aed83ce80c7d1015
+2019/08/13 21:27:57 pushed blob: sha256:0f0dc33b866723167fd5a0c97b8616c1f041565973ca**aa46272381ca52ef8b
+2019/08/13 21:27:58 gcr.io/devops-26/go-demo-6:0.0.0-SNAPSHOT-PR-131-2: digest: sha256:fff231876ed25c12b36bd53f0afae7a4ece6fc1197524d6502e438a87ac51ed9 size: 428
+Step: step-postbuild-post-build:
+
+no CVE provider running in the current ** namespace so skip adding image to be analysed
+Step: step-promote-make-preview:
+
+sed -i -e "s/version:.*/version: 0.0.0-SNAPSHOT-PR-131-2/" Chart.yaml
+sed -i -e "s/version:.*/version: 0.0.0-SNAPSHOT-PR-131-2/" ../*/Chart.yaml
+sed -i -e "s|repository:.*|repository: gcr.io\/*******\/go-demo-6|" values.yaml
+sed -i -e "s/tag:.*/tag: 0.0.0-SNAPSHOT-PR-131-2/" values.yaml
+echo "  version: 0.0.0-SNAPSHOT-PR-131-2" >> requirements.yaml
+jx step helm build
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: storage.googleapis.com https://storage.googleapis.com/chartmuseum.jenkins-x.io
+Successfully added Helm repository storage.googleapis.com.
+Adding missing Helm repo: jenkins-x-chartmuseum http://jenkins-x-chartmuseum:8080
+Successfully added Helm repository jenkins-x-chartmuseum.
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: chartmuseum.jenkins-x.io http://chartmuseum.jenkins-x.io
+Successfully added Helm repository chartmuseum.jenkins-x.io.
+Step: step-promote-jx-preview:
+
+Creating a preview
+WARNING: No author for commit: e49e966c2e47c29154a602aa560b9**e633d29a6
+WARNING: No author for commit: 709f253494c77cbbc1ef9194b67e19b79be4ba2f
+expose:
+  Annotations:
+    helm.sh/hook: post-install,post-upgrade
+    helm.sh/hook-delete-policy: hook-succeeded
+  config:
+    domain: 35.196.157.173.nip.io
+    exposer: Ingress
+    http: "true"
+preview:
+  image:
+    repository: gcr.io/devops-26/go-demo-6
+    tag: 0.0.0-SNAPSHOT-PR-131-2
+Deleting and cloning the Jenkins X versions repo
+Cloning the Jenkins X versions repo https://github.com/jenkins-x/jenkins-x-versions.git with ref refs/heads/master to /builder/home/.jx/jenkins-x-versions
+WARNING: failed to create system vault in namespace ** due to no "jx-vault-jx-rocks" vault found in namespace "**"
+
+
+Updating PipelineActivities *******-go-demo-6-pr-131-2 which has status Running
+WARNING: preview application http://go-demo-6.**-*******-go-demo-6-pr-131.35.196.157.173.nip.io not available, error was 503 503 Service Temporarily Unavailable, delaying for: 1.192024588s
+WARNING: preview application http://go-demo-6.**-*******-go-demo-6-pr-131.35.196.157.173.nip.io not available, error was 503 503 Service Temporarily Unavailable, delaying for: 1.561649783s
+WARNING: preview application http://go-demo-6.**-*******-go-demo-6-pr-131.35.196.157.173.nip.io not available, error was 503 503 Service Temporarily Unavailable, delaying for: 2.077092453s
+WARNING: preview application http://go-demo-6.**-*******-go-demo-6-pr-131.35.196.157.173.nip.io not available, error was 503 503 Service Temporarily Unavailable, delaying for: 2.639523358s
+WARNING: preview application http://go-demo-6.**-*******-go-demo-6-pr-131.35.196.157.173.nip.io not available, error was 503 503 Service Temporarily Unavailable, delaying for: 6.988999559s
+WARNING: preview application http://go-demo-6.**-*******-go-demo-6-pr-131.35.196.157.173.nip.io not available, error was 503 503 Service Temporarily Unavailable, delaying for: 4.536921008s
+WARNING: preview application http://go-demo-6.**-*******-go-demo-6-pr-131.35.196.157.173.nip.io not available, error was 503 503 Service Temporarily Unavailable, delaying for: 8.22732789s
+WARNING: preview application http://go-demo-6.**-*******-go-demo-6-pr-131.35.196.157.173.nip.io not available, error was 503 503 Service Temporarily Unavailable, delaying for: 13.865621763s
+WARNING: preview application http://go-demo-6.**-*******-go-demo-6-pr-131.35.196.157.173.nip.io not available, error was 503 503 Service Temporarily Unavailable, delaying for: 33.344617715s
+WARNING: preview application http://go-demo-6.**-*******-go-demo-6-pr-131.35.196.157.173.nip.io not available, error was 503 503 Service Temporarily Unavailable, delaying for: 35.689164924s
+WARNING: preview application http://go-demo-6.**-*******-go-demo-6-pr-131.35.196.157.173.nip.io not available, error was 503 503 Service Temporarily Unavailable, delaying for: 1m25.28251906s
+WARNING: preview application http://go-demo-6.**-*******-go-demo-6-pr-131.35.196.157.173.nip.io not available, error was 503 503 Service Temporarily Unavailable, delaying for: 59.588519862s
+WARNING: preview application http://go-demo-6.**-*******-go-demo-6-pr-131.35.196.157.173.nip.io not available, error was 503 503 Service Temporarily Unavailable, delaying for: 50.877237818s
+error: error checking if preview application http://go-demo-6.**-*******-go-demo-6-pr-131.35.196.157.173.nip.io is available: preview application http://go-demo-6.**-*******-go-demo-6-pr-131.35.196.157.173.nip.io not available, error was 503 503 Service Temporarily Unavailable
+Step: step-promote-rollout:
+
+Step: step-promote-functional-tests:
+

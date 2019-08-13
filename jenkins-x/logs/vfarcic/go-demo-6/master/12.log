@@ -1,0 +1,19 @@
+Step: step-credential-initializer-886ph:
+
+Unable to retrieve container logs for docker://9127abddd4c98745a5e64902f90710195b26db76b8ed2d197b365734a7997f60
+Step: step-working-dir-initializer-wvtm8:
+
+Unable to retrieve container logs for docker://67**7c1e39c78d4a089bde0eb8f0785f2114c8367b6fec6625d8ea4272e3e121
+Step: step-place-tools:
+
+Unable to retrieve container logs for docker://6dd60759be9ba84c01140f219b958a3fac21d3d2afc7a3359fce0635b2b1d260
+Step: step-git-source-*******-go-demo-6-master-releas-mtb7b:
+
+{"level":"warn","ts":1565732230.562534,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1565732231.147051,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ v9.0.5 in path /workspace/source"}
+Step: step-git-merge:
+
+WARNING: no SHAs to merge, falling back to initial cloned commit
+Step: step-setup-jx-git-credentials:
+
+Generated Git credentials file /workspace/xdg_config/git/credentials

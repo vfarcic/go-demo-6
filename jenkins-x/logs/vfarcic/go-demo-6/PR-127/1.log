@@ -1,0 +1,49 @@
+Step: step-credential-initializer-wvclk:
+
+{"level":"warn","ts":1565721347.6764107,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1565721347.67722,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Step: step-working-dir-initializer-clcll:
+
+{"level":"warn","ts":1565721348.4077935,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1565721348.4096227,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+Step: step-place-tools:
+
+Step: step-git-source-meta-*******-go-demo-6-pr-127-s-4xnfk:
+
+{"level":"warn","ts":1565721354.466087,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1565721354.8691351,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ 05ab561173ed1f84f52d7d2215b464ff05d98219 in path /workspace/source"}
+Step: step-git-merge:
+
+{"level":"info","msg":"Using SHAs from PULL_REFS=master:05ab561173ed1f84f52d7d2215b464ff05d98219,127:a833085abe1b50b89a0e4cf6083f6a7121647d6f","time":"2019-08-13T18:35:55Z"}
+{"level":"debug","msg":"ran git fetch --unshallow origin a833085abe1b50b89a0e4cf6083f6a7121647d6f: 05ab561173ed1f84f52d7d2215b464ff05d98219: in ","time":"2019-08-13T18:35:58Z"}
+{"level":"debug","msg":"ran git checkout master in ","time":"2019-08-13T18:35:58Z"}
+{"level":"debug","msg":"ran git reset --hard 05ab561173ed1f84f52d7d2215b464ff05d98219 in ","time":"2019-08-13T18:35:58Z"}
+{"level":"debug","msg":"ran clean --force -d . in ","time":"2019-08-13T18:35:58Z"}
+{"level":"debug","msg":"ran git merge a833085abe1b50b89a0e4cf6083f6a7121647d6f in ","time":"2019-08-13T18:35:58Z"}
+MERGED SHA SUBJECT
+a833085ab  This is a PR
+Step: step-merge-pull-refs:
+
+{"level":"debug","msg":"ran git fetch origin a833085abe1b50b89a0e4cf6083f6a7121647d6f: 05ab561173ed1f84f52d7d2215b464ff05d98219: in ","time":"2019-08-13T18:35:59Z"}
+{"level":"debug","msg":"Unshallowed git repo in ","time":"2019-08-13T18:35:59Z"}
+{"level":"debug","msg":"ran git checkout master in ","time":"2019-08-13T18:35:59Z"}
+{"level":"debug","msg":"ran git reset --hard 05ab561173ed1f84f52d7d2215b464ff05d98219 in ","time":"2019-08-13T18:35:59Z"}
+{"level":"debug","msg":"ran clean --force -d . in ","time":"2019-08-13T18:35:59Z"}
+{"level":"debug","msg":"ran git merge a833085abe1b50b89a0e4cf6083f6a7121647d6f in ","time":"2019-08-13T18:35:59Z"}
+MERGED SHA SUBJECT
+a833085ab  This is a PR
+Step: step-create-effective-pipeline:
+
+{"level":"info","msg":"Deleting and cloning the Jenkins X versions repo","time":"2019-08-13T18:36:00Z"}
+{"level":"info","msg":"Cloning the Jenkins X versions repo https://github.com/jenkins-x/jenkins-x-versions.git with ref refs/heads/master to /builder/home/.jx/jenkins-x-versions","time":"2019-08-13T18:36:00Z"}
+{"level":"info","msg":"Effective pipeline written to jenkins-x-serverless-jenkins-effective.yml","time":"2019-08-13T18:36:02Z"}
+Step: step-create-tekton-crds:
+
+{"level":"info","msg":"PipelineActivity for *******-go-demo-6-PR-127-1","time":"2019-08-13T18:36:04Z"}
+{"level":"info","msg":"Applying changes ","time":"2019-08-13T18:36:04Z"}
+{"level":"info","msg":"Checking if batch build reconciling is needed","time":"2019-08-13T18:36:04Z"}
+{"level":"info","msg":"upserted PipelineResource *******-go-demo-6-pr-127-server for the git repository https://github.com/*******/go-demo-6.git and branch PR-127","time":"2019-08-13T18:36:04Z"}
+{"level":"info","msg":"upserted Task *******-go-demo-6-pr-127-server-from-build-pack-1","time":"2019-08-13T18:36:04Z"}
+{"level":"info","msg":"upserted Pipeline *******-go-demo-6-pr-127-server-1","time":"2019-08-13T18:36:04Z"}
+{"level":"info","msg":"created PipelineRun *******-go-demo-6-pr-127-server-1","time":"2019-08-13T18:36:04Z"}
+{"level":"info","msg":"created PipelineStructure *******-go-demo-6-pr-127-server-1","time":"2019-08-13T18:36:04Z"}

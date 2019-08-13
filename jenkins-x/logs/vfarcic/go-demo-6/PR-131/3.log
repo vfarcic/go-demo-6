@@ -1,0 +1,56 @@
+Step: step-credential-initializer-2zp7z:
+
+{"level":"warn","ts":1565731959.978336,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1565731959.9789255,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Step: step-working-dir-initializer-j96cs:
+
+{"level":"warn","ts":1565731960.2359557,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1565731960.2372959,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+Step: step-place-tools:
+
+Step: step-git-source-meta-*******-go-demo-6-pr-131-s-hcsl8:
+
+{"level":"warn","ts":1565731966.3007758,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1565731967.790738,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ 9b6763d5779e929f82693ce650c74bcb6bf206e7 in path /workspace/source"}
+Step: step-git-merge:
+
+{"level":"info","msg":"Using SHAs from PULL_REFS=master:9b6763d5779e929f82693ce650c74bcb6bf206e7,131:e70f1bfd5f9c1f3783970d1833d0d4809e6d9869","time":"2019-08-13T21:32:48Z"}
+{"level":"debug","msg":"ran git fetch --unshallow origin e70f1bfd5f9c1f3783970d1833d0d4809e6d9869: 9b6763d5779e929f82693ce650c74bcb6bf206e7: in ","time":"2019-08-13T21:32:50Z"}
+{"level":"debug","msg":"ran git checkout master in ","time":"2019-08-13T21:32:51Z"}
+{"level":"debug","msg":"ran git reset --hard 9b6763d5779e929f82693ce650c74bcb6bf206e7 in ","time":"2019-08-13T21:32:51Z"}
+{"level":"debug","msg":"ran clean --force -d . in ","time":"2019-08-13T21:32:51Z"}
+{"level":"debug","msg":"ran git merge e70f1bfd5f9c1f3783970d1833d0d4809e6d9869 in ","time":"2019-08-13T21:32:51Z"}
+MERGED SHA SUBJECT
+e70f1bfd5  Fixed
+709f25349  Code coverage
+e49e966c2  rollout status
+Step: step-merge-pull-refs:
+
+{"level":"debug","msg":"ran git fetch origin e70f1bfd5f9c1f3783970d1833d0d4809e6d9869: 9b6763d5779e929f82693ce650c74bcb6bf206e7: in ","time":"2019-08-13T21:32:51Z"}
+{"level":"debug","msg":"Unshallowed git repo in ","time":"2019-08-13T21:32:51Z"}
+{"level":"debug","msg":"ran git checkout master in ","time":"2019-08-13T21:32:51Z"}
+{"level":"debug","msg":"ran git reset --hard 9b6763d5779e929f82693ce650c74bcb6bf206e7 in ","time":"2019-08-13T21:32:51Z"}
+{"level":"debug","msg":"ran clean --force -d . in ","time":"2019-08-13T21:32:51Z"}
+{"level":"debug","msg":"ran git merge e70f1bfd5f9c1f3783970d1833d0d4809e6d9869 in ","time":"2019-08-13T21:32:51Z"}
+MERGED SHA SUBJECT
+e70f1bfd5  Fixed
+709f25349  Code coverage
+e49e966c2  rollout status
+Step: step-create-effective-pipeline:
+
+{"level":"info","msg":"Deleting and cloning the Jenkins X versions repo","time":"2019-08-13T21:32:52Z"}
+{"level":"info","msg":"Cloning the Jenkins X versions repo https://github.com/jenkins-x/jenkins-x-versions.git with ref refs/heads/master to /builder/home/.jx/jenkins-x-versions","time":"2019-08-13T21:32:52Z"}
+{"level":"info","msg":"Effective pipeline written to jenkins-x-serverless-jenkins-effective.yml","time":"2019-08-13T21:32:54Z"}
+Step: step-create-tekton-crds:
+
+{"level":"warning","msg":"could not find a stable version for Docker image: *******/codecov in /builder/home/.jx/jenkins-x-versions","time":"2019-08-13T21:32:55Z"}
+{"level":"warning","msg":"for background see: https://jenkins-x.io/architecture/version-stream/","time":"2019-08-13T21:32:55Z"}
+{"level":"info","msg":"please lock this version down via the command: jx step create version pr -k docker -n *******/codecov -v 1.2.3","time":"2019-08-13T21:32:55Z"}
+{"level":"info","msg":"PipelineActivity for *******-go-demo-6-PR-131-3","time":"2019-08-13T21:32:55Z"}
+{"level":"info","msg":"Applying changes ","time":"2019-08-13T21:32:55Z"}
+{"level":"info","msg":"Checking if batch build reconciling is needed","time":"2019-08-13T21:32:55Z"}
+{"level":"info","msg":"upserted PipelineResource *******-go-demo-6-pr-131-server for the git repository https://github.com/*******/go-demo-6.git and branch PR-131","time":"2019-08-13T21:32:55Z"}
+{"level":"info","msg":"upserted Task *******-go-demo-6-pr-131-server-whbz6-from-build-pack-3","time":"2019-08-13T21:32:55Z"}
+{"level":"info","msg":"upserted Pipeline *******-go-demo-6-pr-131-server-whbz6-3","time":"2019-08-13T21:32:55Z"}
+{"level":"info","msg":"created PipelineRun *******-go-demo-6-pr-131-server-whbz6-3","time":"2019-08-13T21:32:55Z"}
+{"level":"info","msg":"created PipelineStructure *******-go-demo-6-pr-131-server-whbz6-3","time":"2019-08-13T21:32:55Z"}

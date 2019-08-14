@@ -1,5 +1,4 @@
 buildPack: go
-dockerRegistryOwner: vfarcic
 pipelineConfig:
   env:
   - name: CODECOV_TOKEN
@@ -26,7 +25,12 @@ pipelineConfig:
             kubectl -n $NS rollout status deployment preview-preview --timeout 3m
         - name: functional-tests
           command: ADDRESS=`jx get preview --current 2>&1` make functest
-    # This is new
-    overrides:
-    - pipeline: release
+    # Removed overrides
+    release:
+      promote:
+        steps:
+        - name: rollout
+          command: |
+            sleep 15
+            kubectl -n cd-staging rollout status deployment jx-go-demo-6 --timeout 3m
 

@@ -1,11 +1,18 @@
 # Default values for Go projects.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-replicaCount: 3
+replicaCount: 1
 image:
   repository: draft
   tag: dev
   pullPolicy: IfNotPresent
+
+# define environment variables here as a map of key: value
+env:
+
+# enable this flag to use knative serve to deploy the app
+knativeDeploy: false
+
 service:
   name: go-demo-6
   type: ClusterIP
@@ -21,7 +28,7 @@ resources:
   requests:
     cpu: 80m
     memory: 128Mi
-probePath: /demo/hello?health=true
+probePath: /
 livenessProbe:
   initialDelaySeconds: 60
   periodSeconds: 10
@@ -31,13 +38,3 @@ readinessProbe:
   periodSeconds: 10
   successThreshold: 1
   timeoutSeconds: 1
-terminationGracePeriodSeconds: 10
-go-demo-6-db:
-  replicaSet:
-    enabled: true
-
-
-  usePassword: false
-knativeDeploy: true
-
-

@@ -4,6 +4,7 @@ kind: Canary
 metadata:
   name: {{ template "fullname" . }}
 spec:
+  provider: {{.Values.canary.provider}}
   targetRef:
     apiVersion: apps/v1
     kind: Deployment

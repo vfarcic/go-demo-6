@@ -46,6 +46,7 @@ knativeDeploy: false
 
 canary:
   enable: false
+  provider: kubernetes
   service:
     hosts:
     - go-demo-6.35.231.84.74.nip.io

@@ -66,7 +66,7 @@ func (s *MainTestSuite) Test_HelloServer_WritesOk() {
 		RandomErrorServer(w, req)
 	}
 
-	w.AssertCalled(s.T(), "Write", []byte("Everything is still OK\n"))
+	w.AssertCalled(s.T(), "Write", []byte("Everything is still OK with progressive delivery\n"))
 }
 
 func (s *MainTestSuite) Test_HelloServer_WritesNokEventually() {

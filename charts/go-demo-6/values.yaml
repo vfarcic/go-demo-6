@@ -40,3 +40,4 @@ go-demo-6-db:
   usePassword: false
 knativeDeploy: true
 
+

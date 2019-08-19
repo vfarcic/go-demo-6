@@ -8,6 +8,8 @@ metadata:
 spec:
   strategy:
     type: Recreate
+  strategy:
+    type: Recreate
   replicas: {{ .Values.replicaCount }}
   template:
     metadata:

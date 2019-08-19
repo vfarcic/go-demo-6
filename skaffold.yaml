@@ -7,7 +7,7 @@ build:
     docker: {}
   tagPolicy:
     envTemplate:
-      template: '{{.DOCKER_REGISTRY}}/devops26/go-demo-6:{{.VERSION}}'
+      template: '{{.DOCKER_REGISTRY}}/vfarcic/go-demo-6:{{.VERSION}}'
   local: {}
 deploy:
   kubectl: {}
@@ -18,7 +18,7 @@ profiles:
     - docker: {}
     tagPolicy:
       envTemplate:
-        template: '{{.DOCKER_REGISTRY}}/devops26/go-demo-6:{{.DIGEST_HEX}}'
+        template: '{{.DOCKER_REGISTRY}}/vfarcic/go-demo-6:{{.DIGEST_HEX}}'
     local: {}
   deploy:
     helm:
@@ -26,5 +26,5 @@ profiles:
       - name: go-demo-6
         chartPath: charts/go-demo-6
         setValueTemplates:
-          image.repository: '{{.DOCKER_REGISTRY}}/devops26/go-demo-6'
+          image.repository: '{{.DOCKER_REGISTRY}}/vfarcic/go-demo-6'
           image.tag: '{{.DIGEST_HEX}}'

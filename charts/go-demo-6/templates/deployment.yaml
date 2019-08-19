@@ -8,6 +8,8 @@ metadata:
     draft: {{ default "draft-app" .Values.draft }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
+  strategy:
+    type: Recreate
   replicas: {{ .Values.replicaCount }}
   template:
     metadata:

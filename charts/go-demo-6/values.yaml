@@ -33,8 +33,32 @@ readinessProbe:
   timeoutSeconds: 1
 terminationGracePeriodSeconds: 10
 go-demo-6-db:
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
   replicaSet:
     enabled: true
 
 
   usePassword: false
+
+canary:
+  enable: false
+  provider: istio
+  service:
+    hosts:
+    - go-demo-6.168.62.169.204.nip.io
+    gateways:
+    - jx-gateway.istio-system.svc.cluster.local
+  canaryAnalysis:
+    interval: 30s
+    threshold: 5
+    maxWeight: 70
+    stepWeight: 20
+    metrics:
+    - name: request-success-rate
+      threshold: 99
+      interval: 120s
+    - name: request-duration
+      threshold: 500
+      interval: 120s
+

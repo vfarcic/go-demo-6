@@ -1,44 +1,44 @@
-Step: step-credential-initializer-sgnhm:
+Step: step-credential-initializer-kbm8x:
 
-{"level":"warn","ts":1566341849.7083313,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1566341849.7086818,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
-Step: step-working-dir-initializer-46qq2:
+{"level":"warn","ts":1566357000.9467144,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1566357000.9470491,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Step: step-working-dir-initializer-t7tqj:
 
-{"level":"warn","ts":1566341850.9726994,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
-{"level":"info","ts":1566341850.9736066,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+{"level":"warn","ts":1566357001.969252,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1566357001.9699411,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
 Step: step-place-tools:
 
-Step: step-git-source-meta-*******-go-demo-6-master-r-dqfbb:
+Step: step-git-source-meta-*******-go-demo-6-master-r-9746f:
 
-{"level":"warn","ts":1566341866.1226294,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1566341866.505922,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ a2ce2c5f7628811e9687aec723d3b308dc8f308e in path /workspace/source"}
+{"level":"warn","ts":1566357009.0587454,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1566357009.34077,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ 9b7a63079df24a038b06638b6f540b01f64edac0 in path /workspace/source"}
 Step: step-git-merge:
 
-{"level":"info","msg":"Using SHAs from PULL_REFS=master:a2ce2c5f7628811e9687aec723d3b308dc8f308e","time":"2019-08-20T22:57:47Z"}
-{"level":"warning","msg":"no SHAs to merge, falling back to initial cloned commit","time":"2019-08-20T22:57:47Z"}
+{"level":"info","msg":"Using SHAs from PULL_REFS=master:9b7a63079df24a038b06638b6f540b01f64edac0","time":"2019-08-21T03:10:10Z"}
+{"level":"warning","msg":"no SHAs to merge, falling back to initial cloned commit","time":"2019-08-21T03:10:10Z"}
 Step: step-merge-pull-refs:
 
 SKIP merge-pull-refs: Nothing to merge
 Step: step-create-effective-pipeline:
 
-{"level":"info","msg":"Deleting and cloning the Jenkins X versions repo","time":"2019-08-20T22:57:48Z"}
-{"level":"info","msg":"Cloning the Jenkins X versions repo https://github.com/jenkins-x/jenkins-x-versions.git with ref refs/heads/master to /builder/home/.jx/jenkins-x-versions","time":"2019-08-20T22:57:48Z"}
-{"level":"info","msg":"Effective pipeline written to jenkins-x-release-effective.yml","time":"2019-08-20T22:57:49Z"}
+{"level":"info","msg":"Deleting and cloning the Jenkins X versions repo","time":"2019-08-21T03:10:11Z"}
+{"level":"info","msg":"Cloning the Jenkins X versions repo https://github.com/jenkins-x/jenkins-x-versions.git with ref refs/heads/master to /builder/home/.jx/jenkins-x-versions","time":"2019-08-21T03:10:11Z"}
+{"level":"info","msg":"Effective pipeline written to jenkins-x-release-effective.yml","time":"2019-08-21T03:10:12Z"}
 Step: step-create-tekton-crds:
 
-{"level":"info","msg":"running command: echo \\$(jx-release-version) \u003e VERSION","time":"2019-08-20T22:57:50Z"}
-{"level":"info","msg":"","time":"2019-08-20T22:57:52Z"}
-{"level":"info","msg":"running command: jx step tag --version \\$(cat VERSION)","time":"2019-08-20T22:57:52Z"}
-{"level":"info","msg":"Updating chart version in charts/go-demo-6/Chart.yaml to 1.0.365","time":"2019-08-20T22:57:52Z"}
-{"level":"info","msg":"Updating repository in charts/go-demo-6/values.yaml to 036548781187.dkr.ecr.us-west-2.amazonaws.com/*******/go-demo-6","time":"2019-08-20T22:57:52Z"}
-{"level":"info","msg":"Updating tag in charts/go-demo-6/values.yaml to 1.0.365","time":"2019-08-20T22:57:52Z"}
-{"level":"info","msg":"Tag v1.0.365 created and pushed to remote origin","time":"2019-08-20T22:57:56Z"}
-{"level":"info","msg":"","time":"2019-08-20T22:57:56Z"}
-{"level":"warning","msg":"failed to find secret kaniko-secret in namespace **: secrets \"kaniko-secret\" not found","time":"2019-08-20T22:57:56Z"}
-{"level":"info","msg":"PipelineActivity for *******-go-demo-6-master-5","time":"2019-08-20T22:57:56Z"}
-{"level":"info","msg":"Applying changes ","time":"2019-08-20T22:57:56Z"}
-{"level":"info","msg":"upserted PipelineResource *******-go-demo-6-master-releas for the git repository https://github.com/*******/go-demo-6.git and branch master","time":"2019-08-20T22:57:56Z"}
-{"level":"info","msg":"upserted Task *******-go-demo-6-master-releas-gmxw8-from-build-pack-5","time":"2019-08-20T22:57:56Z"}
-{"level":"info","msg":"upserted Pipeline *******-go-demo-6-master-releas-gmxw8-5","time":"2019-08-20T22:57:56Z"}
-{"level":"info","msg":"created PipelineRun *******-go-demo-6-master-releas-gmxw8-5","time":"2019-08-20T22:57:56Z"}
-{"level":"info","msg":"created PipelineStructure *******-go-demo-6-master-releas-gmxw8-5","time":"2019-08-20T22:57:56Z"}
+{"level":"info","msg":"running command: echo \\$(jx-release-version) \u003e VERSION","time":"2019-08-21T03:10:13Z"}
+{"level":"info","msg":"","time":"2019-08-21T03:10:15Z"}
+{"level":"info","msg":"running command: jx step tag --version \\$(cat VERSION)","time":"2019-08-21T03:10:15Z"}
+{"level":"info","msg":"Updating chart version in charts/go-demo-6/Chart.yaml to 1.0.374","time":"2019-08-21T03:10:15Z"}
+{"level":"info","msg":"Updating repository in charts/go-demo-6/values.yaml to 036548781187.dkr.ecr.us-west-2.amazonaws.com/*******/go-demo-6","time":"2019-08-21T03:10:15Z"}
+{"level":"info","msg":"Updating tag in charts/go-demo-6/values.yaml to 1.0.374","time":"2019-08-21T03:10:15Z"}
+{"level":"info","msg":"Tag v1.0.374 created and pushed to remote origin","time":"2019-08-21T03:10:19Z"}
+{"level":"info","msg":"","time":"2019-08-21T03:10:19Z"}
+{"level":"warning","msg":"failed to find secret kaniko-secret in namespace **: secrets \"kaniko-secret\" not found","time":"2019-08-21T03:10:19Z"}
+{"level":"info","msg":"PipelineActivity for *******-go-demo-6-master-5","time":"2019-08-21T03:10:19Z"}
+{"level":"info","msg":"Applying changes ","time":"2019-08-21T03:10:19Z"}
+{"level":"info","msg":"upserted PipelineResource *******-go-demo-6-master-releas for the git repository https://github.com/*******/go-demo-6.git and branch master","time":"2019-08-21T03:10:19Z"}
+{"level":"info","msg":"upserted Task *******-go-demo-6-master-releas-zdxnz-from-build-pack-5","time":"2019-08-21T03:10:19Z"}
+{"level":"info","msg":"upserted Pipeline *******-go-demo-6-master-releas-zdxnz-5","time":"2019-08-21T03:10:19Z"}
+{"level":"info","msg":"created PipelineRun *******-go-demo-6-master-releas-zdxnz-5","time":"2019-08-21T03:10:19Z"}
+{"level":"info","msg":"created PipelineStructure *******-go-demo-6-master-releas-zdxnz-5","time":"2019-08-21T03:10:19Z"}

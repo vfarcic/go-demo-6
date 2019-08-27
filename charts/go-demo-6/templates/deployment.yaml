@@ -9,7 +9,7 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
   strategy:
-    type: Recreate
+    type: RollingUpdate
   replicas: {{ .Values.replicaCount }}
   template:
     metadata:

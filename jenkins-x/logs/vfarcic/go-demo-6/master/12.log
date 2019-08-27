@@ -49,40 +49,22 @@ Showing logs for build [32mmeta-vfarcic-go-demo-6-master-r-nkfrq-12[0m stage 
 {"level":"warn","ts":1566914297.8703966,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
 {"level":"info","ts":1566914297.8713613,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
 
-waiting for stage [32mfrom-build-pack[0m : container [32mstep-working-dir-initializer-fbwd5[0m to start...
-
-
 Showing logs for build [32mmeta-vfarcic-go-demo-6-master-r-nkfrq-12[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-fbwd5[0m
 {"level":"warn","ts":1566914298.2396362,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
 {"level":"info","ts":1566914298.2407498,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source /workspace/source/charts/go-demo-6\""}
 
-waiting for stage [32mfrom-build-pack[0m : container [32mstep-place-tools[0m to start...
-
-
 Showing logs for build [32mmeta-vfarcic-go-demo-6-master-r-nkfrq-12[0m stage [32mfrom-build-pack[0m and container [32mstep-place-tools[0m
-
-waiting for stage [32mfrom-build-pack[0m : container [32mstep-git-source-vfarcic-go-demo-6-master-releas-mqk9x[0m to start...
-
 
 Showing logs for build [32mmeta-vfarcic-go-demo-6-master-r-nkfrq-12[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-vfarcic-go-demo-6-master-releas-mqk9x[0m
 {"level":"warn","ts":1566914304.2862978,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
 {"level":"info","ts":1566914304.6459527,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ v1.0.392 in path /workspace/source"}
 
-waiting for stage [32mfrom-build-pack[0m : container [32mstep-git-merge[0m to start...
-
-
 Showing logs for build [32mmeta-vfarcic-go-demo-6-master-r-nkfrq-12[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
 {"level":"info","msg":"Using SHAs from PULL_REFS=master:778d0870e9dd014bf850eab6771eb58ecc39f00d","time":"2019-08-27T13:58:25Z"}
 {"level":"warning","msg":"no SHAs to merge, falling back to initial cloned commit","time":"2019-08-27T13:58:25Z"}
 
-waiting for stage [32mfrom-build-pack[0m : container [32mstep-setup-jx-git-credentials[0m to start...
-
-
 Showing logs for build [32mmeta-vfarcic-go-demo-6-master-r-nkfrq-12[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-jx-git-credentials[0m
 {"level":"info","msg":"Generated Git credentials file /workspace/xdg_config/git/credentials","time":"2019-08-27T13:58:25Z"}
-
-waiting for stage [32mfrom-build-pack[0m : container [32mstep-build-make-build[0m to start...
-
 
 Showing logs for build [32mmeta-vfarcic-go-demo-6-master-r-nkfrq-12[0m stage [32mfrom-build-pack[0m and container [32mstep-build-make-build[0m
 go: finding github.com/stretchr/objx v0.1.1
@@ -117,9 +99,6 @@ go: extracting github.com/matttproud/golang_protobuf_extensions v1.0.1
 go: extracting github.com/golang/protobuf v1.2.0
 CGO_ENABLED=0 GO15VENDOREXPERIMENT=1 go build -ldflags '' -o bin/go-demo-6 main.go
 
-waiting for stage [32mfrom-build-pack[0m : container [32mstep-build-container-build[0m to start...
-
-
 Showing logs for build [32mmeta-vfarcic-go-demo-6-master-r-nkfrq-12[0m stage [32mfrom-build-pack[0m and container [32mstep-build-container-build[0m
 [36mINFO[0m[0000] No base image, nothing to extract            
 [36mINFO[0m[0000] cmd: EXPOSE                                  
@@ -140,14 +119,8 @@ Showing logs for build [32mmeta-vfarcic-go-demo-6-master-r-nkfrq-12[0m stage 
 2019/08/27 13:58:40 pushed blob: sha256:9028e1edf53206c2f838fc75fdbc2d9801b14ace6504858ecb2e278c2850ba06
 2019/08/27 13:58:40 gcr.io/devops-26/go-demo-6:1.0.392: digest: sha256:4457a7596b4910540c923e2e3398ea7f84a043df14fa788453c41fdbb8271044 size: 428
 
-waiting for stage [32mfrom-build-pack[0m : container [32mstep-build-post-build[0m to start...
-
-
 Showing logs for build [32mmeta-vfarcic-go-demo-6-master-r-nkfrq-12[0m stage [32mfrom-build-pack[0m and container [32mstep-build-post-build[0m
 {"level":"info","msg":"no CVE provider running in the current ** namespace so skip adding image to be analysed","time":"2019-08-27T13:58:41Z"}
-
-waiting for stage [32mfrom-build-pack[0m : container [32mstep-promote-changelog[0m to start...
-
 
 Showing logs for build [32mmeta-vfarcic-go-demo-6-master-r-nkfrq-12[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-changelog[0m
 {"level":"info","msg":"Converted /workspace/source/charts/go-demo-6 to an unshallow repository","time":"2019-08-27T13:58:45Z"}
@@ -166,9 +139,6 @@ Showing logs for build [32mmeta-vfarcic-go-demo-6-master-r-nkfrq-12[0m stage 
 {"level":"info","msg":"Updating PipelineActivity *******-go-demo-6-master-12 with version 1.0.392","time":"2019-08-27T13:58:46Z"}
 {"level":"info","msg":"Updated PipelineActivities *******-go-demo-6-master-12 with release notes URL: https://github.com/*******/go-demo-6/releases/tag/v1.0.392","time":"2019-08-27T13:58:47Z"}
 
-waiting for stage [32mfrom-build-pack[0m : container [32mstep-promote-helm-release[0m to start...
-
-
 Showing logs for build [32mmeta-vfarcic-go-demo-6-master-r-nkfrq-12[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-helm-release[0m
 {"level":"warning","msg":"No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080","time":"2019-08-27T13:58:47Z"}
 {"level":"info","msg":"Adding missing Helm repo: storage.googleapis.com https://storage.googleapis.com/chartmuseum.jenkins-x.io","time":"2019-08-27T13:58:49Z"}
@@ -179,9 +149,6 @@ Showing logs for build [32mmeta-vfarcic-go-demo-6-master-r-nkfrq-12[0m stage 
 {"level":"warning","msg":"No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080","time":"2019-08-27T13:58:57Z"}
 {"level":"info","msg":"Uploading chart file go-demo-6-1.0.392.tgz to http://jenkins-x-chartmuseum:8080/api/charts","time":"2019-08-27T13:58:57Z"}
 {"level":"info","msg":"Received 201 response: {\"saved\":true}","time":"2019-08-27T13:58:57Z"}
-
-waiting for stage [32mfrom-build-pack[0m : container [32mstep-promote-jx-promote[0m to start...
-
 
 Showing logs for build [32mmeta-vfarcic-go-demo-6-master-r-nkfrq-12[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-jx-promote[0m
 {"level":"warning","msg":"prow based install so skip waiting for the merge of Pull Requests to go green as currently there is an issue with gettingstatuses from the PR, see https://github.com/jenkins-x/jx/issues/2410","time":"2019-08-27T13:58:58Z"}

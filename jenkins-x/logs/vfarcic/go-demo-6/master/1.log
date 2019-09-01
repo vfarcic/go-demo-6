@@ -1,41 +1,41 @@
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-credential-initializer-pdkz6[0m
-{"level":"warn","ts":1567346802.1554508,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1567346802.1571097,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-credential-initializer-c5fnc[0m
+{"level":"warn","ts":1567373517.1272871,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1567373517.1287189,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-working-dir-initializer-gk6gb[0m
-{"level":"warn","ts":1567346804.669848,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
-{"level":"info","ts":1567346804.673168,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-working-dir-initializer-rtb65[0m
+{"level":"warn","ts":1567373519.2234836,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1567373519.2249236,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-place-tools[0m
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-place-tools[0m
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-git-source-meta-vfarcic-go-demo-6-master-7gs6d[0m
-{"level":"warn","ts":1567346809.5442894,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1567346809.9173205,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ 50571e5f12ea**9f28e9b906865512de41e63938 in path /workspace/source"}
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-git-source-meta-vfarcic-go-demo-6-master-jc7ql[0m
+{"level":"warn","ts":1567373530.2336621,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1567373530.616529,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ f72a7c26884951afb2c7a1383a3bfa48e0262de5 in path /workspace/source"}
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-git-merge[0m
-Using SHAs from PULL_REFS=master:50571e5f12ea**9f28e9b906865512de41e63938
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:f72a7c26884951afb2c7a1383a3bfa48e0262de5
 WARNING: no SHAs to merge, falling back to initial cloned commit
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-merge-pull-refs[0m
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-merge-pull-refs[0m
 SKIP merge-pull-refs: Nothing to merge
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-create-effective-pipeline[0m
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-create-effective-pipeline[0m
 Deleting and cloning the Jenkins X versions repo
 Cloning the Jenkins X versions repo https://github.com/jenkins-x/jenkins-x-versions.git with ref refs/heads/master to /builder/home/.jx/jenkins-x-versions
 performing pack detection in folder /workspace/source
---> Draft detected Go (44.535618%)
+--> Draft detected Go (39.171109%)
 selected pack: /builder/home/.jx/draft/packs/github.com/jenkins-x-buildpacks/jenkins-x-kubernetes/packs/go
 Effective pipeline written to jenkins-x-effective.yml
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-create-tekton-crds[0m
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-create-tekton-crds[0m
 running command: echo \$(jx-release-version) > VERSION
 
 running command: jx step tag --version \$(cat VERSION)
-Updating chart version in charts/go-demo-6/Chart.yaml to 1.0.397
+Updating chart version in charts/go-demo-6/Chart.yaml to 1.0.398
 Updating repository in charts/go-demo-6/values.yaml to gcr.io/devops-26/go-demo-6
-Updating tag in charts/go-demo-6/values.yaml to 1.0.397
-Tag v1.0.397 created and pushed to remote origin
+Updating tag in charts/go-demo-6/values.yaml to 1.0.398
+Tag v1.0.398 created and pushed to remote origin
 
 PipelineActivity for *******-go-demo-6-master-1
 Applying changes 
@@ -45,61 +45,61 @@ upserted Pipeline *******-go-demo-6-master-1
 created PipelineRun *******-go-demo-6-master-1
 created PipelineStructure *******-go-demo-6-master-1
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-credential-initializer-x8n2j[0m
-{"level":"warn","ts":1567346824.3180678,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1567346824.3191564,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-credential-initializer-mghcn[0m
+{"level":"warn","ts":1567373542.7152653,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1567373542.7158499,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-rng2d[0m
-{"level":"warn","ts":1567346825.7984872,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
-{"level":"info","ts":1567346825.8032517,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source /workspace/source/charts/go-demo-6\""}
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-zh5j8[0m
+{"level":"warn","ts":1567373544.90917,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1567373544.9106376,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source /workspace/source/charts/go-demo-6\""}
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-place-tools[0m
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-place-tools[0m
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-vfarcic-go-demo-6-master-5tlvl[0m
-{"level":"warn","ts":1567346867.7033327,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1567346868.041149,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ v1.0.397 in path /workspace/source"}
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-vfarcic-go-demo-6-master-g5fx9[0m
+{"level":"warn","ts":1567373636.57711,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1567373637.002132,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ v1.0.398 in path /workspace/source"}
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
-Using SHAs from PULL_REFS=master:50571e5f12ea**9f28e9b906865512de41e63938
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:f72a7c26884951afb2c7a1383a3bfa48e0262de5
 WARNING: no SHAs to merge, falling back to initial cloned commit
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-jx-git-credentials[0m
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-jx-git-credentials[0m
 Generated Git credentials file /workspace/xdg_config/git/credentials
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-build-make-build[0m
-go: finding github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
-go: finding github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
-go: finding github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
-go: finding github.com/stretchr/objx v0.1.1
-go: finding github.com/golang/protobuf v1.2.0
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-build-make-build[0m
 go: finding github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: finding github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
 go: finding github.com/stretchr/testify v1.2.2
 go: finding github.com/pmezard/go-difflib v1.0.0
 go: finding github.com/davecgh/go-spew v1.1.1
+go: finding github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
+go: finding github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: finding github.com/stretchr/objx v0.1.1
+go: finding github.com/golang/protobuf v1.2.0
 go: finding gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
 go: finding github.com/prometheus/client_golang v0.9.2
 go: finding github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
-go: finding golang.org/x/sync v0.0.0-20181108010431-42b317875d0f
 go: finding golang.org/x/net v0.0.0-20181201002055-351d144fa1fc
+go: finding golang.org/x/sync v0.0.0-20181108010431-42b317875d0f
 go: downloading github.com/prometheus/client_golang v0.9.2
 go: downloading gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
 go: extracting github.com/prometheus/client_golang v0.9.2
 go: downloading github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
-go: downloading github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
-go: downloading github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
 go: downloading github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: downloading github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
 go: downloading github.com/golang/protobuf v1.2.0
+go: downloading github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
 go: extracting github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
 go: extracting gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
-go: extracting github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
-go: extracting github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
 go: extracting github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: extracting github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
 go: downloading github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: extracting github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
 go: extracting github.com/matttproud/golang_protobuf_extensions v1.0.1
 go: extracting github.com/golang/protobuf v1.2.0
 CGO_ENABLED=0 GO15VENDOREXPERIMENT=1 go build -ldflags '' -o bin/go-demo-6 main.go
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-build-container-build[0m
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-build-container-build[0m
 [36mINFO[0m[0000] No base image, nothing to extract            
 [36mINFO[0m[0000] cmd: EXPOSE                                  
 [36mINFO[0m[0000] Adding exposed port: 8080/tcp                
@@ -115,24 +115,28 @@ Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mfrom-
 [36mINFO[0m[0000] Using files from context: [/workspace/source/bin] 
 [36mINFO[0m[0000] COPY ./bin/ /                                
 [36mINFO[0m[0000] Taking snapshot of files...                  
-2019/09/01 14:08:08 pushed blob: sha256:b6b8c7b1805c3deddfd9898d**c4e6280a759143bca5d8088a37f4065e6571e2
-2019/09/01 14:08:08 pushed blob: sha256:691d0bc88de199f9863b615899f925e4477f9d0c773b7658**b90aca01985fb4
-2019/09/01 14:08:09 gcr.io/devops-26/go-demo-6:1.0.397: digest: sha256:7cb217342759de53f636f94bd92fd369dbc946b4363879e2d92cc778abbdd5db size: 428
+2019/09/01 21:34:20 pushed blob: sha256:0564e39fbcefab9584dabafe5244b976c0ec3713c0e8be2a16d89b894fa4df68
+2019/09/01 21:34:21 pushed blob: sha256:136c7d1461accaf3e255bb980d44a28eaf128cbb1d36f7cb8c700b4d218e55fb
+2019/09/01 21:34:22 gcr.io/devops-26/go-demo-6:1.0.398: digest: sha256:164d8aae3eb36961f72c2a382aa667226de3b5af**708f83266b129f3d9002bd size: 428
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-build-post-build[0m
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-build-post-build[0m
 no CVE provider running in the current ** namespace so skip adding image to be analysed
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-changelog[0m
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-changelog[0m
 Converted /workspace/source/charts/go-demo-6 to an unshallow repository
-Generating change log from git ref 2e235f855b67212505f7c5ebef81ef4a496559d3 => **25485e44172fe3cb0ccc71040c88d1da435973
-WARNING: No release found for *******/go-demo-6 and tag v1.0.397 so creating a new release
-Updated the release information at https://github.com/*******/go-demo-6/releases/tag/v1.0.397
+Generating change log from git ref **25485e44172fe3cb0ccc71040c88d1da435973 => 7e52ae2a2068adad9b91b6def2e41dd0aa465422
+Associating user x-0 in users.jenkins.io with email *******@farcic.com to git GitProvider user with login -0 as emails match
+Adding label jenkins.io/git-github-userid=-0 to user x-0 in users.jenkins.io
+WARNING: Failed to enrich commit f72a7c26884951afb2c7a1383a3bfa48e0262de5 with issues: User.jenkins.io "x-0" is invalid: metadata.labels: Invalid value: "-0": a valid label must be an empty string or consist of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyValue',  or 'my_value',  or '12345', regex used for validation is '(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?')
+Finding issues in commit messages using git format
+WARNING: No release found for *******/go-demo-6 and tag v1.0.398 so creating a new release
+Updated the release information at https://github.com/*******/go-demo-6/releases/tag/v1.0.398
 generated: /workspace/source/charts/go-demo-6/templates/release.yaml
-Created Release go-demo-6-1-0-397 resource in namespace **
-Updating PipelineActivity *******-go-demo-6-master-1 with version 1.0.397
-Updated PipelineActivities *******-go-demo-6-master-1 with release notes URL: https://github.com/*******/go-demo-6/releases/tag/v1.0.397
+Created Release go-demo-6-1-0-398 resource in namespace **
+Updating PipelineActivity *******-go-demo-6-master-1 with version 1.0.398
+Updated PipelineActivities *******-go-demo-6-master-1 with release notes URL: https://github.com/*******/go-demo-6/releases/tag/v1.0.398
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-helm-release[0m
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-helm-release[0m
 WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
 Adding missing Helm repo: storage.googleapis.com https://storage.googleapis.com/chartmuseum.jenkins-x.io
 Successfully added Helm repository storage.googleapis.com.
@@ -140,14 +144,14 @@ Adding missing Helm repo: jenkins-x-chartmuseum http://jenkins-x-chartmuseum:808
 Successfully added Helm repository jenkins-x-chartmuseum.
 WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
 WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
-Uploading chart file go-demo-6-1.0.397.tgz to http://jenkins-x-chartmuseum:8080/api/charts
+Uploading chart file go-demo-6-1.0.398.tgz to http://jenkins-x-chartmuseum:8080/api/charts
 Received 201 response: {"saved":true}
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-jx-promote[0m
+Showing logs for build [32mvfarcic-go-demo-6-master-1[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-jx-promote[0m
 WARNING: prow based install so skip waiting for the merge of Pull Requests to go green as currently there is an issue with gettingstatuses from the PR, see https://github.com/jenkins-x/jx/issues/2410
-Promoting app go-demo-6 version 1.0.397 to namespace **-staging
+Promoting app go-demo-6 version 1.0.398 to namespace **-staging
 Created Pull Request: https://github.com/*******/environment-tekton-staging/pull/1
 Added label  to Pull Request https://github.com/*******/environment-tekton-staging/pull/1
-Pull Request https://github.com/*******/environment-tekton-staging/pull/1 is merged at sha ba2459d08a3d3b843813505ccb9c2bb0fc8dbb07
+Pull Request https://github.com/*******/environment-tekton-staging/pull/1 is merged at sha 88bb09d78b9fd53caf77889478153b60f859f64b
 Pull Request merged but we are not waiting for the update pipeline to complete!
 WARNING: Could not find the service URL in namespace **-staging for names go-demo-6, **-go-demo-6, **-staging-go-demo-6

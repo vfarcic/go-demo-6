@@ -57,7 +57,7 @@ func (s ProductionTestSuite) Test_Hello_ReturnsStatus200() {
 			time.Sleep(1 * time.Second)
 		}
 	} else {
-		address := fmt.Sprintf("%s/demo/hello", s.hostIp)
+		address := fmt.Sprintf("%s/demo/helalo", s.hostIp)
 		resp, err := http.Get(address)
 
 		if err != nil {

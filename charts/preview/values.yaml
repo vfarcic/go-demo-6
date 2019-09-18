@@ -20,13 +20,3 @@ preview:
     repository:
     tag:
     pullPolicy: IfNotPresent
-
-db:
-  enabled: false
-  
-preview-db:
-  persistence:
-    enabled: false
-  
-
-  usePassword: false

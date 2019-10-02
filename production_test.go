@@ -34,7 +34,7 @@ func (s ProductionTestSuite) Test_Hello_ReturnsStatus200() {
 		minutes := float64(0)
 		counter := 0
 		for time.Since(start).Minutes() < max {
-			address := fmt.Sprintf("http://%s/demo/hello", s.hostIp)
+			address := fmt.Sprintf("%s/demo/hello", s.hostIp)
 			resp, err := http.Get(address)
 			counter++
 			if err != nil {
@@ -57,7 +57,7 @@ func (s ProductionTestSuite) Test_Hello_ReturnsStatus200() {
 			time.Sleep(1 * time.Second)
 		}
 	} else {
-		address := fmt.Sprintf("http://%s/demo/hello", s.hostIp)
+		address := fmt.Sprintf("%s/demo/hello", s.hostIp)
 		resp, err := http.Get(address)
 
 		if err != nil {

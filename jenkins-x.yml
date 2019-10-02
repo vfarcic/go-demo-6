@@ -1,1 +1,7 @@
 buildPack: go
+pipelineConfig:
+  pipelines:
+    pullRequest:
+      promote:
+        steps:
+        - command: ghh

@@ -1,0 +1,117 @@
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-153-server-rx596-2[0m stage [32mfrom-build-pack[0m and container [32mstep-credential-initializer-mc5cs[0m
+{"level":"warn","ts":1575156434.8129017,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575156434.8134494,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-153-server-rx596-2[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-r64cp[0m
+{"level":"warn","ts":1575156435.112253,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575156435.1133924,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-153-server-rx596-2[0m stage [32mfrom-build-pack[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-153-server-rx596-2[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-vfarcic-go-demo-6-pr-153-server-sxzqg[0m
+{"level":"warn","ts":1575156440.177671,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575156440.426581,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ master in path /workspace/source"}
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-153-server-rx596-2[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:8871c7acb3d691aa9adea91e2df7470ab480004d,153:e4a6fddb5e5456d829140e0e7d8e9a173d9463a3
+DEBUG: ran git fetch --unshallow origin e4a6fddb5e5456d829140e0e7d8e9a173d9463a3: 8871c7acb3d691aa9adea91e2df7470ab480004d: in 
+DEBUG: ran git checkout master in 
+DEBUG: ran git reset --hard 8871c7acb3d691aa9adea91e2df7470ab480004d in 
+DEBUG: ran clean --force -d . in 
+DEBUG: ran git merge e4a6fddb5e5456d829140e0e7d8e9a173d9463a3 in 
+Merged SHA e4a6fddb5e5456d829140e0e7d8e9a173d9463a3 with commit message 'Removed MongoDB password' into base branch master
+Merged SHA c41ad56e2f8faa2ba6021fc91374ab0c9f565054 with commit message 'This is a PR' into base branch master
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-153-server-rx596-2[0m stage [32mfrom-build-pack[0m and container [32mstep-build-make-linux[0m
+go: finding github.com/stretchr/ob** v0.1.1
+go: finding github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: finding github.com/stretchr/testify v1.2.2
+go: finding github.com/pmezard/go-difflib v1.0.0
+go: finding github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: finding github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
+go: finding github.com/prometheus/client_golang v0.9.2
+go: finding github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
+go: finding github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+go: finding gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
+go: finding github.com/golang/protobuf v1.2.0
+go: finding github.com/davecgh/go-spew v1.1.1
+go: finding golang.org/x/sync v0.0.0-20181108010431-42b317875d0f
+go: finding golang.org/x/net v0.0.0-20181201002055-351d144fa1fc
+go: downloading github.com/prometheus/client_golang v0.9.2
+go: downloading gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
+go: extracting github.com/prometheus/client_golang v0.9.2
+go: downloading github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
+go: downloading github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+go: downloading github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
+go: downloading github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: downloading github.com/golang/protobuf v1.2.0
+go: extracting github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+go: extracting github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: extracting gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
+go: extracting github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
+go: downloading github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: extracting github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
+go: extracting github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: extracting github.com/golang/protobuf v1.2.0
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO15VENDOREXPERIMENT=1 go build -ldflags '' -o bin/go-demo-6 main.go
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-153-server-rx596-2[0m stage [32mfrom-build-pack[0m and container [32mstep-build-container-build[0m
+[36mINFO[0m[0000] No base image, nothing to extract            
+[36mINFO[0m[0000] cmd: EXPOSE                                  
+[36mINFO[0m[0000] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0000] Using files from context: [/workspace/source/bin] 
+[36mINFO[0m[0000] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0000] Taking snapshot of full filesystem...        
+[36mINFO[0m[0000] EXPOSE 8080                                  
+[36mINFO[0m[0000] cmd: EXPOSE                                  
+[36mINFO[0m[0000] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0000] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0000] ENTRYPOINT ["/go-demo-6"]                    
+[36mINFO[0m[0000] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0000] Using files from context: [/workspace/source/bin] 
+[36mINFO[0m[0000] COPY ./bin/ /                                
+[36mINFO[0m[0000] Taking snapshot of files...                  
+2019/11/30 23:27:44 pushed blob: sha256:9880c92ec1c6c7ebfd6d19c7293d40d6ad7c7a71f6188ec1229e57b10527bd45
+2019/11/30 23:27:45 pushed blob: sha256:32acc4f97aa98b69d23b50fc14f70f480a489b6890822eab6727a0b2ba7d0fdc
+2019/11/30 23:27:45 036548781187.dkr.ecr.us-east-1.amazonaws.com/*******/go-demo-6:0.0.0-SNAPSHOT-PR-153-2: digest: sha256:d70f04372f62de090c8d39d96b581db20a962285f48e8681e64690fa262e153c size: 428
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-153-server-rx596-2[0m stage [32mfrom-build-pack[0m and container [32mstep-postbuild-post-build[0m
+no CVE provider running in the current ** namespace so skip adding image to be analysed
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-153-server-rx596-2[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-make-preview[0m
+sed -i -e "s/version:.*/version: 0.0.0-SNAPSHOT-PR-153-2/" Chart.yaml
+sed -i -e "s/version:.*/version: 0.0.0-SNAPSHOT-PR-153-2/" ../*/Chart.yaml
+sed -i -e "s|repository:.*|repository: 036548781187.dkr.ecr.us-east-1.amazonaws.com\/*******\/go-demo-6|" values.yaml
+sed -i -e "s/tag:.*/tag: 0.0.0-SNAPSHOT-PR-153-2/" values.yaml
+echo "  version: 0.0.0-SNAPSHOT-PR-153-2" >> requirements.yaml
+** step helm build
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: storage.googleapis.com https://storage.googleapis.com/chartmuseum.jenkins-x.io
+Successfully added Helm repository storage.googleapis.com.
+Adding missing Helm repo: jenkins-x-chartmuseum http://jenkins-x-chartmuseum:8080
+Successfully added Helm repository jenkins-x-chartmuseum.
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: chartmuseum.jenkins-x.io http://chartmuseum.jenkins-x.io
+Successfully added Helm repository chartmuseum.jenkins-x.io.
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-153-server-rx596-2[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-jx-preview[0m
+Creating a preview
+expose:
+  Annotations:
+    helm.sh/hook: post-install,post-upgrade
+    helm.sh/hook-delete-policy: hook-succeeded
+  config:
+    domain: 34.206.148.101.nip.io
+    exposer: Ingress
+    http: "true"
+preview:
+  image:
+    repository: 036548781187.dkr.ecr.us-east-1.amazonaws.com/*******/go-demo-6
+    tag: 0.0.0-SNAPSHOT-PR-153-2
+Cloning the Jenkins X versions repo https://github.com/jenkins-x/jenkins-x-versions.git with ref refs/heads/master to /builder/home/.**/jenkins-x-versions
+
+
+secret "preview-preview-db" deleted
+Updating PipelineActivities *******-go-demo-6-pr-153-2 which has status Running
+Preview application is now available at: http://go-demo-6.**-*******-go-demo-6-pr-153.34.206.148.101.nip.io

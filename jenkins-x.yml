@@ -1,7 +1,6 @@
 buildPack: go
 pipelineConfig:
   env:
-  # This was modified
   - name: CODECOV_TOKEN
     valueFrom:
       secretKeyRef:
@@ -26,4 +25,7 @@ pipelineConfig:
             kubectl -n $NS rollout status deployment preview-preview --timeout 3m
         - name: functional-tests
           command: ADDRESS=`jx get preview --current 2>&1` make functest
+    # This is new
+    overrides:
+    - pipeline: release
 

@@ -11,7 +11,7 @@ image:
 env:
 
 # enable this flag to use knative serve to deploy the app
-knativeDeploy: false
+knativeDeploy: true
 
 service:
   name: go-demo-6
@@ -45,3 +45,4 @@ go-demo-6-db:
 
 
   usePassword: false
+

@@ -1,0 +1,126 @@
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-157-server-956zk-2[0m stage [32mfrom-build-pack[0m and container [32mstep-credential-initializer-rlnr4[0m
+{"level":"warn","ts":1575167339.2035196,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575167339.204348,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-157-server-956zk-2[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-vqrfk[0m
+{"level":"warn","ts":1575167340.259449,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575167340.2609162,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-157-server-956zk-2[0m stage [32mfrom-build-pack[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-157-server-956zk-2[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-vfarcic-go-demo-6-pr-157-server-r7b5b[0m
+{"level":"warn","ts":1575167348.4145656,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575167349.1303365,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ master in path /workspace/source"}
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-157-server-956zk-2[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:2524f1aabd0e2e8f416d256ed200851ed4c3697a,157:72c2e78f2ef3d5b88887c54b7d8a78cfbb70995a
+DEBUG: ran git fetch --unshallow origin 72c2e78f2ef3d5b88887c54b7d8a78cfbb70995a: 2524f1aabd0e2e8f416d256ed200851ed4c3697a: in 
+DEBUG: ran git checkout master in 
+DEBUG: ran git reset --hard 2524f1aabd0e2e8f416d256ed200851ed4c3697a in 
+DEBUG: ran clean --force -d . in 
+DEBUG: ran git merge 72c2e78f2ef3d5b88887c54b7d8a78cfbb70995a in 
+Merged SHA 72c2e78f2ef3d5b88887c54b7d8a78cfbb70995a with commit message 'Removed MongoDB password' into base branch master
+Merged SHA ab88d8719b592124ab3019f529a3d76691d16869 with commit message 'This is a PR' into base branch master
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-157-server-956zk-2[0m stage [32mfrom-build-pack[0m and container [32mstep-build-make-linux[0m
+go: finding github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: finding github.com/stretchr/testify v1.2.2
+go: finding github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
+go: finding github.com/prometheus/client_golang v0.9.2
+go: finding github.com/davecgh/go-spew v1.1.1
+go: finding github.com/pmezard/go-difflib v1.0.0
+go: finding github.com/golang/protobuf v1.2.0
+go: finding github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
+go: finding github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: finding gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
+go: finding github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+go: finding github.com/stretchr/ob** v0.1.1
+go: finding golang.org/x/net v0.0.0-20181201002055-351d144fa1fc
+go: finding golang.org/x/sync v0.0.0-20181108010431-42b317875d0f
+go: downloading github.com/prometheus/client_golang v0.9.2
+go: downloading gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
+go: extracting github.com/prometheus/client_golang v0.9.2
+go: downloading github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
+go: downloading github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
+go: downloading github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+go: downloading github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: downloading github.com/golang/protobuf v1.2.0
+go: extracting github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+go: extracting github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
+go: extracting github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: extracting github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
+go: extracting gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
+go: downloading github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: extracting github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: extracting github.com/golang/protobuf v1.2.0
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO15VENDOREXPERIMENT=1 go build -ldflags '' -o bin/go-demo-6 main.go
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-157-server-956zk-2[0m stage [32mfrom-build-pack[0m and container [32mstep-build-container-build[0m
+[36mINFO[0m[0000] No base image, nothing to extract            
+[36mINFO[0m[0000] cmd: EXPOSE                                  
+[36mINFO[0m[0000] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0000] Using files from context: [/workspace/source/bin] 
+[36mINFO[0m[0000] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0000] Taking snapshot of full filesystem...        
+[36mINFO[0m[0000] EXPOSE 8080                                  
+[36mINFO[0m[0000] cmd: EXPOSE                                  
+[36mINFO[0m[0000] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0000] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0000] ENTRYPOINT ["/go-demo-6"]                    
+[36mINFO[0m[0000] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0000] Using files from context: [/workspace/source/bin] 
+[36mINFO[0m[0000] COPY ./bin/ /                                
+[36mINFO[0m[0000] Taking snapshot of files...                  
+2019/12/01 02:29:45 pushed blob: sha256:859e847df65612e578132217204df024739a6e65c1ff14e2fdebc29c72ee7899
+2019/12/01 02:29:46 pushed blob: sha256:4a39be463dff90ca788d62414a45c8060940aa0a43434a01f4d4534a083b58d5
+2019/12/01 02:29:46 gcr.io/devops-26/go-demo-6:0.0.0-SNAPSHOT-PR-157-2: digest: sha256:5fafd0f71b13c996eab19cca07d33d023b8a87246a89514f04ad374196c095b6 size: 428
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-157-server-956zk-2[0m stage [32mfrom-build-pack[0m and container [32mstep-postbuild-post-build[0m
+no CVE provider running in the current ** namespace so skip adding image to be analysed
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-157-server-956zk-2[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-make-preview[0m
+sed -i -e "s/version:.*/version: 0.0.0-SNAPSHOT-PR-157-2/" Chart.yaml
+sed -i -e "s/version:.*/version: 0.0.0-SNAPSHOT-PR-157-2/" ../*/Chart.yaml
+sed -i -e "s|repository:.*|repository: gcr.io\/devops-26\/go-demo-6|" values.yaml
+sed -i -e "s/tag:.*/tag: 0.0.0-SNAPSHOT-PR-157-2/" values.yaml
+echo "  version: 0.0.0-SNAPSHOT-PR-157-2" >> requirements.yaml
+** step helm build
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: storage.googleapis.com https://storage.googleapis.com/chartmuseum.jenkins-x.io
+Successfully added Helm repository storage.googleapis.com.
+Adding missing Helm repo: jenkins-x-chartmuseum http://jenkins-x-chartmuseum:8080
+Successfully added Helm repository jenkins-x-chartmuseum.
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: chartmuseum.jenkins-x.io http://chartmuseum.jenkins-x.io
+Successfully added Helm repository chartmuseum.jenkins-x.io.
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-157-server-956zk-2[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-jx-preview[0m
+Creating a preview
+Created environment *******-go-demo-6-pr-157
+expose:
+  Annotations:
+    helm.sh/hook: post-install,post-upgrade
+    helm.sh/hook-delete-policy: hook-succeeded
+  config:
+    domain: 34.74.61.253.nip.io
+    exposer: Ingress
+    http: "true"
+preview:
+  image:
+    repository: gcr.io/devops-26/go-demo-6
+    tag: 0.0.0-SNAPSHOT-PR-157-2
+Cloning the Jenkins X versions repo https://github.com/jenkins-x/jenkins-x-versions.git with ref refs/heads/master to /builder/home/.**/jenkins-x-versions
+error: failed to run 'kubectl apply --recursive -f /tmp/helm-template-workdir-538324331/preview/output/namespaces/**-*******-go-demo-6-pr-157 -l jenkins.io/chart-release=preview --namespace **-*******-go-demo-6-pr-157 --wait --validate=false' command in directory '', output: 'Error from server (Forbidden): error when creating "/tmp/helm-template-workdir-538324331/preview/output/namespaces/**-*******-go-demo-6-pr-157/preview/charts/cleanup/templates/part0-role.yaml": roles.rbac.authorization.k8s.io "cleanup" is forbidden: unable to create new content in namespace **-*******-go-demo-6-pr-157 because it is being terminated
+Error from server (Forbidden): error when creating "/tmp/helm-template-workdir-538324331/preview/output/namespaces/**-*******-go-demo-6-pr-157/preview/charts/cleanup/templates/part0-rolebinding.yaml": rolebindings.rbac.authorization.k8s.io "cleanup" is forbidden: unable to create new content in namespace **-*******-go-demo-6-pr-157 because it is being terminated
+Error from server (Forbidden): error when creating "/tmp/helm-template-workdir-538324331/preview/output/namespaces/**-*******-go-demo-6-pr-157/preview/charts/cleanup/templates/part0-serviceaccount.yaml": serviceaccounts "cleanup" is forbidden: unable to create new content in namespace **-*******-go-demo-6-pr-157 because it is being terminated
+Error from server (Forbidden): error when creating "/tmp/helm-template-workdir-538324331/preview/output/namespaces/**-*******-go-demo-6-pr-157/preview/charts/expose/templates/part0-configmap.yaml": configmaps "exposecontroller" is forbidden: unable to create new content in namespace **-*******-go-demo-6-pr-157 because it is being terminated
+Error from server (Forbidden): error when creating "/tmp/helm-template-workdir-538324331/preview/output/namespaces/**-*******-go-demo-6-pr-157/preview/charts/expose/templates/part0-role.yaml": roles.rbac.authorization.k8s.io "expose" is forbidden: unable to create new content in namespace **-*******-go-demo-6-pr-157 because it is being terminated
+Error from server (Forbidden): error when creating "/tmp/helm-template-workdir-538324331/preview/output/namespaces/**-*******-go-demo-6-pr-157/preview/charts/expose/templates/part0-rolebinding.yaml": rolebindings.rbac.authorization.k8s.io "expose" is forbidden: unable to create new content in namespace **-*******-go-demo-6-pr-157 because it is being terminated
+Error from server (Forbidden): error when creating "/tmp/helm-template-workdir-538324331/preview/output/namespaces/**-*******-go-demo-6-pr-157/preview/charts/expose/templates/part0-serviceaccount.yaml": serviceaccounts "expose" is forbidden: unable to create new content in namespace **-*******-go-demo-6-pr-157 because it is being terminated
+Error from server (Forbidden): error when creating "/tmp/helm-template-workdir-538324331/preview/output/namespaces/**-*******-go-demo-6-pr-157/preview/charts/preview/templates/part0-deployment.yaml": deployments.extensions "preview-preview" is forbidden: unable to create new content in namespace **-*******-go-demo-6-pr-157 because it is being terminated
+Error from server (Forbidden): error when creating "/tmp/helm-template-workdir-538324331/preview/output/namespaces/**-*******-go-demo-6-pr-157/preview/charts/preview/templates/part0-service.yaml": services "go-demo-6" is forbidden: unable to create new content in namespace **-*******-go-demo-6-pr-157 because it is being terminated
+Error from server (Forbidden): error when creating "/tmp/helm-template-workdir-538324331/preview/output/namespaces/**-*******-go-demo-6-pr-157/preview/charts/preview-db/templates/part0-deployment-standalone.yaml": deployments.extensions "preview-preview-db" is forbidden: unable to create new content in namespace **-*******-go-demo-6-pr-157 because it is being terminated
+Error from server (Forbidden): error when creating "/tmp/helm-template-workdir-538324331/preview/output/namespaces/**-*******-go-demo-6-pr-157/preview/charts/preview-db/templates/part0-svc-standalone.yaml": services "preview-preview-db" is forbidden: unable to create new content in namespace **-*******-go-demo-6-pr-157 because it is being terminated'
+[31m
+Pipeline failed on stage 'from-build-pack' : container 'step-promote-jx-preview'. The execution of the pipeline has stopped.[0m

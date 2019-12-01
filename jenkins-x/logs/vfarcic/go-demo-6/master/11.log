@@ -1,38 +1,138 @@
 
-Showing logs for build [32mvfarcic-go-demo-6-master-releas-mcx82-11[0m stage [32mfrom-build-pack[0m and container [32mstep-credential-initializer-98g99[0m
-Unable to retrieve container logs for docker://91d9783d7106a0c2b3749340069734a4b08c9f377fae40edfe518e1722272964
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-lwztf-11[0m stage [32mfrom-build-pack[0m and container [32mstep-credential-initializer-p5wrz[0m
+{"level":"warn","ts":1575171795.2045834,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575171795.2052016,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
 
-Showing logs for build [32mvfarcic-go-demo-6-master-releas-mcx82-11[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-tnjzf[0m
-Unable to retrieve container logs for docker://7ad20d8164c736b35c27b03f7605119116232e29a22910329424689a27fba6c5
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-lwztf-11[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-frrq2[0m
+{"level":"warn","ts":1575171795.710285,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575171795.7124465,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
 
-Showing logs for build [32mvfarcic-go-demo-6-master-releas-mcx82-11[0m stage [32mfrom-build-pack[0m and container [32mstep-place-tools[0m
-Unable to retrieve container logs for docker://69bee531b41c8731c6904d9fae3f87aae97e19209071ca725420e6b896067a38
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-lwztf-11[0m stage [32mfrom-build-pack[0m and container [32mstep-place-tools[0m
 
-Showing logs for build [32mvfarcic-go-demo-6-master-releas-mcx82-11[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-vfarcic-go-demo-6-master-releas-7d6v6[0m
-Unable to retrieve container logs for docker://c55575b78d04d78d5504f77d080efa70f41c60c297b303d278a57544e3a38e60
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-lwztf-11[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-vfarcic-go-demo-6-master-releas-9nw9x[0m
+{"level":"warn","ts":1575171804.7865953,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575171805.1448133,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ v1.0.447 in path /workspace/source"}
 
-Showing logs for build [32mvfarcic-go-demo-6-master-releas-mcx82-11[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
-Unable to retrieve container logs for docker://77db5bda595702258f9dc96f5262479012fee587eb56bf3343a2e184594302f0
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-lwztf-11[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:568e21e5814dc1fa9522e5ae87e8f122a30782e5
+WARNING: no SHAs to merge, falling back to initial cloned commit
 
-Showing logs for build [32mvfarcic-go-demo-6-master-releas-mcx82-11[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-jx-git-credentials[0m
-Unable to retrieve container logs for docker://4ce4dea13275f9de5472d013318cdd706197c43ef6c688f42699e70805786c6d
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-lwztf-11[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-jx-git-credentials[0m
+Generated Git credentials file /workspace/xdg_config/git/credentials
 
-Showing logs for build [32mvfarcic-go-demo-6-master-releas-mcx82-11[0m stage [32mfrom-build-pack[0m and container [32mstep-build-make-build[0m
-Unable to retrieve container logs for docker://e50902097175f1a93547091ba6143ea6121706704d12ab1d4caa505fc51fb03f
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-lwztf-11[0m stage [32mfrom-build-pack[0m and container [32mstep-build1[0m
+go: finding github.com/stretchr/ob** v0.1.1
+go: finding github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: finding github.com/stretchr/testify v1.2.2
+go: finding github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
+go: finding github.com/prometheus/client_golang v0.9.2
+go: finding github.com/pmezard/go-difflib v1.0.0
+go: finding github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: finding github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
+go: finding github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+go: finding gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
+go: finding github.com/golang/protobuf v1.2.0
+go: finding github.com/davecgh/go-spew v1.1.1
+go: finding golang.org/x/net v0.0.0-20181201002055-351d144fa1fc
+go: finding golang.org/x/sync v0.0.0-20181108010431-42b317875d0f
+go: downloading gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
+go: downloading github.com/prometheus/client_golang v0.9.2
+go: extracting github.com/prometheus/client_golang v0.9.2
+go: downloading github.com/golang/protobuf v1.2.0
+go: downloading github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
+go: downloading github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
+go: downloading github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+go: downloading github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: extracting gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
+go: extracting github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+go: extracting github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: extracting github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
+go: extracting github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
+go: downloading github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: extracting github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: extracting github.com/golang/protobuf v1.2.0
 
-Showing logs for build [32mvfarcic-go-demo-6-master-releas-mcx82-11[0m stage [32mfrom-build-pack[0m and container [32mstep-build-container-build[0m
-Unable to retrieve container logs for docker://69a86002cc5fe7751b4ca75e1822d7a13e8cc1f3deefcf49db2a286ffb5f6503
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-lwztf-11[0m stage [32mfrom-build-pack[0m and container [32mstep-build2[0m
 
-Showing logs for build [32mvfarcic-go-demo-6-master-releas-mcx82-11[0m stage [32mfrom-build-pack[0m and container [32mstep-build-post-build[0m
-Unable to retrieve container logs for docker://8e0bd54ccfd06f56d33cff92e15b439d203eb590a9bc611a0c015cc1ce458d6c
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-lwztf-11[0m stage [32mfrom-build-pack[0m and container [32mstep-build3[0m
 
-Showing logs for build [32mvfarcic-go-demo-6-master-releas-mcx82-11[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-changelog[0m
-Unable to retrieve container logs for docker://da368362d17f1a9d17010615508eac47949ee51db2535ed4918a97097aebcf4b
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-lwztf-11[0m stage [32mfrom-build-pack[0m and container [32mstep-build-container-build[0m
+[36mINFO[0m[0000] No base image, nothing to extract            
+[36mINFO[0m[0000] cmd: EXPOSE                                  
+[36mINFO[0m[0000] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0000] Using files from context: [/workspace/source/bin/go-demo-6_linux] 
+[36mINFO[0m[0000] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0000] Taking snapshot of full filesystem...        
+[36mINFO[0m[0000] EXPOSE 8080                                  
+[36mINFO[0m[0000] cmd: EXPOSE                                  
+[36mINFO[0m[0000] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0000] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0000] ENTRYPOINT ["/go-demo-6"]                    
+[36mINFO[0m[0000] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0000] Using files from context: [/workspace/source/bin/go-demo-6_linux] 
+[36mINFO[0m[0000] COPY ./bin/go-demo-6_linux /go-demo-6        
+[36mINFO[0m[0000] Taking snapshot of files...                  
+2019/12/01 03:45:00 pushed blob: sha256:f7dfcea74b584b57ff545b1c573414a438434854137e0555004e239bc1111a6d
+2019/12/01 03:45:01 pushed blob: sha256:434b2b2e32fce1aab789aa285c2934689e4a155082d0f976833eb96c45858bc1
+2019/12/01 03:45:02 gcr.io/devops-26/go-demo-6:1.0.447: digest: sha256:81b552a73d0cdf5c5438214dbf0b9813d55097a6e9a3bcd16af09fb60d1b2e7e size: 428
 
-Showing logs for build [32mvfarcic-go-demo-6-master-releas-mcx82-11[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-helm-release[0m
-Unable to retrieve container logs for docker://0fbe8bf7705bbe2f8bdca0580e95a170f42b075ced5b7e5baa0b8e7b8edc5bbb
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-lwztf-11[0m stage [32mfrom-build-pack[0m and container [32mstep-build-post-build[0m
+no CVE provider running in the current ** namespace so skip adding image to be analysed
 
-Showing logs for build [32mvfarcic-go-demo-6-master-releas-mcx82-11[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-jx-promote[0m
-Unable to retrieve container logs for docker://bcd3ee152124802a70d7e9616df143c2d46a915020871887915102a54acaeca2
-[31m
-Pipeline failed on stage 'from-build-pack' : container 'step-promote-jx-promote'. The execution of the pipeline has stopped.[0m
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-lwztf-11[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-changelog[0m
+Converted /workspace/source/charts/go-demo-6 to an unshallow repository
+Generating change log from git ref 68f03ddea5c57abe308acb8183dd132b23a80286 => 38db398a569d22f16b3302998053894b2b0f6cb2
+Associating user x-0 in users.jenkins.io with email *******@farcic.com to git GitProvider user with login -0 as emails match
+Adding label jenkins.io/git-github-userid=-0 to user x-0 in users.jenkins.io
+WARNING: Failed to enrich commit 568e21e5814dc1fa9522e5ae87e8f122a30782e5 with issues: User.jenkins.io "x-0" is invalid: metadata.labels: Invalid value: "-0": a valid label must be an empty string or consist of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyValue',  or 'my_value',  or '12345', regex used for validation is '(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?')
+Associating user x-0 in users.jenkins.io with email *******@farcic.com to git GitProvider user with login -0 as emails match
+Adding label jenkins.io/git-github-userid=-0 to user x-0 in users.jenkins.io
+WARNING: Failed to enrich commit 568e21e5814dc1fa9522e5ae87e8f122a30782e5 with issues: User.jenkins.io "x-0" is invalid: metadata.labels: Invalid value: "-0": a valid label must be an empty string or consist of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyValue',  or 'my_value',  or '12345', regex used for validation is '(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?')
+Finding issues in commit messages using git format
+WARNING: No release found for *******/go-demo-6 and tag v1.0.447 so creating a new release
+Updated the release information at https://github.com/*******/go-demo-6/releases/tag/v1.0.447
+generated: /workspace/source/charts/go-demo-6/templates/release.yaml
+Created Release go-demo-6-1-0-447 resource in namespace **
+Updating PipelineActivity *******-go-demo-6-master-11 with version 1.0.447
+Updated PipelineActivities *******-go-demo-6-master-11 with release notes URL: https://github.com/*******/go-demo-6/releases/tag/v1.0.447
+
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-lwztf-11[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-helm-release[0m
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: storage.googleapis.com https://storage.googleapis.com/chartmuseum.jenkins-x.io
+Successfully added Helm repository storage.googleapis.com.
+Adding missing Helm repo: jenkins-x-chartmuseum http://jenkins-x-chartmuseum:8080
+Successfully added Helm repository jenkins-x-chartmuseum.
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Uploading chart file go-demo-6-1.0.447.tgz to http://jenkins-x-chartmuseum:8080/api/charts
+Received 201 response: {"saved":true}
+
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-lwztf-11[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-jx-promote[0m
+WARNING: prow based install so skip waiting for the merge of Pull Requests to go green as currently there is an issue with gettingstatuses from the PR, see https://github.com/jenkins-x/**/issues/2410
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Promoting app go-demo-6 version 1.0.447 to namespace **-staging
+Created Pull Request: https://github.com/*******/environment-**-rocks-staging/pull/9
+got git provider status pending from PR https://github.com/*******/environment-**-rocks-staging/pull/9
+got git provider status pending from PR https://github.com/*******/environment-**-rocks-staging/pull/9
+got git provider status pending from PR https://github.com/*******/environment-**-rocks-staging/pull/9
+got git provider status pending from PR https://github.com/*******/environment-**-rocks-staging/pull/9
+Pull Request https://github.com/*******/environment-**-rocks-staging/pull/9 is merged at sha f157af83f254d90df5e9b0c4bb8ddb81e1016871
+Pull Request merged but we are not waiting for the update pipeline to complete!
+
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-lwztf-11[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-rollout[0m
+Waiting for deployment "**-go-demo-6" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment spec update to be observed...
+Waiting for deployment spec update to be observed...
+Waiting for deployment "**-go-demo-6" rollout to finish: 0 out of 3 new replicas have been updated...
+Waiting for deployment "**-go-demo-6" rollout to finish: 0 out of 3 new replicas have been updated...
+Waiting for deployment "**-go-demo-6" rollout to finish: 0 out of 3 new replicas have been updated...
+Waiting for deployment "**-go-demo-6" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "**-go-demo-6" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "**-go-demo-6" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "**-go-demo-6" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "**-go-demo-6" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "**-go-demo-6" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "**-go-demo-6" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "**-go-demo-6" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "**-go-demo-6" rollout to finish: 2 of 3 updated replicas are available...
+deployment "**-go-demo-6" successfully rolled out

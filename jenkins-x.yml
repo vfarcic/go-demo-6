@@ -1,4 +1,4 @@
-buildPack: go-mongo
+buildPack: go
 pipelineConfig:
   pipelines:
     pullRequest:

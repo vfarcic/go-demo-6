@@ -1,0 +1,261 @@
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-159-server-zdrn7-3[0m stage [32mfrom-build-pack[0m and container [32mstep-credential-initializer-bgptw[0m
+{"level":"warn","ts":1575170901.3079393,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575170901.3086762,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-159-server-zdrn7-3[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-4hpl8[0m
+{"level":"warn","ts":1575170902.2393897,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575170902.2423549,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-159-server-zdrn7-3[0m stage [32mfrom-build-pack[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-159-server-zdrn7-3[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-vfarcic-go-demo-6-pr-159-server-99h6l[0m
+{"level":"warn","ts":1575170910.2299926,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575170910.5979087,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ master in path /workspace/source"}
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-159-server-zdrn7-3[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:0cefd5691a2329c7cb85179710c2255b2be7b651,159:41c7c79881e6c3a91863df465d24765022161b8e
+DEBUG: ran git fetch --unshallow origin 41c7c79881e6c3a91863df465d24765022161b8e: 0cefd5691a2329c7cb85179710c2255b2be7b651: in 
+DEBUG: ran git checkout master in 
+DEBUG: ran git reset --hard 0cefd5691a2329c7cb85179710c2255b2be7b651 in 
+DEBUG: ran clean --force -d . in 
+DEBUG: ran git merge 41c7c79881e6c3a91863df465d24765022161b8e in 
+Merged SHA 41c7c79881e6c3a91863df465d24765022161b8e with commit message 'Code coverage secret' into base branch master
+Merged SHA fa393ae55c99aee8d510f06497b2a5a3000cbb93 with commit message 'Code coverage' into base branch master
+Merged SHA 1a1dbe8849abf40be9ce2b29ba01da0a598eb7fd with commit message 'rollout status' into base branch master
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-159-server-zdrn7-3[0m stage [32mfrom-build-pack[0m and container [32mstep-build-unit-tests[0m
+go: finding github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: finding github.com/davecgh/go-spew v1.1.1
+go: finding github.com/pmezard/go-difflib v1.0.0
+go: finding github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: finding github.com/stretchr/ob** v0.1.1
+go: finding github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+go: finding github.com/golang/protobuf v1.2.0
+go: finding github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
+go: finding github.com/stretchr/testify v1.2.2
+go: finding gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
+go: finding github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
+go: finding github.com/prometheus/client_golang v0.9.2
+go: finding golang.org/x/net v0.0.0-20181201002055-351d144fa1fc
+go: finding golang.org/x/sync v0.0.0-20181108010431-42b317875d0f
+go: downloading gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
+go: downloading github.com/prometheus/client_golang v0.9.2
+go: extracting github.com/prometheus/client_golang v0.9.2
+go: downloading github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
+go: downloading github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
+go: downloading github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+go: downloading github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: downloading github.com/golang/protobuf v1.2.0
+go: extracting github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+go: extracting github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
+go: downloading github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: extracting github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: extracting gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
+go: extracting github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: extracting github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
+go: extracting github.com/golang/protobuf v1.2.0
+CGO_ENABLED=0 GO15VENDOREXPERIMENT=1 go test --run UnitTest \
+-v -coverprofile=coverage.txt -covermode=atomic
+go: downloading github.com/stretchr/testify v1.2.2
+go: extracting github.com/stretchr/testify v1.2.2
+go: downloading github.com/davecgh/go-spew v1.1.1
+go: downloading github.com/stretchr/ob** v0.1.1
+go: downloading github.com/pmezard/go-difflib v1.0.0
+go: extracting github.com/pmezard/go-difflib v1.0.0
+go: extracting github.com/davecgh/go-spew v1.1.1
+go: extracting github.com/stretchr/ob** v0.1.1
+=== RUN   TestMainUnitTestSuite
+=== RUN   TestMainUnitTestSuite/Test_HelloServer_Waits_WhenDelayIsPresent
+=== RUN   TestMainUnitTestSuite/Test_HelloServer_WritesHelloWorld
+=== RUN   TestMainUnitTestSuite/Test_HelloServer_WritesNokEventually
+=== RUN   TestMainUnitTestSuite/Test_HelloServer_WritesOk
+=== RUN   TestMainUnitTestSuite/Test_PersonServer_InvokesUpsertId_WhenPutPerson
+=== RUN   TestMainUnitTestSuite/Test_PersonServer_Panics_WhenFindReturnsError
+=== RUN   TestMainUnitTestSuite/Test_PersonServer_Panics_WhenUpsertIdReturnsError
+=== RUN   TestMainUnitTestSuite/Test_PersonServer_WritesPeople
+=== RUN   TestMainUnitTestSuite/Test_RunServer_InvokesListenAndServe
+=== RUN   TestMainUnitTestSuite/Test_SetupMetrics_InitializesHistogram
+--- PASS: TestMainUnitTestSuite (0.01s)
+    --- PASS: TestMainUnitTestSuite/Test_HelloServer_Waits_WhenDelayIsPresent (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_HelloServer_WritesHelloWorld (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_HelloServer_WritesNokEventually (0.01s)
+    --- PASS: TestMainUnitTestSuite/Test_HelloServer_WritesOk (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_PersonServer_InvokesUpsertId_WhenPutPerson (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_PersonServer_Panics_WhenFindReturnsError (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_PersonServer_Panics_WhenUpsertIdReturnsError (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_PersonServer_WritesPeople (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_RunServer_InvokesListenAndServe (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_SetupMetrics_InitializesHistogram (0.00s)
+PASS
+coverage: 75.0% of statements
+ok  	go-demo-6	0.019s
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-159-server-zdrn7-3[0m stage [32mfrom-build-pack[0m and container [32mstep-build-code-coverage[0m
+
+  _____          _
+ / ____|        | |
+| |     ___   __| | ___  ___ _____   __
+| |    / _ \ / _` |/ _ \/ __/ _ \ \ / /
+| |___| (_) | (_| |  __/ (_| (_) \ V /
+ \_____\___/ \__,_|\___|\___\___/ \_/
+                              Bash-8a28df4
+
+
+[0;31mx>[0m No CI provider detected.
+    Testing inside Docker? [0;36mhttp://docs.codecov.io/docs/testing-with-docker[0m
+    Testing with Tox? [0;36mhttps://docs.codecov.io/docs/python#section-testing-with-tox[0m
+    [0;90mproject root:[0m .
+[0;90m-->[0m token set from env
+    [0;32mYaml not found, that's ok! Learn more at[0m [0;36mhttp://docs.codecov.io/docs/codecov-yaml[0m
+[0;90m==>[0m Running gcov in . [0;90m(disable via -X gcov)[0m
+find: unrecognized: -execdir
+BusyBox v1.29.3 (2019-01-24 07:45:07 UTC) multi-call binary.
+
+Usage: find [-HL] [PATH]... [OPTIONS] [ACTIONS]
+
+Search for files and perform actions on them.
+First failed action stops processing of current file.
+Defaults: PATH is current directory, action is '-print'
+
+	-L,-follow	Follow symlinks
+	-H		...on command line only
+	-xdev		Don't descend directories on other filesystems
+	-maxdepth N	Descend at most N levels. -maxdepth 0 applies
+			actions to command line arguments only
+	-mindepth N	Don't act on first N levels
+	-depth		Act on directory *after* traversing it
+
+Actions:
+	( ACTIONS )	Group actions for -o / -a
+	! ACT		Invert ACT's success/failure
+	ACT1 [-a] ACT2	If ACT1 fails, stop, else do ACT2
+	ACT1 -o ACT2	If ACT1 succeeds, stop, else do ACT2
+			Note: -a has higher priority than -o
+	-name PATTERN	Match file name (w/o directory name) to PATTERN
+	-iname PATTERN	Case insensitive -name
+	-path PATTERN	Match path to PATTERN
+	-ipath PATTERN	Case insensitive -path
+	-regex PATTERN	Match path to regex PATTERN
+	-type X		File type is X (one of: f,d,l,b,c,s,p)
+	-perm MASK	At least one mask bit (+MASK), all bits (-MASK),
+			or exactly MASK bits are set in file's mode
+	-mtime DAYS	mtime is greater than (+N), less than (-N),
+			or exactly N days in the past
+	-mmin MINS	mtime is greater than (+N), less than (-N),
+			or exactly N minutes in the past
+	-newer FILE	mtime is more recent than FILE's
+	-inum N		File has inode number N
+	-user NAME/ID	File is owned by given user
+	-group NAME/ID	File is owned by given group
+	-size N[bck]	File size is N (c:bytes,k:kbytes,b:512 bytes(def.))
+			+/-N: file size is bigger/smaller than N
+	-links N	Number of links is greater than (+N), less than (-N),
+			or exactly N
+	-prune		If current file is directory, don't descend into it
+If none of the following actions is specified, -print is assumed
+	-print		Print file name
+	-print0		Print file name, NUL terminated
+	-exec CMD ARG ;	Run CMD with all instances of {} replaced by
+			file name. Fails if CMD exits with nonzero
+	-exec CMD ARG + Run CMD with {} replaced by list of file names
+	-delete		Delete current file/directory. Turns on -depth option
+[0;90m==>[0m Python coveragepy not found
+[0;90m==>[0m Searching for coverage reports in:
+    [0;32m+[0m .
+    [0;90m->[0m Found 1 reports
+[0;90m==>[0m Detecting git/mercurial file structure
+[0;90m==>[0m Reading reports
+    [0;32m+[0m ./coverage.txt [0;90mbytes=1289[0m
+[0;90m==>[0m Appending adjustments
+    [0;36mhttp://docs.codecov.io/docs/fixing-reports[0m
+    [0;32m+[0m Found adjustments
+[0;90m==>[0m Gzipping contents
+[0;90m==>[0m Uploading reports
+    [0;90murl:[0m https://codecov.io
+    [0;90mquery:[0m branch=master&commit=41c7c79881e6c3a91863df465d24765022161b8e&build=&build_url=&name=&tag=&slug=*******%2Fgo-demo-6&service=&flags=&pr=&job=
+    [0;90m->[0m Pinging Codecov
+https://codecov.io/upload/v4?package=bash-8a28df4&token=************************************&branch=master&commit=41c7c79881e6c3a91863df465d24765022161b8e&build=&build_url=&name=&tag=&slug=*******%2Fgo-demo-6&service=&flags=&pr=&job=
+    [0;90m->[0m Uploading
+    [0;32m->[0m View reports at [0;36mhttps://codecov.io/github/*******/go-demo-6/commit/41c7c79881e6c3a91863df465d24765022161b8e[0m
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-159-server-zdrn7-3[0m stage [32mfrom-build-pack[0m and container [32mstep-build-make-linux[0m
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO15VENDOREXPERIMENT=1 go build -ldflags '' -o bin/go-demo-6 main.go
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-159-server-zdrn7-3[0m stage [32mfrom-build-pack[0m and container [32mstep-build-container-build[0m
+[36mINFO[0m[0000] No base image, nothing to extract            
+[36mINFO[0m[0000] cmd: EXPOSE                                  
+[36mINFO[0m[0000] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0000] Using files from context: [/workspace/source/bin] 
+[36mINFO[0m[0000] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0000] Taking snapshot of full filesystem...        
+[36mINFO[0m[0000] EXPOSE 8080                                  
+[36mINFO[0m[0000] cmd: EXPOSE                                  
+[36mINFO[0m[0000] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0000] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0000] ENTRYPOINT ["/go-demo-6"]                    
+[36mINFO[0m[0000] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0000] Using files from context: [/workspace/source/bin] 
+[36mINFO[0m[0000] COPY ./bin/ /                                
+[36mINFO[0m[0000] Taking snapshot of files...                  
+2019/12/01 03:29:23 pushed blob: sha256:4023ec3ba1b73b963a944f4bcf84c87aa5bfe40d1a0aa8e45d8ddf4a80ef4004
+2019/12/01 03:29:24 pushed blob: sha256:6d76cfaec140f2c4f2af9ea565d1959c6fea90a8a2b42ecab3ebe3c9543b80ea
+2019/12/01 03:29:25 gcr.io/devops-26/go-demo-6:0.0.0-SNAPSHOT-PR-159-3: digest: sha256:416596942573e2f09419548a53886bd5bc1f7b19491f6b180658d7c237a92169 size: 428
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-159-server-zdrn7-3[0m stage [32mfrom-build-pack[0m and container [32mstep-postbuild-post-build[0m
+no CVE provider running in the current ** namespace so skip adding image to be analysed
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-159-server-zdrn7-3[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-make-preview[0m
+sed -i -e "s/version:.*/version: 0.0.0-SNAPSHOT-PR-159-3/" Chart.yaml
+sed -i -e "s/version:.*/version: 0.0.0-SNAPSHOT-PR-159-3/" ../*/Chart.yaml
+sed -i -e "s|repository:.*|repository: gcr.io\/devops-26\/go-demo-6|" values.yaml
+sed -i -e "s/tag:.*/tag: 0.0.0-SNAPSHOT-PR-159-3/" values.yaml
+echo "  version: 0.0.0-SNAPSHOT-PR-159-3" >> requirements.yaml
+** step helm build
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: storage.googleapis.com https://storage.googleapis.com/chartmuseum.jenkins-x.io
+Successfully added Helm repository storage.googleapis.com.
+Adding missing Helm repo: jenkins-x-chartmuseum http://jenkins-x-chartmuseum:8080
+Successfully added Helm repository jenkins-x-chartmuseum.
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: chartmuseum.jenkins-x.io http://chartmuseum.jenkins-x.io
+Successfully added Helm repository chartmuseum.jenkins-x.io.
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-159-server-zdrn7-3[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-jx-preview[0m
+Creating a preview
+expose:
+  Annotations:
+    helm.sh/hook: post-install,post-upgrade
+    helm.sh/hook-delete-policy: hook-succeeded
+  config:
+    domain: 34.74.61.253.nip.io
+    exposer: Ingress
+    http: "true"
+preview:
+  image:
+    repository: gcr.io/devops-26/go-demo-6
+    tag: 0.0.0-SNAPSHOT-PR-159-3
+Cloning the Jenkins X versions repo https://github.com/jenkins-x/jenkins-x-versions.git with ref refs/heads/master to /builder/home/.**/jenkins-x-versions
+
+
+Updating PipelineActivities *******-go-demo-6-pr-159-3 which has status Running
+Preview application is now available at: http://go-demo-6.**-*******-go-demo-6-pr-159.34.74.61.253.nip.io
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-159-server-zdrn7-3[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-rollout[0m
+deployment "preview-preview" successfully rolled out
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-159-server-zdrn7-3[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-functional-tests[0m
+CGO_ENABLED=0 GO15VENDOREXPERIMENT=1 go \
+test -test.v --run FunctionalTest \
+-coverprofile=coverage.txt -covermode=atomic
+=== RUN   TestFunctionalTestSuite
+=== RUN   TestFunctionalTestSuite/Test_Hello_ReturnsStatus200
+2019/12/01 03:30:48 Sending a request to http://go-demo-6.**-*******-go-demo-6-pr-159.34.74.61.253.nip.io/demo/hello
+=== RUN   TestFunctionalTestSuite/Test_Person_ReturnsStatus200
+2019/12/01 03:30:48 Sending a request to http://go-demo-6.**-*******-go-demo-6-pr-159.34.74.61.253.nip.io/demo/person
+--- PASS: TestFunctionalTestSuite (0.01s)
+    --- PASS: TestFunctionalTestSuite/Test_Hello_ReturnsStatus200 (0.01s)
+    --- PASS: TestFunctionalTestSuite/Test_Person_ReturnsStatus200 (0.00s)
+PASS
+coverage: 1.4% of statements
+ok  	go-demo-6	0.017s

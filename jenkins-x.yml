@@ -5,3 +5,6 @@ pipelineConfig:
       build:
         preSteps:
         - command: make unittest
+      promote:
+        steps:
+        - command: ADDRESS=`jx get preview --current 2>&1` make functest

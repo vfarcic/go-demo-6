@@ -29,7 +29,17 @@ pipelineConfig:
     - pipeline: release
       # This is new
       stage: build
-    # This is new
+      name: make-build
+      steps:
+      - loop:
+          variable: GOOS
+          values:
+          - darwin
+          - linux
+          - windows
+          steps:
+          - name: build
+            command: CGO_ENABLED=0 GOOS=${GOOS} GOARCH=amd64 go build -o bin/go-demo-6_${GOOS} main.go
     release:
       promote:
         steps:

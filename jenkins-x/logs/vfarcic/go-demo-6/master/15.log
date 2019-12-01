@@ -1,0 +1,26 @@
+
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-ttwmd-15[0m stage [32mfrom-build-pack[0m and container [32mstep-credential-initializer-tfkcl[0m
+{"level":"warn","ts":1575165003.8846486,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575165003.8850644,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-ttwmd-15[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-m6hvf[0m
+{"level":"warn","ts":1575165005.0098808,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575165005.019254,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-ttwmd-15[0m stage [32mfrom-build-pack[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-ttwmd-15[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-vfarcic-go-demo-6-master-releas-k4q6s[0m
+{"level":"warn","ts":1575165013.1167212,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575165013.4949398,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ v1.0.434 in path /workspace/source"}
+
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-ttwmd-15[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:716ec8320062c21c2709c0ccc627d943b2b1bc02
+WARNING: no SHAs to merge, falling back to initial cloned commit
+
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-ttwmd-15[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-jx-git-credentials[0m
+Generated Git credentials file /workspace/xdg_config/git/credentials
+
+Showing logs for build [32mvfarcic-go-demo-6-master-releas-ttwmd-15[0m stage [32mfrom-build-pack[0m and container [32mstep-build-make-build[0m
+make: *** No rule to make target `build'.  Stop.
+[31m
+Pipeline failed on stage 'from-build-pack' : container 'step-build-make-build'. The execution of the pipeline has stopped.[0m

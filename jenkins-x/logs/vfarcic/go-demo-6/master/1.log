@@ -1,20 +1,20 @@
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-credential-initializer-5gjwd[0m
-{"level":"warn","ts":1575203380.5281556,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1575203380.5285368,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-credential-initializer-jmhvr[0m
+{"level":"warn","ts":1575205609.6904197,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575205609.6912503,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-working-dir-initializer-sxqpl[0m
-{"level":"warn","ts":1575203383.7283268,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
-{"level":"info","ts":1575203383.730189,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-working-dir-initializer-6qk44[0m
+{"level":"warn","ts":1575205611.52925,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575205611.5376601,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
 
 Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-place-tools[0m
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-git-source-meta-vfarcic-go-demo-6-master-hbp2v[0m
-{"level":"warn","ts":1575203406.5786316,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1575203406.906964,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ 4a549cd652fc68212d4a5e01e7ded3747739c214 in path /workspace/source"}
+Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-git-source-meta-vfarcic-go-demo-6-master-shscb[0m
+{"level":"warn","ts":1575205618.3150375,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575205618.7132874,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ 8f272f3fc9c1c864b4d6757897b3e27689e48463 in path /workspace/source"}
 
 Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-git-merge[0m
-Using SHAs from PULL_REFS=master:4a549cd652fc68212d4a5e01e7ded3747739c214
+Using SHAs from PULL_REFS=master:8f272f3fc9c1c864b4d6757897b3e27689e48463
 WARNING: no SHAs to merge, falling back to initial cloned commit
 
 Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-merge-pull-refs[0m
@@ -26,22 +26,22 @@ error: no build pack for go-mongo exists at directory /builder/home/.**/draft/pa
 [31m
 Pipeline failed on stage 'meta-pipeline' : container 'step-create-effective-pipeline'. The execution of the pipeline has stopped.[0m
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-credential-initializer-5gjwd[0m
-{"level":"warn","ts":1575203380.5281556,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1575203380.5285368,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-credential-initializer-jmhvr[0m
+{"level":"warn","ts":1575205609.6904197,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575205609.6912503,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-working-dir-initializer-sxqpl[0m
-{"level":"warn","ts":1575203383.7283268,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
-{"level":"info","ts":1575203383.730189,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-working-dir-initializer-6qk44[0m
+{"level":"warn","ts":1575205611.52925,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1575205611.5376601,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
 
 Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-place-tools[0m
 
-Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-git-source-meta-vfarcic-go-demo-6-master-hbp2v[0m
-{"level":"warn","ts":1575203406.5786316,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1575203406.906964,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ 4a549cd652fc68212d4a5e01e7ded3747739c214 in path /workspace/source"}
+Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-git-source-meta-vfarcic-go-demo-6-master-shscb[0m
+{"level":"warn","ts":1575205618.3150375,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1575205618.7132874,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ 8f272f3fc9c1c864b4d6757897b3e27689e48463 in path /workspace/source"}
 
 Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-git-merge[0m
-Using SHAs from PULL_REFS=master:4a549cd652fc68212d4a5e01e7ded3747739c214
+Using SHAs from PULL_REFS=master:8f272f3fc9c1c864b4d6757897b3e27689e48463
 WARNING: no SHAs to merge, falling back to initial cloned commit
 
 Showing logs for build [32mmeta-vfarcic-go-demo-6-master-1[0m stage [32mmeta-pipeline[0m and container [32mstep-merge-pull-refs[0m

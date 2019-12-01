@@ -20,21 +20,16 @@ spec:
             env:
             - name: DB
               value: {{ template "fullname" . }}-db
-{{- range $pkey, $pval := .Values.env }}
-            - name: {{ $pkey }}
-              value: {{ quote $pval }}
-{{- end }}
             livenessProbe:
               httpGet:
-                path: {{ .Values.service.internalPort }}:{{ .Values.probePath }}
+                path: {{ .Values.probePath }}
               initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
               periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
               successThreshold: {{ .Values.livenessProbe.successThreshold }}
               timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
             readinessProbe:
-              failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
               httpGet:
-                path: {{ .Values.service.internalPort }}:{{ .Values.probePath }}
+                path: {{ .Values.probePath }}
               periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
               successThreshold: {{ .Values.readinessProbe.successThreshold }}
               timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}

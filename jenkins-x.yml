@@ -5,3 +5,4 @@ pipelineConfig:
       build:
         preSteps:
         - command: make unittest
+        - command: make unittest

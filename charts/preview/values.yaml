@@ -29,3 +29,11 @@ db:
 preview-db:
   persistence:
     enabled: false
+
+
+db:
+  enabled: false
+
+preview-db:
+  persistence:
+    enabled: false

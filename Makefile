@@ -62,11 +62,19 @@ lint: vendor | $(PKGS) $(GOLINT) # ❷
 	done ; exit $$ret
 
 unittest: 
-	CGO_ENABLED=$(CGO_ENABLED) $(GO) \
-	test --run UnitTest -v
+	CGO_ENABLED=$(CGO_ENABLED) $(GO) test --run UnitTest \
+	-v -coverprofile=coverage.txt -covermode=atomic
+
 
 functest: 
 	CGO_ENABLED=$(CGO_ENABLED) $(GO) \
 	test -test.v --run FunctionalTest \
-	--cover
+	-coverprofile=coverage.txt -covermode=atomic
+
+
+integtest: 
+	DURATION=1 \
+	CGO_ENABLED=$(CGO_ENABLED) $(GO) \
+	test -test.v --run ProductionTest \
+	-coverprofile=coverage.txt -covermode=atomic
 

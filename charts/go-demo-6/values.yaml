@@ -71,4 +71,4 @@ readinessProbe:
   timeoutSeconds: 1
 go-demo-6-db:
   replicaSet:
-  enabled: true
+    enabled: true

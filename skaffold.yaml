@@ -2,7 +2,7 @@ apiVersion: skaffold/v1beta2
 kind: Config
 build:
   artifacts:
-  - image: devops-26/go-demo-6
+  - image: /go-demo-6
     context: .
     docker: {}
   tagPolicy:

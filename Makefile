@@ -64,4 +64,3 @@ unittest:
 	CGO_ENABLED=$(CGO_ENABLED) $(GO) \
 	test --run UnitTest -v
 
-VERSION := 2.0.0

@@ -1,0 +1,154 @@
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-170-pr-bui-6vdc8-1[0m stage [32mfrom-build-pack[0m and container [32mstep-credential-initializer-pqft7[0m
+{"level":"warn","ts":1579714794.94975,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-jx-support-backwards-incompats\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1579714794.950193,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-170-pr-bui-6vdc8-1[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-m86zr[0m
+{"level":"warn","ts":1579714795.545236,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1579714795.5483491,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p /workspace/source\"; output "}
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-170-pr-bui-6vdc8-1[0m stage [32mfrom-build-pack[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-170-pr-bui-6vdc8-1[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-vfarcic-go-demo-6-pr-170-pr-bui-t6kp4[0m
+{"level":"warn","ts":1579714801.8892112,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-jx-support-backwards-incompats\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1579714802.3416786,"logger":"fallback-logger","caller":"git/git.go:103","msg":"Successfully cloned https://github.com/*******/go-demo-6.git @ master in path /workspace/source"}
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-170-pr-bui-6vdc8-1[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:b1c598d5275c2af327b8759311a1081749cbe30d,170:937b419ffac1f7f548b6c295696f028f298ed198
+DEBUG: ran git fetch --unshallow origin 937b419ffac1f7f548b6c295696f028f298ed198: b1c598d5275c2af327b8759311a1081749cbe30d: in 
+DEBUG: ran git checkout master in 
+DEBUG: ran git reset --hard b1c598d5275c2af327b8759311a1081749cbe30d in 
+DEBUG: ran clean --force -d . in 
+DEBUG: ran git merge 937b419ffac1f7f548b6c295696f028f298ed198 in 
+Merged SHA 937b419ffac1f7f548b6c295696f028f298ed198 with commit message 'Trying to extend the pipeline' into base branch master
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-170-pr-bui-6vdc8-1[0m stage [32mfrom-build-pack[0m and container [32mstep-build-step2[0m
+go: finding github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: finding github.com/stretchr/objx v0.1.1
+go: finding github.com/prometheus/client_golang v0.9.2
+go: finding github.com/golang/protobuf v1.2.0
+go: finding github.com/stretchr/testify v1.2.2
+go: finding github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: finding github.com/davecgh/go-spew v1.1.1
+go: finding github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+go: finding github.com/pmezard/go-difflib v1.0.0
+go: finding gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
+go: finding github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
+go: finding github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
+go: finding golang.org/x/net v0.0.0-20181201002055-351d144fa1fc
+go: finding golang.org/x/sync v0.0.0-20181108010431-42b317875d0f
+go: downloading gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
+go: downloading github.com/prometheus/client_golang v0.9.2
+go: extracting github.com/prometheus/client_golang v0.9.2
+go: downloading github.com/golang/protobuf v1.2.0
+go: downloading github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+go: downloading github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
+go: downloading github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: downloading github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
+go: extracting github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+go: extracting github.com/prometheus/client_model v0.0.0-20180712105110-5c3871d89910
+go: extracting github.com/prometheus/procfs v0.0.0-20181204211112-1dc9a6cbc91a
+go: extracting gopkg.in/mgo.v2 v2.0.0-20180705113604-9856a29383ce
+go: extracting github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
+go: downloading github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: extracting github.com/matttproud/golang_protobuf_extensions v1.0.1
+go: extracting github.com/golang/protobuf v1.2.0
+CGO_ENABLED=0 GO15VENDOREXPERIMENT=1 go \
+test --run UnitTest -v
+go: downloading github.com/stretchr/testify v1.2.2
+go: extracting github.com/stretchr/testify v1.2.2
+go: downloading github.com/pmezard/go-difflib v1.0.0
+go: downloading github.com/davecgh/go-spew v1.1.1
+go: downloading github.com/stretchr/objx v0.1.1
+go: extracting github.com/pmezard/go-difflib v1.0.0
+go: extracting github.com/davecgh/go-spew v1.1.1
+go: extracting github.com/stretchr/objx v0.1.1
+=== RUN   TestMainUnitTestSuite
+=== RUN   TestMainUnitTestSuite/Test_HelloServer_Waits_WhenDelayIsPresent
+=== RUN   TestMainUnitTestSuite/Test_HelloServer_WritesHelloWorld
+=== RUN   TestMainUnitTestSuite/Test_HelloServer_WritesNokEventually
+=== RUN   TestMainUnitTestSuite/Test_HelloServer_WritesOk
+=== RUN   TestMainUnitTestSuite/Test_PersonServer_InvokesUpsertId_WhenPutPerson
+=== RUN   TestMainUnitTestSuite/Test_PersonServer_Panics_WhenFindReturnsError
+=== RUN   TestMainUnitTestSuite/Test_PersonServer_Panics_WhenUpsertIdReturnsError
+=== RUN   TestMainUnitTestSuite/Test_PersonServer_WritesPeople
+=== RUN   TestMainUnitTestSuite/Test_RunServer_InvokesListenAndServe
+=== RUN   TestMainUnitTestSuite/Test_SetupMetrics_InitializesHistogram
+--- PASS: TestMainUnitTestSuite (0.01s)
+    --- PASS: TestMainUnitTestSuite/Test_HelloServer_Waits_WhenDelayIsPresent (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_HelloServer_WritesHelloWorld (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_HelloServer_WritesNokEventually (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_HelloServer_WritesOk (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_PersonServer_InvokesUpsertId_WhenPutPerson (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_PersonServer_Panics_WhenFindReturnsError (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_PersonServer_Panics_WhenUpsertIdReturnsError (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_PersonServer_WritesPeople (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_RunServer_InvokesListenAndServe (0.00s)
+    --- PASS: TestMainUnitTestSuite/Test_SetupMetrics_InitializesHistogram (0.00s)
+PASS
+ok  	go-demo-6	0.012s
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-170-pr-bui-6vdc8-1[0m stage [32mfrom-build-pack[0m and container [32mstep-build-make-linux[0m
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO15VENDOREXPERIMENT=1 go build -ldflags '' -o bin/go-demo-6 main.go
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-170-pr-bui-6vdc8-1[0m stage [32mfrom-build-pack[0m and container [32mstep-build-container-build[0m
+[36mINFO[0m[0000] No base image, nothing to extract            
+[36mINFO[0m[0000] cmd: EXPOSE                                  
+[36mINFO[0m[0000] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0000] Using files from context: [/workspace/source/bin] 
+[36mINFO[0m[0000] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0000] Taking snapshot of full filesystem...        
+[36mINFO[0m[0000] EXPOSE 8080                                  
+[36mINFO[0m[0000] cmd: EXPOSE                                  
+[36mINFO[0m[0000] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0000] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0000] ENTRYPOINT ["/go-demo-6"]                    
+[36mINFO[0m[0000] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0000] Using files from context: [/workspace/source/bin] 
+[36mINFO[0m[0000] COPY ./bin/ /                                
+[36mINFO[0m[0000] Taking snapshot of files...                  
+2020/01/22 17:40:52 pushed blob: sha256:c37ec337281895619aed9ae62105bd7413be0ab4066bbbe0e5dd647a046cbd56
+2020/01/22 17:40:52 pushed blob: sha256:0a09c027e027d448aa4983367f40af574d570c1d37e104bc3831d8171abd7ba3
+2020/01/22 17:40:53 gcr.io/devops-27/go-demo-6:0.0.0-SNAPSHOT-PR-170-1: digest: sha256:8a6bcb5d27e0bd0b0e6d5b056deff37b4ec851a5155c52ab9d2de4aa4b3fcceb size: 428
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-170-pr-bui-6vdc8-1[0m stage [32mfrom-build-pack[0m and container [32mstep-postbuild-post-build[0m
+no CVE provider running in the current ******* namespace so skip adding image to be analysed
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-170-pr-bui-6vdc8-1[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-make-preview[0m
+sed -i -e "s/version:.*/version: 0.0.0-SNAPSHOT-PR-170-1/" Chart.yaml
+sed -i -e "s/version:.*/version: 0.0.0-SNAPSHOT-PR-170-1/" ../*/Chart.yaml
+sed -i -e "s|repository:.*|repository: gcr.io\/devops-27\/go-demo-6|" values.yaml
+sed -i -e "s/tag:.*/tag: 0.0.0-SNAPSHOT-PR-170-1/" values.yaml
+echo "  version: 0.0.0-SNAPSHOT-PR-170-1" >> requirements.yaml
+jx step helm build
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: storage.googleapis.com https://storage.googleapis.com/chartmuseum.jenkins-x.io
+Successfully added Helm repository storage.googleapis.com.
+Adding missing Helm repo: jenkins-x-chartmuseum http://jenkins-x-chartmuseum:8080
+Successfully added Helm repository jenkins-x-chartmuseum.
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: chartmuseum.jenkins-x.io http://chartmuseum.jenkins-x.io
+Successfully added Helm repository chartmuseum.jenkins-x.io.
+
+Showing logs for build [32mvfarcic-go-demo-6-pr-170-pr-bui-6vdc8-1[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-jx-preview[0m
+Creating a preview
+Created environment *******-go-demo-6-pr-170
+Namespace *******-*******-go-demo-6-pr-170 created 
+expose:
+  Annotations:
+    helm.sh/hook: post-install,post-upgrade
+    helm.sh/hook-delete-policy: hook-succeeded
+  config:
+    domain: 104.196.131.66.nip.io
+    exposer: Ingress
+    http: "true"
+preview:
+  image:
+    repository: gcr.io/devops-27/go-demo-6
+    tag: 0.0.0-SNAPSHOT-PR-170-1
+
+Updating PipelineActivities *******-go-demo-6-pr-170-1 which has status Running
+WARNING: preview application http://go-demo-6.*******-*******-go-demo-6-pr-170.104.196.131.66.nip.io not available, error was 503 503 Service Temporarily Unavailable, delaying for: 818.058174ms
+WARNING: preview application http://go-demo-6.*******-*******-go-demo-6-pr-170.104.196.131.66.nip.io not available, error was 503 503 Service Temporarily Unavailable, delaying for: 1.189652786s
+WARNING: preview application http://go-demo-6.*******-*******-go-demo-6-pr-170.104.196.131.66.nip.io not available, error was 503 503 Service Temporarily Unavailable, delaying for: 1.582170472s
+Preview application is now available at: http://go-demo-6.*******-*******-go-demo-6-pr-170.104.196.131.66.nip.io

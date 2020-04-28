@@ -1,16 +1,18 @@
 buildPack: go
 pipelineConfig:
-  # This is new
   env:
+  # This was modified
   - name: CODECOV_TOKEN
-    value: "4384f439-9da1-4be3-af60-ee80aed67bc8"
+    valueFrom:
+      secretKeyRef:
+        key: token
+        name: codecov
   pipelines:
     pullRequest:
       build:
         preSteps:
         - name: unit-tests
           command: make unittest
-        # This is new
         - name: code-coverage
           command: codecov.sh
           agent:
